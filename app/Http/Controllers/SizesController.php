@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Size;
 use Illuminate\Http\Request;
 
-class SizeController extends Controller
+class SizesController extends Controller
 {
     /**
      * Display a listing of the sizes.
@@ -36,19 +36,18 @@ class SizeController extends Controller
      */
     public function store(Request $request)
     {
-
+        // VALIDATE THE INPUT
         $this->validate($request,[
             'name' => 'bail|required|unique:sizes',
-            'length' => 'required|Numeric',
+            'height' => 'required|Numeric',
             'width' => 'required|Numeric'
-
         ]);
 
-        $size = new Size;
-        $size->name = request('name');
-        $size->length = request('length');
-        $size->width = request('width');
-        $size->save();
+        Size::create([
+            'name'=>$request->input('name'),
+            'height'=>$request->input('height'),
+            'width'=>$request->input('width')
+        ]);
 
         return redirect('/sizes');
     }
