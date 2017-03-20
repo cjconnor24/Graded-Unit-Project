@@ -25,7 +25,10 @@ Route::get('/home', 'HomeController@index');
 Route::get('/sizes', 'SizesController@index');
 Route::get('/sizes/create', 'SizesController@create');
 Route::post('/sizes/create', 'SizesController@store');
+Route::get('/sizes/{size}/edit', 'SizesController@edit');
 Route::get('/sizes/{size}', 'SizesController@show');
+Route::patch('/sizes/{size}', 'SizesController@update');
+Route::get('/sizes/{size}/remove', 'SizesController@delete');
 
 /**
  * CATEGORY ROUTES
