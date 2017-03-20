@@ -25,4 +25,12 @@ Route::get('/home', 'HomeController@index');
 Route::get('/sizes', 'SizesController@index');
 Route::get('/sizes/create', 'SizesController@create');
 Route::post('/sizes/create', 'SizesController@store');
-Route::get('/sizes/{size}', 'SizesController@show.');
+Route::get('/sizes/{size}', 'SizesController@show');
+
+/**
+ * CATEGORY ROUTES
+ */
+Route::get('/categories','CategoryController@index');
+Route::get('/categories/create','CategoryController@create');
+Route::post('/categories','CategoryController@store');
+Route::post('/categories/{category}','CategoryController@show');
