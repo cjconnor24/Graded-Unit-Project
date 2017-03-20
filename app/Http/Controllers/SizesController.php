@@ -60,6 +60,7 @@ class SizesController extends Controller
      */
     public function show(Size $size)
     {
+
         return view('size.show',compact('size'));
     }
 
@@ -71,7 +72,8 @@ class SizesController extends Controller
      */
     public function edit(Size $size)
     {
-        //
+//        dd($size);
+        return view('size.edit',compact('size'));
     }
 
     /**
@@ -83,7 +85,13 @@ class SizesController extends Controller
      */
     public function update(Request $request, Size $size)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'height' => 'required',
+            'width' => 'required'
+        ]);
+        $size->update($request->all());
+        return redirect('/sizes');
     }
 
     /**

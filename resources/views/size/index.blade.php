@@ -20,7 +20,7 @@
     <tr>
         <td>{{$size->name}}</td>
         <td>{{$size->height}} x {{$size->width}}</td>
-        <td><a href="#">Edit</a></td>
+        <td><a href="/sizes/{{$size->id}}/edit"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
         <td><a href="#">Delete</a></td>
     </tr>
 
