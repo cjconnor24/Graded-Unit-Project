@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('category.index',compact('categories'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     /**
@@ -35,7 +36,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // VALIDATE THE REQUEST
+        $this->validate($request, [
+            'name' => 'required|unique:categories'
+        ]);
+
+        Category::create([
+            'name'=>$request->input('name')
+        ]);
+
+        return redirect('/categories');
+
     }
 
     /**
