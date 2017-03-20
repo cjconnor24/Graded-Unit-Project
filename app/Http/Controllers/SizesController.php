@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 class SizeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the sizes.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $sizes = Size::all()->sortBy('name');
+        return view('size.index',compact('sizes'));
     }
 
     /**
@@ -24,7 +25,7 @@ class SizeController extends Controller
      */
     public function create()
     {
-        //
+        return view('size.create');
     }
 
     /**
@@ -35,7 +36,21 @@ class SizeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request,[
+            'name' => 'bail|required|unique:sizes',
+            'length' => 'required|Numeric',
+            'width' => 'required|Numeric'
+
+        ]);
+
+        $size = new Size;
+        $size->name = request('name');
+        $size->length = request('length');
+        $size->width = request('width');
+        $size->save();
+
+        return redirect('/sizes');
     }
 
     /**
@@ -46,7 +61,7 @@ class SizeController extends Controller
      */
     public function show(Size $size)
     {
-        //
+        return view('size.show',compact('size'));
     }
 
     /**
