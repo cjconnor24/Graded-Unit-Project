@@ -6,7 +6,7 @@
     <p>Below are the details for this size</p>
 
     <p>{{$size->name}}<br />
-    {{$size->length}} x {{$size->width}}</p>
+    {{$size->width}} x {{$size->height}}</p>
 
 
 @endsection

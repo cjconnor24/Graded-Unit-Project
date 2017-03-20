@@ -8,17 +8,17 @@
 
         <div class="form-group">
             <label for="Name">Name</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Size name">
+            <input type="text" class="form-control" name="name" id="name" placeholder="Size name" required>
         </div>
 
         <div class="form-group">
-            <label for="Length">Length</label>
-            <input type="text" class="form-control" name="length" id="length" placeholder="Enter Length">
+            <label for="width">Width</label>
+            <input type="text" class="form-control" id="width" name="width" placeholder="Enter width" required>
         </div>
 
         <div class="form-group">
-            <label for="Width">Width</label>
-            <input type="text" class="form-control" name="width" id="width" placeholder="Enter Width">
+            <label for="height">Height</label>
+            <input type="text" class="form-control" id="height" name="height" placeholder="Enter height" required>
         </div>
 
         <div class="form-group">
