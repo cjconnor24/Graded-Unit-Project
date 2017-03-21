@@ -21,7 +21,13 @@ class CreateAddressesTable extends Migration
             $table->string('address3');
             $table->string('address4');
             $table->string('postcode');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+
+            /**
+             * NAVIGATION PROPERTY FOR USER
+             */
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

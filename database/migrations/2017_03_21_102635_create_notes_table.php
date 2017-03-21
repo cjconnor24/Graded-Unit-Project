@@ -17,8 +17,10 @@ class CreateNotesTable extends Migration
             $table->increments('id');
             $table->string('content');
             $table->integer('order_id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
