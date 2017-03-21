@@ -20,6 +20,14 @@ class CreatePapersTable extends Migration
             $table->integer('weight');
             $table->timestamps();
         });
+
+        Schema::create('paper_product', function (Blueprint $table) {
+
+            $table->string('paper_id');
+            $table->string('product_id');
+
+            $table->primary(['paper_id','product_id']);
+        });
     }
 
     /**
@@ -30,5 +38,6 @@ class CreatePapersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('papers');
+        Schema::dropIfExists('paper_product');
     }
 }
