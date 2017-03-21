@@ -5,6 +5,8 @@
 
 <p><a href="/sizes/create" class="btn btn-success">Add New</a></p>
 
+@if(count($sizes)>0)
+
 <div class="col-md-6">
 <table class="table table-responsive table-hover table-bordered">
 <thead>
@@ -28,4 +30,10 @@
     </tbody>
 </table>
 </div>
+    @else
+
+    <p>There are no sizes added yet.</p>
+
+    @endif
+
 @endsection
