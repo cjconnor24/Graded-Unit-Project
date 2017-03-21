@@ -20,6 +20,8 @@ class CreateSizesTable extends Migration
             $table->integer('height');
             $table->timestamps();
         });
+
+
     }
 
     /**
