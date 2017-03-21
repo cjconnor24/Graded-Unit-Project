@@ -13,16 +13,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(SizesTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
-//        DB::table('sizes')->insert([
-//            'name' => 'A4',
-//            'width' => 210,
-//            'height' => 297,
-//        ]);
+        $this->call(PapersTableSeeder::class);
+
         // $this->call(UsersTableSeeder::class);
         DB::table('users')->insert([
-            'name' => str_random(10),
-            'email' => str_random(10).'@gmail.com',
-            'password' => bcrypt('secret'),
+            'name' => 'Chris Connor',
+            'email' => 'chris@connor.com',
+            'password' => bcrypt('comcom'),
         ]);
     }
 }
