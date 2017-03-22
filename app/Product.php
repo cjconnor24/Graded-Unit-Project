@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $fillable = (['name','description','price']);
     /**
      * Associate sizes with product
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -28,7 +29,7 @@ class Product extends Model
      * Associate product with one category
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }

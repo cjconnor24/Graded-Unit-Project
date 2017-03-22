@@ -15,7 +15,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('products.index')->with($products);
+        return view('product.index')->with('products',$products);
     }
 
     /**
@@ -25,7 +25,11 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        $categories = \App\Category::pluck('name', 'id');
+        $sizes = \App\Size::pluck('name','id');
+
+        return view('product.create')->with(['categories'=>$categories,'sizes'=>$sizes]);
+
     }
 
     /**
@@ -36,7 +40,29 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//dd($request->input('sizes'));
+//        dd($request);
+        $this->validate($request,[
+            'name'=>'required|unique:products',
+            'description'=>'required',
+            'price'=>'required|numeric',
+            'sizes'=>'required|array|min:1',
+            'category'=>'required'
+        ]);
+
+        $product = new \App\Product([
+        'name' => $request->input('name'),
+        'description' => $request->input('description'),
+        'price' => $request->input('price')
+        ]);
+
+       $category = \App\Category::find($request->input('category'));
+       $category->products()->save($product);
+
+       $product->sizes()->attach($request->input('sizes'));
+
+       return redirect('index.category');
+
     }
 
     /**
