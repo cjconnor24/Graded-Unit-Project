@@ -3,6 +3,7 @@
     <h1>Manage Categories</h1>
 <p><a href="/categories/create" class="btn btn-success">Create Category</a></p>
     <p>Manage categories below</p>
+
 @if(count($categories)>0)
 <div class="col-md-6">
     <table class="table table-responsive table-hover">
