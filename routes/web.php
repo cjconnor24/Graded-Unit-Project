@@ -37,3 +37,7 @@ Route::get('/categories','CategoryController@index');
 Route::get('/categories/create','CategoryController@create');
 Route::post('/categories','CategoryController@store');
 Route::post('/categories/{category}','CategoryController@show');
+
+Route::get('products','ProductsController@index');
+Route::get('products/create','ProductsController@create');
+Route::post('products/create','ProductsController@store');
