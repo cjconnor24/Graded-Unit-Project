@@ -3,7 +3,7 @@
 <h1>Sizes</h1>
     <p>Below are a list of sizes</p>
 
-<p><a href="/sizes/create" class="btn btn-success">Add New</a></p>
+<p><a href="/sizes/create" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a></p>
 
 @if(count($sizes)>0)
 
