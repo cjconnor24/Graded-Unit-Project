@@ -36,6 +36,7 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
+                <li><a href="/products">Manage Sizes</a></li>
                 <li><a href="/sizes">Manage Sizes</a></li>
                 <li><a href="/categories">Manage Categories</a></li>
             </ul>

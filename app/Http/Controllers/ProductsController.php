@@ -40,8 +40,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-//dd($request->input('sizes'));
-//        dd($request);
+        // VALIDATE FORM INPUT
         $this->validate($request,[
             'name'=>'required|unique:products',
             'description'=>'required',
@@ -50,18 +49,21 @@ class ProductsController extends Controller
             'category'=>'required'
         ]);
 
+        // CREATE PRODUCT
         $product = new \App\Product([
         'name' => $request->input('name'),
         'description' => $request->input('description'),
         'price' => $request->input('price')
         ]);
 
+        // FIND CATEGORY AND SAVE
        $category = \App\Category::find($request->input('category'));
        $category->products()->save($product);
 
+       // ATTACH MANY TO MANY SIZES
        $product->sizes()->attach($request->input('sizes'));
 
-       return redirect('index.category');
+       return redirect('/category');
 
     }
 

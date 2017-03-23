@@ -3,7 +3,7 @@
     <h1>Create New Product</h1>
     <p>Create new product below</p>
 
-    <form action="/products/create" method="post" role="form">
+    <form action="/products" method="post" role="form">
         {{csrf_field()}}
 
         <div class="form-group">

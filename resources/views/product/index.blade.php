@@ -10,12 +10,17 @@
             <thead>
             <tr>
                 <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
             </tr>
             </thead>
             <tbody>
             @foreach($products as $product)
             <tr>
                 <td>{{$product->name}}</td>
+                <td><span class="label label-primary">{{$product->category->name}}</span></td>
+                <td>{{$product->price}}</td>
+
             </tr>
                 @endforeach
             </tbody>
