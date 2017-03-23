@@ -19,25 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-/**
- * SIZE ROUTES
- */
-Route::get('/sizes', 'SizesController@index');
-Route::get('/sizes/create', 'SizesController@create');
-Route::post('/sizes/create', 'SizesController@store');
-Route::get('/sizes/{size}/edit', 'SizesController@edit');
-Route::get('/sizes/{size}', 'SizesController@show');
-Route::patch('/sizes/{size}', 'SizesController@update');
-Route::get('/sizes/{size}/remove', 'SizesController@delete');
+Route::resource('categories','CategoryController');
+Route::resource('products','ProductsController');
+Route::resource('sizes','SizesController');
 
-/**
- * CATEGORY ROUTES
- */
-Route::get('/categories','CategoryController@index');
-Route::get('/categories/create','CategoryController@create');
-Route::post('/categories','CategoryController@store');
-Route::post('/categories/{category}','CategoryController@show');
 
-Route::get('products','ProductsController@index');
-Route::get('products/create','ProductsController@create');
-Route::post('products/create','ProductsController@store');
+//Route::get('products','ProductsController@index');
+//Route::get('products/create','ProductsController@create');
+//Route::post('products/create','ProductsController@store');
