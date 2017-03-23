@@ -10,12 +10,14 @@
         <thead>
         <tr>
             <th>Category Name</th>
+            <th>Edit</th>
         </tr>
         </thead>
         <tbody>
         @foreach($categories as $category)
         <tr>
             <td>{{$category->name}}</td>
+            <td><a href="/categories/{{$category->id}}/edit">Edit</a></td>
         </tr>
             @endforeach
         </tbody>

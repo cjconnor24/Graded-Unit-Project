@@ -4,7 +4,7 @@
     <form action="/sizes/{{$size->id}}" method="post" role="form">
         {{csrf_field()}}
         {{method_field('PATCH')}}
-<h1>TEST</h1>
+        <h1>TEST</h1>
         <h1>{{$size->name}}</h1>
 
         <div class="form-group">
@@ -27,5 +27,5 @@
         </div>
 
     </form>
-
+@include('includes.errors')
 @endsection
