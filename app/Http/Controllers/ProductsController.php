@@ -63,7 +63,7 @@ class ProductsController extends Controller
        // ATTACH MANY TO MANY SIZES
        $product->sizes()->attach($request->input('sizes'));
 
-       return redirect('/category');
+       return redirect('/products');
 
     }
 

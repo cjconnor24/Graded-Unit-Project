@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -68,7 +69,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category.edit')->with('category',$category);
     }
 
     /**
@@ -80,7 +81,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request,[
+            'name'=> [
+                'required',
+                Rule::unique('categories')->ignore($category->id),
+            ]
+        ]);
+        $category->update(['name'=>$request->input('name')]);
+        return redirect('/categories');
     }
 
     /**
