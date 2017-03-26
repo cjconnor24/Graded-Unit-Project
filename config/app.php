@@ -179,6 +179,8 @@ return [
 
         // ADDED BY CHRIS FOR IDE HELP
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        // ADDED FOR FORM HELPERS
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -228,6 +230,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        // ADDED BY CHRIS FOR FORM HELPERS
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
