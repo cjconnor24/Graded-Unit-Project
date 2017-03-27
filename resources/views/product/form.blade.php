@@ -1,20 +1,20 @@
 <div class="form-group">
     {!! Form::label('name',"Product Name") !!}
-    {!! Form::text('name',null,['class'=>'form-control']) !!}
+    {!! Form::text('name',null,['class'=>'form-control','required']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('description',"Product Description") !!}
-    {!! Form::textarea('description',null,['class'=>'form-control']) !!}
+    {!! Form::textarea('description',null,['class'=>'form-control','required']) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('price',"Product Price") !!}
-    {!! Form::text('price',null,['class'=>'form-control']) !!}
+    {!! Form::text('price',null,['class'=>'form-control','required']) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('sizes',"Product Sizes") !!}
-    {!! Form::select('sizes[]', $sizes, (isset($product) ? $product->sizes : null) , ['multiple' => 'multiple', 'class'=>'form-control']) !!}
+    {!! Form::select('sizes[]', $sizes, (isset($product) ? $product->sizes()->pluck('id')->toArray() : null) , ['multiple' => 'multiple', 'class'=>'form-control','required']) !!}
 </div>
 
 <div class="form-group">
