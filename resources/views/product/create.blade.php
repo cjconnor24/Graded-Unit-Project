@@ -3,6 +3,8 @@
     <h1>Create New Product</h1>
     <p>Create new product below</p>
 
+    @include('includes.errors')
+
     <form action="/products" method="post" role="form">
 
         {{csrf_field()}}
@@ -48,5 +50,5 @@
 
     </form>
 
-    @include('includes.errors')
+
 @endsection
