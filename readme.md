@@ -1,4 +1,5 @@
 # Background
+![alt tag](http://www.spectrumdubai.com/public/themes/spectrum/img/spectrum-mobile-logo@2x.png)
 Spectrum Digital Print Solutions is a pioneering full-service digital and offset printing and communications company head quartered in Dubai, United Arab Emirates. Spectrum Print comprises of five fully-fledged outlets across the UAE and specialise in variable and fixed image digital printing, and work with a host of corporate clients across the Middle East and North Africa.
 Spectrum currently has an “out-of-the-box” management information system (MIS) that they use to manage their quotations, live job orders and invoices. They have quickly outgrown their current system which has become obsolete due to the continued expansion of their business. 
 Spectrum now require a bespoke MIS system which better suits the needs of their business and one which will grow with them going forward.
