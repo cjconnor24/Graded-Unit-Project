@@ -5,7 +5,7 @@
 
     @include('includes.errors')
 
-    {!! Form::open(['action'=>'ProductsController@store']) !!}
+    {!! Form::model($product, ['action' => ['ProductsController@update', $product->id],'method'=>'PATCH']) !!}
 @include('product.form')
 
     <div class="form-group">

@@ -20,7 +20,7 @@
             <tbody>
             @foreach($products as $product)
             <tr>
-                <td>{{$product->name}}</td>
+                <td><a href="/products/{{$product->id}}/edit">{{$product->name}}</a></td>
                 <td><span class="label label-primary">{{$product->category->name}}</span></td>
                 <td>
                     @foreach($product->sizes as $size)
