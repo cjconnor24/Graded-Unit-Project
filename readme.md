@@ -1,40 +1,19 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Background
+Spectrum Digital Print Solutions is a pioneering full-service digital and offset printing and communications company head quartered in Dubai, United Arab Emirates. Spectrum Print comprises of five fully-fledged outlets across the UAE and specialise in variable and fixed image digital printing, and work with a host of corporate clients across the Middle East and North Africa.
+Spectrum currently has an “out-of-the-box” management information system (MIS) that they use to manage their quotations, live job orders and invoices. They have quickly outgrown their current system which has become obsolete due to the continued expansion of their business. 
+Spectrum now require a bespoke MIS system which better suits the needs of their business and one which will grow with them going forward.
+## Initial Requirements
+Spectrum require a browser based system which will serve as a solid platform on which they can manage, analyze and drive their business. The main functionality of the system will be to allow staff to create, quotes and invoices for each job and inquiry that goes through their business. In addition, each order can be followed through the production process – from booking and designing, right through to production and completion. The system will be managed by their staff who should all have personal login details, giving them restricted access depending on their role within the business. To support the expansion of their business, Spectrum would like customers to have the ability to settle invoices online via credit card in advance to reduce turnaround time on jobs.
+## Functional Requirements
+ - Should be accessible from both desktop and mobile devices.
+ - Manager orders – create quotations and invoices.
+ - Manage customers – create new customers.
+ - Generate reports – various sales / business reports.
+ - Export PDF’s – orders, reports etc. should be available in PDF format.
+ - Ability to email quotations directly to customers from within system.
+ - Due to banking restrictions and legislation with online-purchasing; the system must be integrated with PayFort payment gateway for online transactions.
+## Non-Functional Requirements
+ - System must be accessible from anywhere in the world to support travelling business development staff on a 24/7 basis.
+ - System must be fast to access in order to match the fast-paced, real-time nature of the business.
+ - The layout and structure should intuitive and ergonomic in order to allow staff fast access to key modules.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
