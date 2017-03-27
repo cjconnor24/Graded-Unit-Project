@@ -8,7 +8,7 @@
     {!! Form::label('name',"Category Name") !!}
     {!! Form::text('name',null,['class'=>'form-control']) !!}
     </div>
-    {!! Form::submit('submit',['class'=>'btn btn-success']) !!}
+    {!! Form::submit('Update Category',['class'=>'btn btn-success']) !!}
     {!! Form::close() !!}
     @include('includes.errors')
 @endsection
