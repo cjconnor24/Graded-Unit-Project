@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index');
 Route::resource('categories','CategoryController');
 Route::resource('products','ProductsController');
 Route::resource('sizes','SizesController');
+Route::resource('papers','PaperController');
 
 
 //Route::get('products','ProductsController@index');

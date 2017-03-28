@@ -36,9 +36,10 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="/products">Manage Products</a></li>
-                <li><a href="/sizes">Manage Sizes</a></li>
-                <li><a href="/categories">Manage Categories</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/papers">Papers</a></li>
+                <li><a href="/categories">Categories</a></li>
+                <li><a href="/sizes">Sizes</a></li>
             </ul>
             <form class="navbar-form navbar-right" role="search">
                 <div class="form-group">

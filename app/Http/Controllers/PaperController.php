@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Paper;
+use \App\Paper;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PaperController extends Controller
 {
@@ -14,7 +15,8 @@ class PaperController extends Controller
      */
     public function index()
     {
-        //
+        $papers = Paper::all();
+        return view('paper.index')->with('papers',$papers);
     }
 
     /**
@@ -24,18 +26,32 @@ class PaperController extends Controller
      */
     public function create()
     {
-        //
+        return view('paper.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created paper stock in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required|unique:papers',
+            'manufacturer'=>'required',
+            'weight'=>'required|numeric|min:20|max:1500'
+        ]);
+
+        // CREATE AND STORE
+        $paper = new Paper;
+        $paper->name = $request->name;
+        $paper->manufacturer = $request->manufacturer;
+        $paper->weight = $request->weight;
+        $paper->save();
+
+        return redirect('/papers');
+
     }
 
     /**
@@ -57,7 +73,7 @@ class PaperController extends Controller
      */
     public function edit(Paper $paper)
     {
-        //
+        return view('paper.edit')->with('paper',$paper);
     }
 
     /**
@@ -69,7 +85,17 @@ class PaperController extends Controller
      */
     public function update(Request $request, Paper $paper)
     {
-        //
+        $this->validate($request,[
+            'name'=>[
+                'required',
+                Rule::unique('papers')->ignore($paper->id),
+            ],
+            'manufacturer'=>'required',
+            'weight'=>'required|numeric|min:20|max:1500'
+        ]);
+        $paper->update($request->only(['name','manufacturer','weight']));
+
+        return redirect('/papers');
     }
 
     /**
