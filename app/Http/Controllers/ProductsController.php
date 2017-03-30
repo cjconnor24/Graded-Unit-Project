@@ -49,6 +49,7 @@ class ProductsController extends Controller
             'description'=>'required',
             'price'=>'required|numeric',
             'sizes'=>'required|array|min:1',
+            'papers'=>'required|array|min:1',
             'category'=>'required'
         ]);
 
@@ -65,6 +66,9 @@ class ProductsController extends Controller
 
         // ATTACH MANY TO MANY SIZES
         $product->sizes()->attach($request->input('sizes'));
+
+        // ATTACH TO MANY PAPERS
+        $product->papers()->attach($request->input('papers'));
 
         return redirect('/products');
 
@@ -91,7 +95,8 @@ class ProductsController extends Controller
     {
         $categories = \App\Category::pluck('name', 'id');
         $sizes = \App\Size::pluck('name','id');
-        return view('product.edit')->with(['product'=>$product,'sizes'=>$sizes,'categories'=>$categories]);
+        $papers = \App\Paper::pluck('name','id');
+        return view('product.edit')->with(['product'=>$product,'sizes'=>$sizes,'categories'=>$categories,'papers'=>$papers]);
     }
 
     /**
@@ -112,6 +117,7 @@ class ProductsController extends Controller
             'description'=>'required',
             'price'=>'required|numeric',
             'sizes'=>'required|array|min:1',
+            'papers'=>'required|array|min:1',
             'category'=>'required'
         ]);
 
@@ -122,8 +128,9 @@ class ProductsController extends Controller
         $category = \App\Category::find($request->input('category'));
         $product->category()->associate($category);
 
-        // ATTACH MANY TO MANY SIZES
+        // ATTACH MANY TO MANY SIZES AND PAPERS
         $product->sizes()->sync($request->input('sizes'));
+        $product->papers()->sync($request->input('papers'));
 
         $product->update();
 
