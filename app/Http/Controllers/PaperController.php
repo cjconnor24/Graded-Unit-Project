@@ -93,6 +93,7 @@ class PaperController extends Controller
             'manufacturer'=>'required',
             'weight'=>'required|numeric|min:20|max:1500'
         ]);
+
         $paper->update($request->only(['name','manufacturer','weight']));
 
         return redirect('/papers');

@@ -4,7 +4,7 @@
 
     <p>Below are a list of products</p>
 
-    <p><a href="/products/create" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> New Product</a></p>
+    <p><a href="{{ action('ProductsController@create') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> New Product</a></p>
 
     @if(count($products)>0)
 

@@ -21,16 +21,17 @@ class ProductsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
+     * Show the form for creating a new product.
+     * Pass through Categories, Sizes and Papers
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
         $categories = \App\Category::pluck('name', 'id');
         $sizes = \App\Size::pluck('name','id');
+        $papers = \App\Paper::pluck('name','id');
 
-        return view('product.create')->with(['categories'=>$categories,'sizes'=>$sizes]);
+        return view('product.create')->with(['categories'=>$categories,'sizes'=>$sizes,'papers'=>$papers]);
 
     }
 
