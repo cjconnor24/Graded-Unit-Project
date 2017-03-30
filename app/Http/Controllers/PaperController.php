@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 class PaperController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of all paper.
      *
      * @return \Illuminate\Http\Response
      */
@@ -20,7 +20,7 @@ class PaperController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new paper stock.
      *
      * @return \Illuminate\Http\Response
      */
@@ -55,7 +55,7 @@ class PaperController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified paper.
      *
      * @param  \App\Paper  $paper
      * @return \Illuminate\Http\Response
@@ -77,7 +77,7 @@ class PaperController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified paper stock in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Paper  $paper
@@ -100,7 +100,7 @@ class PaperController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified paper stock from storage.
      *
      * @param  \App\Paper  $paper
      * @return \Illuminate\Http\Response

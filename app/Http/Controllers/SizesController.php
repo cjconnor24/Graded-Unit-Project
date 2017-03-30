@@ -55,7 +55,7 @@ class SizesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the details of the passed size
      *
      * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
@@ -67,7 +67,7 @@ class SizesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for to edit the size and display existing information
      *
      * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
@@ -79,7 +79,7 @@ class SizesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the size
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Size  $size

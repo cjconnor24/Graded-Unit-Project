@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form action="/sizes/create" method="post" role="form">
+    <form action="{{ action("SizesController@store") }}" method="post" role="form">
         {{csrf_field()}}
         <legend>Add New Size</legend>
 

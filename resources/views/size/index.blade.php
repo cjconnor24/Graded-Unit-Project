@@ -3,7 +3,7 @@
 <h1>Sizes</h1>
     <p>Below are a list of sizes</p>
 
-<p><a href="/sizes/create" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a></p>
+<p><a href="{{ action("SizesController@create") }}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a></p>
 
 @if(count($sizes)>0)
 
@@ -22,7 +22,7 @@
     <tr>
         <td>{{$size->name}}</td>
         <td>{{$size->height}} x {{$size->width}}</td>
-        <td><a href="/sizes/{{$size->id}}/edit"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+        <td><a href="{{ action("SizesController@edit",["id"=>$size->id]) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
         <td><a href="#">Delete</a></td>
     </tr>
 
@@ -30,10 +30,10 @@
     </tbody>
 </table>
 </div>
-    @else
+@else
 
-    <p>There are no sizes added yet.</p>
+<p>There are no sizes added yet.</p>
 
-    @endif
+@endif
 
 @endsection
