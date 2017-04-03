@@ -181,6 +181,8 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         // ADDED FOR FORM HELPERS
         Collective\Html\HtmlServiceProvider::class,
+        // ADDED FOR SENTINEL
+        Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
 
     ],
 
@@ -233,6 +235,10 @@ return [
         // ADDED BY CHRIS FOR FORM HELPERS
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        // ADDED BY CHRIS FOR SENTINEL ALIASES
+        'Activation' => Cartalyst\Sentinel\Laravel\Facades\Activation::class,
+        'Reminder'   => Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
+        'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
 
     ],
 
