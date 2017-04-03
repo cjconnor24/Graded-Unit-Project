@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Spectrum MIS</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -41,12 +41,7 @@
                 <li><a href="{{ action("CategoryController@index") }}">Categories</a></li>
                 <li><a href="{{ action("SizesController@index")}}">Sizes</a></li>
             </ul>
-            {{--<form class="navbar-form navbar-right" role="search">--}}
-                {{--<div class="form-group">--}}
-                    {{--<input type="text" class="form-control" placeholder="Search">--}}
-                {{--</div>--}}
-                {{--<button type="submit" class="btn btn-default">Submit</button>--}}
-            {{--</form>--}}
+
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">CHECK</a></li>
             </ul>
@@ -55,6 +50,7 @@
 </nav>
 
 <div class="container">
+
 @yield('content')
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
