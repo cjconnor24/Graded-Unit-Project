@@ -9,7 +9,7 @@
 @include('product.form')
 
     <div class="form-group">
-        {!! Form::submit('Create Product',['class'=>'btn btn-success']) !!}
+        {!! Form::submit('Update Product',['class'=>'btn btn-success']) !!}
     </div>
 
     {!! Form::close() !!}

@@ -22,8 +22,3 @@ Route::resource('categories','CategoryController');
 Route::resource('products','ProductsController');
 Route::resource('sizes','SizesController');
 Route::resource('papers','PaperController');
-
-
-//Route::get('products','ProductsController@index');
-//Route::get('products/create','ProductsController@create');
-//Route::post('products/create','ProductsController@store');

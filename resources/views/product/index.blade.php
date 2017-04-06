@@ -14,6 +14,7 @@
                 <th>Product</th>
                 <th>Category</th>
                 <th>Sizes</th>
+                <th>Papers</th>
                 <th>Price</th>
             </tr>
             </thead>
@@ -26,6 +27,11 @@
                     @foreach($product->sizes as $size)
                         <span class="label label-success">{{$size->name}}</span>
                         @endforeach
+                </td>
+                <td>
+                    @foreach($product->papers as $paper)
+                        <span class="label label-success">{{$paper->name}}</span>
+                    @endforeach
                 </td>
                 <td>{{$product->price}}</td>
             </tr>

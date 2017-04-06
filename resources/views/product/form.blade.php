@@ -12,14 +12,25 @@
     {!! Form::text('price',null,['class'=>'form-control','required']) !!}
 </div>
 
+<div class="row">
+
+<div class="col-md-6">
+
 <div class="form-group">
     {!! Form::label('sizes',"Product Sizes") !!}
     {!! Form::select('sizes[]', $sizes, (isset($product) ? $product->sizes()->pluck('id')->toArray() : null) , ['multiple' => 'multiple', 'class'=>'form-control','required']) !!}
 </div>
 
+</div>
+
+<div class="col-md-6">
+
 <div class="form-group">
     {!! Form::label('papers',"Available Paper") !!}
     {!! Form::select('papers[]', $papers, (isset($product) ? $product->papers()->pluck('id')->toArray() : null) , ['multiple' => 'multiple', 'class'=>'form-control','required']) !!}
+</div>
+</div>
+
 </div>
 
 <div class="form-group">
