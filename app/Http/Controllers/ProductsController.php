@@ -93,6 +93,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
+        // TEST FILE BACKSUPS
         $categories = \App\Category::pluck('name', 'id');
         $sizes = \App\Size::pluck('name','id');
         $papers = \App\Paper::pluck('name','id');
