@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+//Route::get('/register','RegistrationController@index');
+Route::resource('registration','RegistrationController');
 Route::get('/home', 'HomeController@index');
 
 Route::resource('categories','CategoryController');
