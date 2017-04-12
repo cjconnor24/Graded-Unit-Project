@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Native\Facades\Sentinel;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserRegistered;
 
-class RegistrationController extends Controller
+class registrationcontroller extends controller
 {
     /**
-     * Display a listing of the resource.
+     * display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \illuminate\http\response
      */
     public function index()
     {
@@ -18,9 +21,9 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \illuminate\http\response
      */
     public function create()
     {
@@ -28,12 +31,12 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * create a new registered user
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \illuminate\http\request  $request
+     * @return \illuminate\http\response
      */
-    public function store(Request $request)
+    public function store(request $request)
     {
         $this->validate($request,[
             'first_name'=>'required',
@@ -48,15 +51,23 @@ class RegistrationController extends Controller
                 'email'=>$request->email,
                 'password'=>$request->password
             ]);
-        // TEMP TO TEST
+
+        $activation = Activation::create($user);
+        $activationCode = $activation->code;
+
+
+        // SEND CONFIRMATION TO USER
+        Mail::to($user->email)->send(new UserRegistered($user,$activationCode));
+
+        // temp to test
         return redirect('/categories');
     }
 
     /**
-     * Display the specified resource.
+     * display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \illuminate\http\response
      */
     public function show($id)
     {
@@ -64,10 +75,19 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Verify email address and activate user account
+     * @param User $user User
+     */
+    public function verification(User $user)
+    {
+
+    }
+
+    /**
+     * show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \illuminate\http\response
      */
     public function edit($id)
     {
@@ -75,22 +95,22 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \illuminate\http\request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \illuminate\http\response
      */
-    public function update(Request $request, $id)
+    public function update(request $request, $id)
     {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
+     * remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \illuminate\http\response
      */
     public function destroy($id)
     {
