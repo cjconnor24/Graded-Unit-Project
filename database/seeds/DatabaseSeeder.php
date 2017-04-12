@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
         $this->call(PapersTableSeeder::class);
 
         // $this->call(UsersTableSeeder::class);
-        DB::table('users')->insert([
-            'name' => 'Chris Connor',
-            'email' => 'chris@connor.com',
-            'password' => bcrypt('comcom'),
-        ]);
+//        DB::table('users')->insert([
+//            'name' => 'Chris Connor',
+//            'email' => 'chris@connor.com',
+//            'password' => bcrypt('comcom'),
+//        ]);
     }
 }
