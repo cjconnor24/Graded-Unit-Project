@@ -44,7 +44,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">CHECK</a></li>
+                <li><a href="{{ action("RegistrationController@index")}}">Register</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
