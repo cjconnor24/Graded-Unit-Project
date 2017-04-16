@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
 Route::get('/registration','RegistrationController@index');
 Route::post('/registration','RegistrationController@store');
 Route::get('/activation/{user}/{activation}','RegistrationController@verification');
