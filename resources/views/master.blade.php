@@ -50,7 +50,15 @@
     </div><!-- /.container-fluid -->
 </nav>
 
+
+
 <div class="container">
+
+    @if($flash = session('message'))
+        <div class="alert alert-{{$flash['type']}}">
+            {{$flash['content']}}
+        </div>
+    @endif
 
 @yield('content')
 </div>

@@ -16,8 +16,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-//Route::get('/register','RegistrationController@index');
-Route::resource('registration','RegistrationController');
+Route::get('/registration','RegistrationController@index');
+Route::post('/registration','RegistrationController@store');
+Route::get('/activation/{user}/{activation}','RegistrationController@verification');
+//Route::resource('registration','RegistrationController');
+
+Route::get('/login','LoginController@loginForm');
+Route::post('/login','LoginController@login');
+
 Route::get('/home', 'HomeController@index');
 
 Route::resource('categories','CategoryController');

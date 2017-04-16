@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Native\Facades\Sentinel;
@@ -78,9 +79,14 @@ class registrationcontroller extends controller
      * Verify email address and activate user account
      * @param User $user User
      */
-    public function verification(User $user)
+    public function verification(User $user,$activation)
     {
 
+        if(Activation::complete($user,$activation)){
+            return redirect('/login');
+        } else {
+            return 'already complete';
+        }
     }
 
     /**

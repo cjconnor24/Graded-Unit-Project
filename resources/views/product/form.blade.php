@@ -8,11 +8,19 @@
 </div>
 
 <div class="form-group">
+
+
+
     {!! Form::label('price',"Product Price") !!}
-    {!! Form::text('price',null,['class'=>'form-control','required']) !!}
+    <div class="input-group">
+        <div class="input-group-addon">£</div>
+        {!! Form::text('price',null,['class'=>'form-control','required']) !!}
+    </div>
 </div>
 
 <div class="row">
+
+    <p class="help-block">Please select available product options</p>
 
 <div class="col-md-6">
 

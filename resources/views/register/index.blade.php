@@ -9,24 +9,24 @@
 
     <div class="form-group">
         {!! Form::label('first_name',"First Name") !!}
-        {!! Form::text('first_name',null,['class'=>'form-control']) !!}
+        {!! Form::text('first_name',null,['class'=>'form-control','required']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('last_name',"Last Name") !!}
-        {!! Form::text('last_name',null,['class'=>'form-control']) !!}
+        {!! Form::text('last_name',null,['class'=>'form-control','required']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('email',"Email Address") !!}
-        {!! Form::text('email',null,['class'=>'form-control']) !!}
+        {!! Form::text('email',null,['class'=>'form-control','required']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('password',"Password") !!}
-        {!! Form::password('password',['class'=>'form-control']) !!}
+        {!! Form::password('password',['class'=>'form-control','required']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('password_confirmation',"Confirm Password") !!}
-        {!! Form::password('password_confirmation',['class'=>'form-control']) !!}
+        {!! Form::password('password_confirmation',['class'=>'form-control','required']) !!}
     </div>
 
     <div class="form-group">
