@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 @section('content')
 
 {{Form::open(['action' => 'LoginController@login'])}}
@@ -10,7 +10,7 @@
 
 <div class="form-group">
     {!! Form::label('password',"Password") !!}
-    {!! Form::text('password',null,['class'=>'form-control']) !!}
+    {!! Form::password('password',['class'=>'form-control']) !!}
 </div>
 
 {!! Form::submit('Login',['class'=>'btn btn-success']) !!}

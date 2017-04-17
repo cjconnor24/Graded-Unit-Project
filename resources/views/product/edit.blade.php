@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 @section('content')
     <h1>Create New Product</h1>
     <p>Create new product below</p>

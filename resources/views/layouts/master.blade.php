@@ -20,37 +20,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation">
-
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"></a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="{{ action("ProductsController@index") }}">Products</a></li>
-                <li><a href="{{ action("PaperController@index") }}">Papers</a></li>
-                <li><a href="{{ action("CategoryController@index") }}">Categories</a></li>
-                <li><a href="{{ action("SizesController@index")}}">Sizes</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ action("RegistrationController@index")}}">Register</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
-
-
+@include('layouts._menu')
 
 <div class="container">
 
@@ -61,6 +31,7 @@
     @endif
 
 @yield('content')
+    
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

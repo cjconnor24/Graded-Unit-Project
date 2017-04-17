@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 @section('content')
     <h1>Manage Categories</h1>
 <p><a href="/categories/create" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Create Category</a></p>

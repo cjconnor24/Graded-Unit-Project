@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 @section('content')
     <h1>Edit Category</h1>
     <p>Please edit the category below</p>

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 @section('content')
 
     <form action="/sizes/{{$size->id}}" method="post" role="form">
