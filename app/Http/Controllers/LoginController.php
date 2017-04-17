@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Cartalyst\Sentinel\Sentinel;
+use Sentinel;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -16,24 +16,37 @@ class LoginController extends Controller
         return view('login.form');
     }
 
+    /**
+     * Attempt to login user then redirect
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function login(Request $request)
     {
-//        $this->validate($request,[
-//            'email'=>'required|email',
-//            'password'=>'required'
-//        ]);
+        $this->validate($request,[
+            'email'=>'required|email',
+            'password'=>'required'
+        ]);
 
-//        $credentials = [
-//            'email'=>$request->email,
-//            'password'=>$request->password
-//        ];
+        $credentials = [
+            'email'=>$request->email,
+            'password'=>$request->password
+        ];
 
-       // Sentinel::authenticate($request->all());
-        return Sentinel::check();
+       Sentinel::authenticate($credentials);
 
-//
-//        session()->flash('message',['type'=>'warning','content'=>'You have successfully logged in.']);
-//        return redirect('/categories');
+       return redirect('/categories');
+
+    }
+
+    /**
+     * Logout current logged in user and redirect to login page/
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function logout()
+    {
+        Sentinel::logout(null,true);
+        return redirect('/login');
     }
 
 }

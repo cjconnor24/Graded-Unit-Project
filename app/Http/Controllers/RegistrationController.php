@@ -46,19 +46,19 @@ class registrationcontroller extends controller
             'password'=>'required|confirmed|min:6'
         ]);
 
-        $user = Sentinel::register([
+        $user = Sentinel::registerAndActivate([
             'first_name'=>$request->first_name,
                 'last_name'=>$request->last_name,
                 'email'=>$request->email,
                 'password'=>$request->password
             ]);
 
-        $activation = Activation::create($user);
-        $activationCode = $activation->code;
-
-
-        // SEND CONFIRMATION TO USER
-        Mail::to($user->email)->send(new UserRegistered($user,$activationCode));
+//        $activation = Activation::create($user);
+//        $activationCode = $activation->code;
+//
+//
+//        // SEND CONFIRMATION TO USER
+//        Mail::to($user->email)->send(new UserRegistered($user,$activationCode));
 
         // temp to test
         return redirect('/categories');
