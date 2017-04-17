@@ -9,6 +9,15 @@ use Illuminate\Validation\Rule;
 class CategoryController extends Controller
 {
     /**
+     * CategoryController constructor.
+     * Setup middleware routes
+     */
+    public function __construct()
+    {
+        $this->middleware('authenticate');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
