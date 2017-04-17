@@ -11,18 +11,24 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 
-Route::get('/registration','RegistrationController@index');
-Route::post('/registration','RegistrationController@store');
+Route::get('/register','RegistrationController@index');
+Route::post('/register','RegistrationController@store');
 Route::get('/activation/{user}/{activation}','RegistrationController@verification');
 //Route::resource('registration','RegistrationController');
 
 Route::get('/login','LoginController@loginForm');
 Route::post('/login','LoginController@login');
+Route::get('/logout','LoginController@logout');
+
+Route::get('/check',function(){
+    dd(Sentinel::check());
+});
 
 Route::get('/home', 'HomeController@index');
 
