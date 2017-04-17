@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/register','RegistrationController@index');
 Route::post('/register','RegistrationController@store');
-Route::get('/activation/{user}/{activation}','RegistrationController@verification');
+Route::get('/activate/{email}/{activationCode}','ActivationController@activate');
 //Route::resource('registration','RegistrationController');
 
 Route::get('/login','LoginController@loginForm');
