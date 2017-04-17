@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SizesTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
         $this->call(PapersTableSeeder::class);
+        factory(App\User::class, 100)->create();
 
         // $this->call(UsersTableSeeder::class);
 //        DB::table('users')->insert([
