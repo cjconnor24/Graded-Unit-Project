@@ -8,17 +8,25 @@ use Sentinel;
 class AuthenticateMiddleware
 {
     /**
-     * Handle an incoming request.
+     * Handle an incoming request and check if the user is authenticated with Sentinel before proceeding.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     * @param $request
+     * @param Closure $next
+     * @return $this|mixed
      */
     public function handle($request, Closure $next)
     {
-        if(Sentinel::check())
+        if(Sentinel::check()) {
+
             return $next($request);
-        else
-            return redirect()->action('LoginController@loginForm');
+
+        } else {
+
+            return redirect()
+                ->action('LoginController@loginForm')
+                ->withErrors(['msg' => 'You must login to access this section.']);
+
+        }
+
     }
 }

@@ -1,6 +1,11 @@
 @extends('layouts.master')
 @section('content')
 
+    <h1>Login</h1>
+    <p>Please login using the form below</p>
+
+    @include('includes.errors')
+
 {{Form::open(['action' => 'LoginController@login'])}}
 
 <div class="form-group">
@@ -17,6 +22,7 @@
 
 
 {{Form::close()}}
-@include('includes.errors')
+
+
 
 @endsection

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
+use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Sentinel;
 use Illuminate\Http\Request;
 
@@ -33,9 +35,29 @@ class LoginController extends Controller
             'password'=>$request->password
         ];
 
-       Sentinel::authenticate($credentials);
+        try {
 
-       return redirect('/categories');
+            if(Sentinel::authenticate($credentials)) {
+
+                return redirect()->action('CategoryController@index');
+
+            } else {
+
+                return redirect()->back()->withErrors(['msg'=>'Your username and/or password are incorrect.']);
+
+            }
+
+        } catch (ThrottlingException $e){
+
+            $timeout = $e->getDelay();
+            return redirect()->back()->withErrors(['msg'=>'Due to suspicious activity, you have been blocked for '.$timeout.' seconds.']);
+
+        } catch (NotActivatedException $e){
+
+            return redirect()->back()->withErrors(['msg'=>'Your account has not been activated yet. Please check your inbox for further details.']);
+
+        }
+
 
     }
 
@@ -46,7 +68,8 @@ class LoginController extends Controller
     public function logout()
     {
         Sentinel::logout(null,true);
-        return redirect('/login');
+//        session()->flash(['success'=>'You have been successfully logged out.']);
+        return redirect()->action('LoginController@loginForm');
     }
 
 }
