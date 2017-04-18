@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Cartalyst\Sentinel\Laravel\Facades\Reminder;
+use Illuminate\Http\Request;
+use App\User;
+
+class ResetPasswordController extends Controller
+{
+    public function resetPassword($email, $code)
+    {
+        $user = User::whereEmail($email)->first();
+
+        if (count($user) == 0)
+            return redirect()->action('LoginController@loginForm')->with('error', 'There was an issue with your password reset.');
+
+        $reminder = Reminder::exists($user);
+
+        if ($reminder->code != $code)
+            return redirect()->action('LoginController@loginForm')->with('error', 'There was an issue with your password reset.');
+
+
+        return view('passwordreset.reset');
+
+    }
+
+    public function postResetPassword(Request $request, $email, $code)
+    {
+
+
+        $this->validate($request, [
+            'password' => 'required|confirmed|min:4|max:10',
+            'password_confirmation' => 'required'
+        ]);
+
+
+
+        $user = User::whereEmail($email)->first();
+
+        if(count($user)==0)
+            return redirect()->action('LoginController@loginForm')->with('error','There was an issue with your password reset.');
+
+        $reminder = Reminder::exists($user);
+
+        if($reminder->code != $code)
+            return redirect()->action('LoginController@loginForm')->with('error','There was an issue with your password reset.');
+
+        if(Reminder::complete($user,$code,$request->password)){
+            return redirect()->action('LoginController@loginForm')->with('success','Please login with your new password.');
+        } else {
+            return redirect()->action('LoginController@loginForm')->with('error','There was an issue resetting your password.');
+        }
+
+    }
+}

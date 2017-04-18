@@ -18,6 +18,10 @@
     {!! Form::password('password',['class'=>'form-control']) !!}
 </div>
 
+    <div class="form-group">
+        <a href="{{ action('ForgotPasswordController@forgotPassword') }}">Forgot your password?</a>
+    </div>
+
 {!! Form::submit('Login',['class'=>'btn btn-success']) !!}
 
 

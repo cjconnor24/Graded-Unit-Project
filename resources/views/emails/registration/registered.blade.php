@@ -7,9 +7,11 @@ Thank you for registering with Spectrum Digital Print Solutions!
 
 You are almost there, we just need to verify your email address.
 
-<p><a href="{{ env('APP_URL') }}/activate/{{$user->email}}/{{$activation}}">{{$activation}}</a>
+@php ($url = action('ActivationController@activate',['email'=>$user->email,'activationCode'=>$activation]))
 
-@component('mail::button', ['url' => ''])
+<p><a href="{{ $url }}">Verify Email Address</a>
+
+@component('mail::button', ['url' => $url])
 Verify Email Address
 @endcomponent
 

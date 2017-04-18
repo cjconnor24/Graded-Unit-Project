@@ -59,65 +59,21 @@ class registrationcontroller extends controller
         Mail::to($user->email)->send(new UserRegistered($user,$activation->code));
 
 
-        return redirect('/categories');
-    }
-
-    /**
-     * display the specified resource.
-     *
-     * @param  int  $id
-     * @return \illuminate\http\response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->action('LoginController@loginForm')->with('success','You have succesfully registered. Please verify your email');
     }
 
     /**
      * Verify email address and activate user account
      * @param User $user User
      */
-    public function verification(User $user,$activation)
-    {
+//    public function verification(User $user,$activation)
+//    {
+//
+//        if(Activation::complete($user,$activation)){
+//            return redirect('/login');
+//        } else {
+//            return 'already complete';
+//        }
+//    }
 
-        if(Activation::complete($user,$activation)){
-            return redirect('/login');
-        } else {
-            return 'already complete';
-        }
-    }
-
-    /**
-     * show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \illuminate\http\response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * update the specified resource in storage.
-     *
-     * @param  \illuminate\http\request  $request
-     * @param  int  $id
-     * @return \illuminate\http\response
-     */
-    public function update(request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \illuminate\http\response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

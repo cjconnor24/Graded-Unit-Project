@@ -13,12 +13,14 @@ class ActivationController extends Controller
     public function activate($email, $activationCode)
     {
         $user = User::whereEmail($email)->first();
-        $sentinelUser = Sentinel::findById($user->id);
 
-        if(Activation::complete($sentinelUser,$activationCode)){
-            return redirect()->action('LoginController@loginForm');
+        if(count($user)==0)
+            abort(404);
+
+        if(Activation::complete($user,$activationCode)){
+            return redirect()->action('LoginController@loginForm')->with('success','Your account has been successfully activated. Please login.');
         } else {
-
+            return redirect()->action('LoginController@loginForm')->with('error','There was an issue activating your account.');
         }
     }
 }

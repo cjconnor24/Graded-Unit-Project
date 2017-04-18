@@ -16,19 +16,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+/**
+ * REGISTRATION ROUTES
+ */
 Route::get('/register','RegistrationController@index');
 Route::post('/register','RegistrationController@store');
 Route::get('/activate/{email}/{activationCode}','ActivationController@activate');
-//Route::resource('registration','RegistrationController');
 
+/**
+ * LOGIN ROUTES
+ */
 Route::get('/login','LoginController@loginForm');
 Route::post('/login','LoginController@login');
 Route::get('/logout','LoginController@logout');
 
-Route::get('/check',function(){
-    dd(Sentinel::check());
-});
+Route::get('/forgot','ForgotPasswordController@forgotPassword');
+Route::post('/forgot','ForgotPasswordController@postForgotPassword');
+
+Route::get('/reset/{user}/{resetCode}','ResetPasswordController@resetPassword');
+Route::post('/reset/{user}/{resetCode}','ResetPasswordController@postResetPassword');
+
+
 
 Route::get('/home', 'HomeController@index');
 

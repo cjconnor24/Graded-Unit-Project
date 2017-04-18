@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\User;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
-use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -27,7 +26,7 @@ class UserRegistered extends Mailable
      * UserRegistered constructor.
      * @param User $user
      */
-    public function __construct(EloquentUser $user, $activationCode)
+    public function __construct(User $user, $activationCode)
     {
         $this->user = $user;
         $this->activation =$activationCode;
