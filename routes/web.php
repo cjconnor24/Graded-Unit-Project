@@ -20,7 +20,6 @@ Route::get('/', function () {
  * REGISTRATION ROUTES
  */
 
-
     Route::get('/register','RegistrationController@create');
     Route::post('/register','RegistrationController@store');
     Route::get('/activate/{email}/{activationCode}','ActivationController@activate');
@@ -39,17 +38,21 @@ Route::get('/', function () {
     Route::get('/reset/{user}/{resetCode}','ResetPasswordController@resetPassword');
     Route::post('/reset/{user}/{resetCode}','ResetPasswordController@postResetPassword');
 
-/*
- * USER PROFILE
- */
-Route::get('/profile','UserProfileController@view')->middleware('authenticate');
-
-
-
-
 Route::get('/home', 'HomeController@index');
 
-Route::resource('categories','CategoryController');
-Route::resource('products','ProductsController');
-Route::resource('sizes','SizesController');
-Route::resource('papers','PaperController');
+/*
+ * ADMIN ROUTES
+ */
+Route::get('/profile','UserProfileController@view')->middleware('authenticate');
+Route::get('/profile/addresses','UserProfileController@viewAddresses')->middleware('authenticate');
+Route::get('/profile/addresses/create','UserProfileController@createAddress')->middleware('authenticate');
+Route::post('/profile/addresses/create','UserProfileController@storeAddress')->middleware('authenticate');
+
+Route::group(['prefix' => 'admin'], function () {
+
+    Route::resource('categories','CategoryController');
+    Route::resource('products','ProductsController');
+    Route::resource('sizes','SizesController');
+    Route::resource('papers','PaperController');
+
+});

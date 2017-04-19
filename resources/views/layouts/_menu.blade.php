@@ -27,7 +27,8 @@
                     <li><a href="{{ action("RegistrationController@create")}}">Register</a></li>
                     <li><a href="{{ action("LoginController@loginForm")}}">Login</a></li>
                 @else
-                    <li><a href="{{ action("LoginController@logout")}}">Logout, {{Sentinel::getUser()->first_name}}</a></li>
+                    <li><a href="{{ action("UserProfileController@view")}}">Profile</a></li>
+                    <li><a href="{{ action("LoginController@logout")}}">Logout</a></li>
                 @endif
             </ul>
         </div><!-- /.navbar-collapse -->
