@@ -9,13 +9,20 @@ use Illuminate\Http\Request;
 class UserProfileController extends Controller
 {
 
+    /**
+     * Display the information for the current logged in user
+     * @return $this
+     */
     public function view()
     {
         $user = Sentinel::getUser();
-
         return view('user.profile')->with('user',$user);
     }
 
+    /**
+     * View addresses assocaited with the logged in user
+     * @return $this
+     */
     public function viewAddresses()
     {
         $user = Sentinel::getUser();
@@ -24,13 +31,25 @@ class UserProfileController extends Controller
         return view('user.addresses')->with(['user'=>$user,'addresses'=>$addresses]);
     }
 
+    /**
+     * Display form to create new address
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function createAddress()
     {
         return view('user.createAddress');
     }
 
+    /**
+     * Process the form and store the address in relation to the user
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeAddress(Request $request)
     {
+        /**
+         * VALIDATE INPUT
+         */
         $this->validate($request,[
             'name'=>'required',
             'address1'=>'required',
@@ -45,6 +64,9 @@ class UserProfileController extends Controller
         $address->address4 = $request->input('address4');
         $address->postcode = $request->input('postcode');
 
+        /**
+         * GET USER AND SAVE ADDRESS
+         */
         $user = Sentinel::getUser();
         $user->addresses()->save($address);
 
@@ -52,6 +74,5 @@ class UserProfileController extends Controller
 
 
     }
-
 
 }

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     <h1>Manage Categories</h1>
-<p><a href="/categories/create" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Create Category</a></p>
+<p><a href="{{action('CategoryController@create')}}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Create Category</a></p>
     <p>Manage categories below</p>
 
 @if(count($categories)>0)

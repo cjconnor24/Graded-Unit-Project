@@ -48,7 +48,7 @@ Route::get('/profile/addresses','UserProfileController@viewAddresses')->middlewa
 Route::get('/profile/addresses/create','UserProfileController@createAddress')->middleware('authenticate');
 Route::post('/profile/addresses/create','UserProfileController@storeAddress')->middleware('authenticate');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware'=>['authenticate']], function () {
 
     Route::resource('categories','CategoryController');
     Route::resource('products','ProductsController');

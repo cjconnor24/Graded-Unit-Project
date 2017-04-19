@@ -22,3 +22,14 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'password' => $password ?: $password = bcrypt('secret'),
     ];
 });
+
+$factory->define(App\Address::class, function (Faker\Generator $faker){
+    return [
+        'name' => $faker->company,
+        'address1' => $faker->streetAddress,
+        'address2' => $faker->streetName,
+        'address3' => $faker->city,
+        'address4'=>$faker->state,
+        'postcode'=>$faker->postcode,
+    ];
+});

@@ -22,8 +22,11 @@
 
 @include('layouts._menu')
 
+
 <div class="container">
 
+
+    @include('includes.errors')
     @if($flash = session('message'))
         <div class="alert alert-{{$flash['type']}}">
             {{$flash['content']}}

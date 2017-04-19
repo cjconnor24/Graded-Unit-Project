@@ -2,7 +2,7 @@
 @section('content')
     <h1>Paper Index</h1>
 
-<p><a href="/papers/create" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add Paper</a></p>
+<p><a href="{{action('PaperController@create')}}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add Paper</a></p>
     <p>Below are a list of papers</p>
     <table class="table table-responsive">
         <thead>

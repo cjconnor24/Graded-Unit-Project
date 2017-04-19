@@ -2,7 +2,7 @@
 @section('content')
 <h1>Sizes</h1>
 
-<p><a href="{{ action("SizesController@create") }}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a></p>
+<p><a href="{{ action("SizesController@create") }}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add New Size</a></p>
 
 <p>Below are a list of sizes</p>
 
