@@ -11,15 +11,7 @@ use App\Mail\UserRegistered;
 
 class registrationcontroller extends controller
 {
-    /**
-     * display a listing of the resource.
-     *
-     * @return \illuminate\http\response
-     */
-    public function index()
-    {
-        return view('register.index');
-    }
+
 
     /**
      * show the form for creating a new resource.
@@ -28,7 +20,7 @@ class registrationcontroller extends controller
      */
     public function create()
     {
-        //
+        return view('register.create');
     }
 
     /**
@@ -58,22 +50,8 @@ class registrationcontroller extends controller
 //        // SEND CONFIRMATION TO USER
         Mail::to($user->email)->send(new UserRegistered($user,$activation->code));
 
-
         return redirect()->action('LoginController@loginForm')->with('success','You have succesfully registered. Please verify your email');
-    }
 
-    /**
-     * Verify email address and activate user account
-     * @param User $user User
-     */
-//    public function verification(User $user,$activation)
-//    {
-//
-//        if(Activation::complete($user,$activation)){
-//            return redirect('/login');
-//        } else {
-//            return 'already complete';
-//        }
-//    }
+    }
 
 }
