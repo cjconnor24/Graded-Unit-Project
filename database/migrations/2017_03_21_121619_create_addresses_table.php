@@ -17,9 +17,9 @@ class CreateAddressesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address1');
-            $table->string('address2');
-            $table->string('address3');
-            $table->string('address4');
+            $table->string('address2')->nullable();
+            $table->string('address3')->nullable();
+            $table->string('address4')->nullable();
             $table->string('postcode');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
