@@ -70,7 +70,7 @@ class ProductsController extends Controller
         // ATTACH TO MANY PAPERS
         $product->papers()->attach($request->input('papers'));
 
-        return redirect('/products');
+        return redirect()->action('ProductsController@index');
 
     }
 
@@ -138,7 +138,7 @@ class ProductsController extends Controller
 
 
 
-        return redirect('/products');
+        return redirect()->action('ProductsController@index');
     }
 
     /**

@@ -50,7 +50,7 @@ class PaperController extends Controller
         $paper->weight = $request->weight;
         $paper->save();
 
-        return redirect('/papers');
+        return redirect()->action('PaperController@index');
 
     }
 
@@ -96,7 +96,7 @@ class PaperController extends Controller
 
         $paper->update($request->only(['name','manufacturer','weight']));
 
-        return redirect('/papers');
+        return redirect()->action('PaperController@index');
     }
 
     /**

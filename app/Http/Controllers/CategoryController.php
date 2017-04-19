@@ -55,7 +55,7 @@ class CategoryController extends Controller
             'name'=>$request->input('name')
         ]);
 
-        return redirect('/categories');
+        return redirect()->action('CategoryController@index');
 
     }
 
@@ -97,7 +97,7 @@ class CategoryController extends Controller
             ]
         ]);
         $category->update(['name'=>$request->input('name')]);
-        return redirect('/categories');
+        return redirect()->action('CategoryController@index');
     }
 
     /**

@@ -8,6 +8,12 @@ use App\User;
 
 class ResetPasswordController extends Controller
 {
+    /**
+     * Display password reset form as long as the relevant info is matching with the DB
+     * @param $email
+     * @param $code
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function resetPassword($email, $code)
     {
         $user = User::whereEmail($email)->first();
@@ -25,6 +31,13 @@ class ResetPasswordController extends Controller
 
     }
 
+    /**
+     * Process the new password and make sure they match.
+     * @param Request $request
+     * @param $email
+     * @param $code
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postResetPassword(Request $request, $email, $code)
     {
 

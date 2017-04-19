@@ -51,7 +51,7 @@ class SizesController extends Controller
             'width'=>$request->input('width')
         ]);
 
-        return redirect('/sizes');
+        return redirect()->action('SizesController@index');
     }
 
     /**
@@ -96,7 +96,7 @@ class SizesController extends Controller
             'width' => 'required'
         ]);
         $size->update($request->all());
-        return redirect('/sizes');
+        return redirect()->action('SizesController@index');
     }
 
     /**
