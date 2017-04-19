@@ -24,7 +24,7 @@
             <ul class="nav navbar-nav navbar-right">
 
                 @if(!Sentinel::check())
-                    <li><a href="{{ action("RegistrationController@index")}}">Register</a></li>
+                    <li><a href="{{ action("RegistrationController@create")}}">Register</a></li>
                     <li><a href="{{ action("LoginController@loginForm")}}">Login</a></li>
                 @else
                     <li><a href="{{ action("LoginController@logout")}}">Logout, {{Sentinel::getUser()->first_name}}</a></li>
