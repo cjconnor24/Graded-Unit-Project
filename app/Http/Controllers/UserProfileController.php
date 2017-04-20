@@ -40,6 +40,11 @@ class UserProfileController extends Controller
         return view('user.createAddress');
     }
 
+    public function editAddress(Address $address)
+    {
+        return view('user.editAddress')->with('address',$address);
+    }
+
     /**
      * Process the form and store the address in relation to the user
      * @param Request $request

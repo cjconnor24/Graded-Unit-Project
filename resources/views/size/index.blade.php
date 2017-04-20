@@ -8,8 +8,8 @@
 
 @if(count($sizes)>0)
 
-<div class="col-md-6">
-<table class="table table-responsive table-hover table-bordered">
+
+<table class="table table-responsive table-hover">
 <thead>
 <tr>
     <th>Name</th>
@@ -30,7 +30,7 @@
 @endforeach
     </tbody>
 </table>
-</div>
+
 @else
 
 <p>There are no sizes added yet.</p>

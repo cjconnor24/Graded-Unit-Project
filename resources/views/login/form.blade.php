@@ -1,21 +1,23 @@
 @extends('layouts.admin_master')
 @section('content')
 
-    <h1>Login</h1>
-    <p>Please login using the form below</p>
-
     @include('includes.errors')
+
+    <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">Login</div>
+        <div class="panel-body">
 
 {{Form::open(['action' => 'LoginController@login'])}}
 
 <div class="form-group">
     {!! Form::label('email',"Email Address") !!}
-    {!! Form::text('email',null,['class'=>'form-control']) !!}
+    {!! Form::email('email',null,['class'=>'form-control','required']) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('password',"Password") !!}
-    {!! Form::password('password',['class'=>'form-control']) !!}
+    {!! Form::password('password',['class'=>'form-control','required']) !!}
 </div>
 
     <div class="form-group">
@@ -27,6 +29,8 @@
 
 {{Form::close()}}
 
-
+        </div>
+    </div>
+    </div>
 
 @endsection

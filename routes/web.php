@@ -45,6 +45,7 @@ Route::get('/home', 'HomeController@index');
  */
 Route::get('/profile','UserProfileController@view')->middleware('authenticate');
 Route::get('/profile/addresses','UserProfileController@viewAddresses')->middleware('authenticate');
+Route::get('/profile/addresses/{address}/edit','UserProfileController@editAddress')->middleware('authenticate');
 Route::get('/profile/addresses/create','UserProfileController@createAddress')->middleware('authenticate');
 Route::post('/profile/addresses/create','UserProfileController@storeAddress')->middleware('authenticate');
 
