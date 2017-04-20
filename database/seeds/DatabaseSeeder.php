@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Run the database seeds to build sample data.
+     * Run the database seed with sample data for application.
      *
      * @return void
      */
@@ -30,16 +30,14 @@ class DatabaseSeeder extends Seeder
                 $role = Sentinel::findRoleBySlug('customer');
                 $role->users()->attach($u);
 
-                $u->addresses()->save(factory(App\Address::class)->make());
-                $u->addresses()->save(factory(App\Address::class)->make());
-                $u->addresses()->save(factory(App\Address::class)->make());
+                // GIVE USER n Addresses
+                $numberOfAddresses = 2;
+
+                for($i = 1; $i<=$numberOfAddresses; $i++){
+                    $u->addresses()->save(factory(App\Address::class)->make());
+                }
+
             });
 
-        // $this->call(UsersTableSeeder::class);
-//        DB::table('users')->insert([
-//            'name' => 'Chris Connor',
-//            'email' => 'chris@connor.com',
-//            'password' => bcrypt('comcom'),
-//        ]);
     }
 }
