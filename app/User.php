@@ -46,5 +46,14 @@ class User extends EloquentUser
         return $this->hasMany(Note::class);
     }
 
+    /**
+     * Accessor to return concatenated full name
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->first_name." ".$this->last_name;
+    }
+
 
 }
