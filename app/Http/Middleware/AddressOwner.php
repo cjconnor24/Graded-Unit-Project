@@ -18,20 +18,24 @@ class AddressOwner
     public function handle($request, Closure $next)
     {
 
-        $id = $request->route('address')->id; // For example, the current URL is: /posts/1/edit
-
-        $address = Address::findOrFail($id); // Fetch the address
+        $id = $request->route('address')->id;
+        $address = Address::findOrFail($id);
         $user = Sentinel::getUser();
 
-//        dd([$address->user_id,$user->id]);
+        // CHECK AUTHENTICATED USER IS THE OWNER
         if($address->user_id == $user->id)
         {
-            return $next($request); // They're the owner, lets continue...
+
+            return $next($request);
+
         } else {
-//        abort(403);
-            return redirect()->action('UserProfileController@viewAddresses')->with('error','You do not have permission to access this resource.');
+
+            return redirect()
+                ->action('UserProfileController@viewAddresses')
+                ->with('error','You do not have permission to access this resource.');
+
         }
 
-
     }
+
 }

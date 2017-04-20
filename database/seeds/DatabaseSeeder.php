@@ -11,12 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         $this->call(SizesTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
         $this->call(PapersTableSeeder::class);
         $this->call(RolesSeeder::class);
 //        factory(App\User::class, 100)->create();
-//        factory(App\Address::class)->create();
 
         factory(App\User::class, 10)
             ->create()
