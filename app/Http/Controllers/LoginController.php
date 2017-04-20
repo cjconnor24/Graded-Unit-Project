@@ -39,7 +39,7 @@ class LoginController extends Controller
 
             if(Sentinel::authenticate($credentials)) {
 
-                return redirect()->action('CategoryController@index');
+                return redirect()->action('UserProfileController@view');
 
             } else {
 
