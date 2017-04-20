@@ -54,5 +54,6 @@ Route::group(['prefix' => 'admin','middleware'=>['authenticate']], function () {
     Route::resource('products','ProductsController');
     Route::resource('sizes','SizesController');
     Route::resource('papers','PaperController');
+    Route::resource('customers','CustomerController');
 
 });

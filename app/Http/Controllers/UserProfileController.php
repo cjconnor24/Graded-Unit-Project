@@ -20,7 +20,7 @@ class UserProfileController extends Controller
     }
 
     /**
-     * View addresses assocaited with the logged in user
+     * View addresses associated with the logged in user
      * @return $this
      */
     public function viewAddresses()
