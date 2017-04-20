@@ -8,7 +8,7 @@ use Closure;
 class AdminMiddleware
 {
     /**
-     * Handle an incoming request.
+     * Handle an incoming request and ensure that user has an admin role.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -24,7 +24,7 @@ class AdminMiddleware
 
             return redirect()
                 ->action('LoginController@loginForm')
-                ->withErrors(['msg' => 'You must has have elevated access.']);
+                ->withErrors(['msg' => 'You must have elevated access.']);
 
         }    }
 }

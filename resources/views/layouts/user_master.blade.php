@@ -20,7 +20,7 @@
 </head>
 <body>
 
-@include('layouts._menu')
+@include('layouts._user_menu')
 
 
 <div class="container">

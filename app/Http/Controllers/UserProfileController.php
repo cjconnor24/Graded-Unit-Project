@@ -70,8 +70,7 @@ class UserProfileController extends Controller
         $user = Sentinel::getUser();
         $user->addresses()->save($address);
 
-        return redirect()->action('UserProfileController@view')->with('success','Your address was added successfully.');
-
+        return redirect()->action('UserProfileController@viewAddresses')->with('success','Your address was added successfully.');
 
     }
 

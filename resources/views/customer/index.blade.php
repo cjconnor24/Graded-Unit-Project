@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin_master')
 @section('content')
     <h1>Manage Customers</h1>
     <p>Please find list of customers below</p>
@@ -19,7 +19,7 @@
         @foreach($customers as $customer)
             <tr>
                 <td>{{$customer->first_name}} {{$customer->last_name}}</td>
-                <td>{{$customer->email}}</td>
+                <td><a href="mailto:{{$customer->email}}"><span class="glyphicon glyphicon-envelope"></span> {{$customer->email}}</a></td>
                 <td><a href="{{action('CustomerController@show',['customer'=>$customer->id])}}" class="btn btn-sm btn-success">View</a></td>
             </tr>
             @endforeach

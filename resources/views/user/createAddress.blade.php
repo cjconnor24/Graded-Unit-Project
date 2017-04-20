@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin_master')
 @section('content')
 
     <h1>Add New Address</h1>

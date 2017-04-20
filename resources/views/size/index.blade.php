@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin_master')
 @section('content')
 <h1>Manage Paper Sizes</h1>
 

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin_master')
 @section('content')
     <h1>Manage Paper Stocks</h1>
 
@@ -21,9 +21,12 @@
         <td>{{$paper->manufacturer}}</td>
         <td>{{$paper->weight}}</td>
         <td>*still to code*</td>
-            <td><a href="/papers/{{$paper->id}}/edit"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+            <td><a href="{{action('PaperController@edit',['paper'=>$paper->id])}}"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
         </tr>
     @endforeach
     </tbody>
     </table>
+
+    {{ $papers->links() }}
+
 @endsection

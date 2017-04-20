@@ -1,4 +1,4 @@
-<div class="col-md-4">
+
 <div class="panel-group">
     @foreach($addresses as $address)
         <div class="panel panel-default">

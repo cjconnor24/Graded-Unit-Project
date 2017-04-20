@@ -47,6 +47,10 @@ class registrationcontroller extends controller
 
         $activation = Activation::create($user);
 
+        // ASSIGN USER TO CUSTOMER
+        $role = Sentinel::findRoleBySlug('customer');
+        $role->users()->attach($user);
+
 //        // SEND CONFIRMATION TO USER
         Mail::to($user->email)->send(new UserRegistered($user,$activation->code));
 

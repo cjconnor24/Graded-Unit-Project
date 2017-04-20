@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin_master')
 @section('content')
     <h1>Manage Categories</h1>
 <p><a href="{{action('CategoryController@create')}}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Create Category</a></p>
