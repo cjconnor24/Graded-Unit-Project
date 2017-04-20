@@ -17,7 +17,7 @@
         @foreach($categories as $category)
         <tr>
             <td>{{$category->name}}</td>
-            <td><a href="/categories/{{$category->id}}/edit">Edit</a></td>
+            <td><a href="{{action('CategoryController@edit',['category'=>$category->id])}}">Edit</a></td>
         </tr>
             @endforeach
         </tbody>
