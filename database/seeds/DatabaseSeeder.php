@@ -26,6 +26,10 @@ class DatabaseSeeder extends Seeder
                 $activation = \Cartalyst\Sentinel\Laravel\Facades\Activation::create($u);
                 \Cartalyst\Sentinel\Laravel\Facades\Activation::complete($u,$activation->code);
 
+                // ATTACH USER TO ROLE
+                $role = Sentinel::findRoleBySlug('customer');
+                $role->users()->attach($u);
+
                 $u->addresses()->save(factory(App\Address::class)->make());
                 $u->addresses()->save(factory(App\Address::class)->make());
                 $u->addresses()->save(factory(App\Address::class)->make());
