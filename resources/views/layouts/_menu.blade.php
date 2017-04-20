@@ -14,11 +14,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
+                <li><a href="#">Home</a></li>
                 <li><a href="{{ action("ProductsController@index") }}">Products</a></li>
                 <li><a href="{{ action("PaperController@index") }}">Papers</a></li>
                 <li><a href="{{ action("CategoryController@index") }}">Categories</a></li>
                 <li><a href="{{ action("SizesController@index")}}">Sizes</a></li>
+                <li><a href="{{ action("CustomerController@index")}}">Customers</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -27,6 +28,14 @@
                     <li><a href="{{ action("RegistrationController@create")}}">Register</a></li>
                     <li><a href="{{ action("LoginController@loginForm")}}">Login</a></li>
                 @else
+                    <li class="dropdown">
+                        {{--<a class="dropdown-toggle" data-toggle="dropdown" href="{{action('UserProfileController@')}}">Page 1--}}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{action('UserProfileController@view')}}">Addresses</a></li>
+                            <li><a href="{{action('UserProfileController@createAddress')}}">Create New Address</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{{ action("UserProfileController@view")}}">Profile</a></li>
                     <li><a href="{{ action("LoginController@logout")}}">Logout</a></li>
                 @endif

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<h1>Sizes</h1>
+<h1>Manage Paper Sizes</h1>
 
 <p><a href="{{ action("SizesController@create") }}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add New Size</a></p>
 

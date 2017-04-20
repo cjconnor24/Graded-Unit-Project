@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <h1>Paper Index</h1>
+    <h1>Manage Paper Stocks</h1>
 
 <p><a href="{{action('PaperController@create')}}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add Paper</a></p>
     <p>Below are a list of papers</p>
