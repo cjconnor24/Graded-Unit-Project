@@ -183,6 +183,10 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         // ADDED FOR SENTINEL
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
+        /*
+         * ADDED FOR API GENERATOR DOC
+         */
+        Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
 
     ],
 
