@@ -6,6 +6,11 @@ use Cartalyst\Sentinel\Laravel\Facades\Reminder;
 use Illuminate\Http\Request;
 use App\User;
 
+/**
+ * Class ResetPasswordController
+ * Management of user password resets
+ * @package App\Http\Controllers
+ */
 class ResetPasswordController extends Controller
 {
     /**

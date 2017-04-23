@@ -6,7 +6,11 @@ use App\Size;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-
+/**
+ * Class SizesController
+ * Management of paper sizes within application
+ * @package App\Http\Controllers
+ */
 class SizesController extends Controller
 {
     /**
@@ -21,7 +25,7 @@ class SizesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new size.
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +35,7 @@ class SizesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created size in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -107,6 +111,6 @@ class SizesController extends Controller
      */
     public function destroy(Size $size)
     {
-        //
+        // NOT CODED AS YET
     }
 }

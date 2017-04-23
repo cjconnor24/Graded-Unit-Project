@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Order;
 use Illuminate\Http\Request;
 
+/**
+ * Class OrderController
+ * Management of quotes / orders within application
+ * @package App\Http\Controllers
+ */
 class OrderController extends Controller
 {
     /**

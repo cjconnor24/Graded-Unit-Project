@@ -6,6 +6,11 @@ use App\Address;
 use Sentinel;
 use Illuminate\Http\Request;
 
+/**
+ * Class UserProfileController
+ * Manage user profiles
+ * @package App\Http\Controllers
+ */
 class UserProfileController extends Controller
 {
 
@@ -40,6 +45,11 @@ class UserProfileController extends Controller
         return view('user.createAddress');
     }
 
+    /**
+     * Display the form to edit the address
+     * @param Address $address
+     * @return $this
+     */
     public function editAddress(Address $address)
     {
         return view('user.editAddress')->with('address',$address);

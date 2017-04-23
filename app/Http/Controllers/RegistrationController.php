@@ -9,7 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserRegistered;
 
-class registrationcontroller extends controller
+/**
+ * Class RegistrationController
+ * Management of user registrations and activations
+ * @package App\Http\Controllers
+ */
+class RegistrationController extends Controller
 {
 
 

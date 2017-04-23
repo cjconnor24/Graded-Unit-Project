@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Note;
 use Illuminate\Http\Request;
 
+/**
+ * Class NoteController
+ * Management of private order notes within application
+ * @package App\Http\Controllers
+ */
 class NoteController extends Controller
 {
     /**

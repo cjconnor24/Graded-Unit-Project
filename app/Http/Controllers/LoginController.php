@@ -7,6 +7,11 @@ use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Sentinel;
 use Illuminate\Http\Request;
 
+/**
+ * Class LoginController
+ * Management of logins in application
+ * @package App\Http\Controllers
+ */
 class LoginController extends Controller
 {
     /**

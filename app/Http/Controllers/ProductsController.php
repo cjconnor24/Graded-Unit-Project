@@ -6,13 +6,16 @@ use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-
+/**
+ * Class ProductsController
+ * Management of products within application
+ * @package App\Http\Controllers
+ */
 class ProductsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Display a listing of products
+     * @return $this
      */
     public function index()
     {
@@ -36,7 +39,7 @@ class ProductsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Product with the relevant relationships.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -75,7 +78,7 @@ class ProductsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified product.
      *
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
@@ -86,7 +89,7 @@ class ProductsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the product.
      *
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
@@ -101,7 +104,7 @@ class ProductsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified product in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Product  $product
@@ -149,6 +152,6 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        // NOT CODED YET
     }
 }

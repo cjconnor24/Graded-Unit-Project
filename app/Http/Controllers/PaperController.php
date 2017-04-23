@@ -6,6 +6,11 @@ use \App\Paper;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
+/**
+ * Class PaperController
+ * Management of Paper stocks within application
+ * @package App\Http\Controllers
+ */
 class PaperController extends Controller
 {
     /**
@@ -66,10 +71,9 @@ class PaperController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Paper  $paper
-     * @return \Illuminate\Http\Response
+     * Show the form for editing the specified paper
+     * @param Paper $paper
+     * @return $this
      */
     public function edit(Paper $paper)
     {
@@ -78,10 +82,9 @@ class PaperController extends Controller
 
     /**
      * Update the specified paper stock in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Paper  $paper
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Paper $paper
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Paper $paper)
     {
