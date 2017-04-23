@@ -3,9 +3,12 @@
     <h1>Manage Customers</h1>
     <p>Please find list of customers below</p>
 
+
     <p class="text-right"><em>Displaying {{count($customers)}} of {{$customers->total()}} customers</em></p>
 
+
     {{$customers->links()}}
+
 
     <table class="table table-responsive">
         <thead>

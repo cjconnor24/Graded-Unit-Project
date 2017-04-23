@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Input;
+use Sentinel;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -12,10 +15,16 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $customers = User::paginate(20);
+        $customers = User::whereHas('roles', function ($query) {
+            $query->where('slug', 'customer');
+        })->paginate();
+//        dd($customers);
+//        $customers = Sentinel::findRoleBySlug('customer')->users;
+
+
         return view('customer.index')->with('customers',$customers);
     }
 
