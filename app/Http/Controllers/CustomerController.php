@@ -21,8 +21,6 @@ class CustomerController extends Controller
         $customers = User::whereHas('roles', function ($query) {
             $query->where('slug', 'customer');
         })->paginate();
-//        dd($customers);
-//        $customers = Sentinel::findRoleBySlug('customer')->users;
 
 
         return view('customer.index')->with('customers',$customers);
