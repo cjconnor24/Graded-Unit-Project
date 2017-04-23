@@ -20,6 +20,7 @@
                 <li><a href="{{ action("CategoryController@index") }}">Categories</a></li>
                 <li><a href="{{ action("SizesController@index")}}">Sizes</a></li>
                 <li><a href="{{ action("CustomerController@index")}}">Customers</a></li>
+                <li><a href="{{ action("BranchController@index")}}">Branches</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

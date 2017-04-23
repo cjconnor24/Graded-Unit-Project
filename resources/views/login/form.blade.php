@@ -1,7 +1,7 @@
 @extends('layouts.admin_master')
 @section('content')
 
-    @include('includes.errors')
+
 
     <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-default">
@@ -9,7 +9,7 @@
         <div class="panel-body">
 
 {{Form::open(['action' => 'LoginController@login'])}}
-
+            @include('includes.errors')
 <div class="form-group">
     {!! Form::label('email',"Email Address") !!}
     {!! Form::email('email',null,['class'=>'form-control','required']) !!}
