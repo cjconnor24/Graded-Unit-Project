@@ -47,6 +47,15 @@ class User extends EloquentUser
     }
 
     /**
+     * Associate user with multiple orders
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class,'customer_id');
+    }
+
+    /**
      * Accessor to return concatenated full name
      * @return string
      */

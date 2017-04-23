@@ -39,5 +39,19 @@ class DatabaseSeeder extends Seeder
 
             });
 
+        factory(App\User::class, 1)
+            ->create()
+            ->each(function($u) {
+
+                // CREATE SENTINEL ACTIVATIONS
+                $activation = \Cartalyst\Sentinel\Laravel\Facades\Activation::create($u);
+                \Cartalyst\Sentinel\Laravel\Facades\Activation::complete($u,$activation->code);
+
+                // ATTACH USER TO ROLE
+                $role = Sentinel::findRoleBySlug('admin');
+                $role->users()->attach($u);
+
+            });
+
     }
 }
