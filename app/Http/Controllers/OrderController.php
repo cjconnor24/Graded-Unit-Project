@@ -19,7 +19,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::where('state','order')->get();
+        // RETURN VIEW ORDERS
     }
 
     /**
@@ -27,10 +28,10 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+//    public function create()
+//    {
+//        //
+//    }
 
     /**
      * Store a newly created resource in storage.
@@ -38,10 +39,10 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+//    public function store(Request $request)
+//    {
+//        //
+//    }
 
     /**
      * Display the specified resource.
@@ -83,8 +84,8 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
-    {
-        //
-    }
+//    public function destroy(Order $order)
+//    {
+//        //
+//    }
 }
