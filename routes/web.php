@@ -16,13 +16,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/**
- * REGISTRATION ROUTES
- */
+Route::get('/home', 'HomeController@index');
 
+    /**
+     * REGISTRATION ROUTES
+     */
     Route::get('/register','RegistrationController@create');
     Route::post('/register','RegistrationController@store');
     Route::get('/activate/{email}/{activationCode}','ActivationController@activate');
+
 
     /**
      * LOGIN ROUTES
@@ -31,23 +33,26 @@ Route::get('/', function () {
     Route::post('/login','LoginController@login');
     Route::get('/logout','LoginController@logout');
 
-//Route::get('/forgot','ForgotPasswordController@forgotPassword');
+/**
+ * FORGOTTEN PASSWORD AND RESET ROUTES
+ */
     Route::post('/forgot','ForgotPasswordController@postForgotPassword');
     Route::get('/forgot','ForgotPasswordController@forgotPassword');
-
     Route::get('/reset/{user}/{resetCode}','ResetPasswordController@resetPassword');
     Route::post('/reset/{user}/{resetCode}','ResetPasswordController@postResetPassword');
-
-Route::get('/home', 'HomeController@index');
 
 /*
  * ADMIN ROUTES
  */
-Route::get('/profile','UserProfileController@view')->middleware('authenticate');
-Route::get('/profile/addresses','UserProfileController@viewAddresses')->middleware('authenticate');
-Route::get('/profile/addresses/{address}/edit','UserProfileController@editAddress')->middleware('authenticate','address.owner');
-Route::get('/profile/addresses/create','UserProfileController@createAddress')->middleware('authenticate');
-Route::post('/profile/addresses/create','UserProfileController@storeAddress')->middleware('authenticate');
+Route::group(['middleware'=>'authenticate'], function(){
+
+    Route::get('/profile','UserProfileController@view');
+    Route::get('/profile/addresses','UserProfileController@viewAddresses');
+    Route::get('/profile/addresses/{address}/edit','UserProfileController@editAddress')->middleware('address.owner');
+    Route::get('/profile/addresses/create','UserProfileController@createAddress');
+    Route::post('/profile/addresses/create','UserProfileController@storeAddress');
+
+});
 
 /**
  * Adminisrator Routes
