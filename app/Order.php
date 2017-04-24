@@ -34,4 +34,13 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * An order has many notes
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
 }

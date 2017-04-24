@@ -14,16 +14,23 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
+
             $table->increments('id');
 
             $table->integer('customer_id')->unsigned();
-            $table->integer('staff_id')->unsigned();
             $table->integer('address_id')->unsigned();
+
+            $table->integer('staff_id')->unsigned();
             $table->integer('branch_id')->unsigned();
 
             $table->decimal('discount');
+
+            /**
+             * CHANGE THESE TO A TABLE -
+             */
             $table->enum('state',['quotation','order','invoice']);
             $table->enum('status',['Awaiting Approval','Design','Print','Finishing','Complete']);
+
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('users');
@@ -31,19 +38,32 @@ class CreateOrdersTable extends Migration
             $table->foreign('address_id')->references('id')->on('addresses');
             $table->foreign('branch_id')->references('id')->on('branches');
 
+            // MAKE ORDERS START FROM 100,000 FOR READABILITY REASONS
+            DB::update("ALTER TABLE orders AUTO_INCREMENT = 100000;");
+
         });
 
         Schema::create('order_product', function (Blueprint $table) {
 
             $table->integer('product_id')->unsigned();
             $table->integer('order_id')->unsigned();
-            $table->integer('price')->nullable();
+
+            /**
+             * CHOSEN OPTIONS FOR PARTICULAR PRODUCT / ORDER
+             */
+            $table->integer('paper_id')->unsigned();
+            $table->integer('size_id')->unsigned();
+
+
+            // $table->integer('price')->nullable();
             $table->integer('qty');
             $table->text('description')->nullable();
 
             $table->primary(['product_id','order_id']);
 
             $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('paper_id')->references('id')->on('papers');
+            $table->foreign('size_id')->references('id')->on('sizes');
             $table->foreign('order_id')->references('id')->on('orders');
 
         });
