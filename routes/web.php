@@ -57,6 +57,7 @@ Route::group(['middleware'=>'authenticate'], function(){
 /**
  * Adminisrator Routes
  */
+
 Route::group(['prefix' => 'admin','middleware'=>['authenticate','admin']], function () {
 
     Route::resource('categories','CategoryController');
