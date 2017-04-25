@@ -1,4 +1,37 @@
 @extends('layouts.admin_master')
+@section('scripts')
+    <script>
+        console.log('HELLO');
+        $('#customer_id').on('change', function(e) {
+
+            console.log(e);
+
+            var customer_id = e.target.value;
+            console.log(customer_id);
+
+            $.get('/admin/ajax-address?customer_id=' + customer_id, function(data) {
+
+
+
+                $('#address_id').empty();
+
+                $.each(data, function(i,item){
+
+                    $('#address_id').append($('<option>', {
+                        value: item.id,
+                        text : item.name
+                    }));
+
+
+                });
+
+            });
+        });
+
+
+
+    </script>
+@endsection
 @section('content')
     <h1>Create New Quote</h1>
     <p>Please select details below</p>
@@ -8,7 +41,14 @@
         <div class="col-md-6 col-lg-6">
             <h2>Customer</h2>
 
-            {!! Form::select('customer', $customers, null, ['placeholder' => 'Choose customer','class'=>'form-control']) !!}
+            <div class="form-group">
+            {!! Form::select('customer_id', $customers, null, ['id'=>'customer_id','placeholder' => 'Choose customer','class'=>'form-control']) !!}
+            </div>
+
+            <div class="form-group">
+            {!! Form::select('address_id', [], null, ['id'=>'address_id','placeholder' => 'Please select a customer','class'=>'form-control input-sm']) !!}
+            </div>
+
 
             <h2>Customer Address</h2>
             <p>12 Linn Gdns,<br />Craiglinn,<br>Cumbernauld, <br>G68 9AN</p>

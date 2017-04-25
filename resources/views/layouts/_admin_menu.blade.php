@@ -15,6 +15,7 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
                 <li><a href="#">Home</a></li>
+                <li><a href="{{action('QuotationController@index')}}">Quotations</a></li>
                 <li><a href="{{ action("ProductsController@index") }}">Products</a></li>
                 <li><a href="{{ action("PaperController@index") }}">Papers</a></li>
                 <li><a href="{{ action("CategoryController@index") }}">Categories</a></li>

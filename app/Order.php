@@ -7,13 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
 
+//    /**
+//     * Associating the order has many products relationship
+//     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+//     */
+//    public function products()
+//    {
+//        return $this->belongsToMany(Product::class);
+//    }
+
     /**
-     * Associating the order has many products relationship
+     * Order has many order products
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function products()
+    public function orderProducts()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->hasMany(OrderProduct::class);
     }
 
     /**
