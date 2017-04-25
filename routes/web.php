@@ -60,11 +60,12 @@ Route::group(['middleware'=>'authenticate'], function(){
 
 Route::group(['prefix' => 'admin','middleware'=>['authenticate','admin']], function () {
 
+    Route::get('quotations','QuotationController@index');
     Route::resource('categories','CategoryController');
     Route::resource('products','ProductsController');
     Route::resource('sizes','SizesController');
     Route::resource('papers','PaperController');
-    Route::resource('customers','CustomerController');
+    route::resource('customers','CustomerController');
     Route::resource('branches','BranchController');
 
 });
