@@ -43,4 +43,13 @@ class Order extends Model
         return $this->hasMany(Note::class);
     }
 
+    /**
+     * An order has a state
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
 }

@@ -16,8 +16,10 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriesTableSeeder::class);
         $this->call(PapersTableSeeder::class);
         $this->call(RolesSeeder::class);
+        $this->call(StatesTableSeeder::class);
 //        factory(App\User::class, 100)->create();
 
+        // USER SEEDER FACTORY
         factory(App\User::class, 10)
             ->create()
             ->each(function($u) {
@@ -38,6 +40,8 @@ class DatabaseSeeder extends Seeder
                 }
 
             });
+
+        factory(App\Branch::class, 6)->create();
 
         factory(App\User::class, 1)
             ->create()

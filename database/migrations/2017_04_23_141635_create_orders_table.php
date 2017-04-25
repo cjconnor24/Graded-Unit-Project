@@ -23,13 +23,15 @@ class CreateOrdersTable extends Migration
             $table->integer('staff_id')->unsigned();
             $table->integer('branch_id')->unsigned();
 
+            $table->integer('state_id')->unsigned();
+
             $table->decimal('discount');
 
             /**
              * CHANGE THESE TO A TABLE -
              */
-            $table->enum('state',['quotation','order','invoice']);
-            $table->enum('status',['Awaiting Approval','Design','Print','Finishing','Complete']);
+//            $table->enum('state',['quotation','order','invoice']);
+//            $table->enum('status',['Awaiting Approval','Design','Print','Finishing','Complete']);
 
             $table->timestamps();
 
@@ -37,9 +39,10 @@ class CreateOrdersTable extends Migration
             $table->foreign('staff_id')->references('id')->on('users');
             $table->foreign('address_id')->references('id')->on('addresses');
             $table->foreign('branch_id')->references('id')->on('branches');
+            $table->foreign('state_id')->references('id')->on('states');
 
             // MAKE ORDERS START FROM 100,000 FOR READABILITY REASONS
-            DB::update("ALTER TABLE orders AUTO_INCREMENT = 100000;");
+//            DB::update("ALTER TABLE orders AUTO_INCREMENT = 100000;");
 
         });
 
