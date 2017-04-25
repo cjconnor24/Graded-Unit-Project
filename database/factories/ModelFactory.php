@@ -23,6 +23,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Branch::class,function(Faker\Generator $faker){
+    return [
+      'name'=>$faker->company,
+        'address1' => $faker->streetAddress,
+        'address2' => $faker->streetName,
+        'address3' => $faker->city,
+        'address4'=>$faker->state,
+        'postcode'=>$faker->postcode,
+        'email'=>$faker->userName."@spectrumdubai.com",
+        'telephone'=>$faker->phoneNumber
+
+    ];
+});
+
 $factory->define(App\Address::class, function (Faker\Generator $faker){
     return [
         'name' => $faker->company,
