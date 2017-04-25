@@ -61,6 +61,8 @@ Route::group(['middleware'=>'authenticate'], function(){
 Route::group(['prefix' => 'admin','middleware'=>['authenticate','admin']], function () {
 
     Route::get('quotations','QuotationController@index');
+    Route::get('quotations/create','QuotationController@create');
+
     Route::resource('categories','CategoryController');
     Route::resource('products','ProductsController');
     Route::resource('sizes','SizesController');
