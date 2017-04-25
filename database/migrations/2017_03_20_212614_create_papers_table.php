@@ -23,10 +23,13 @@ class CreatePapersTable extends Migration
 
         Schema::create('paper_product', function (Blueprint $table) {
 
-            $table->string('paper_id');
-            $table->string('product_id');
+            $table->integer('paper_id')->unsigned();
+            $table->integer('product_id')->unsigned();
 
             $table->primary(['paper_id','product_id']);
+
+            $table->foreign('paper_id')->references('id')->on('papers');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
