@@ -1,18 +1,18 @@
 @extends('layouts.admin_master')
 @section('scripts')
     <script>
-        console.log('HELLO');
+//        console.log('HELLO');
         $('#customer_id').on('change', function(e) {
 
-            console.log(e);
+//            console.log(e);
 
             var customer_id = e.target.value;
-            console.log(customer_id);
+//            console.log(customer_id);
 
-            $.get('/admin/ajax-address?customer_id=' + customer_id, function(data) {
+            // SEND REQUET
+            $.get('/admin/ajax-address/' + customer_id, function(data) {
 
-
-
+                // CLEAR DROPDOWN
                 $('#address_id').empty();
 
                 $.each(data, function(i,item){
@@ -21,7 +21,6 @@
                         value: item.id,
                         text : item.name
                     }));
-
 
                 });
 

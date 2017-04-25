@@ -63,12 +63,9 @@ Route::group(['prefix' => 'admin','middleware'=>['authenticate','admin']], funct
     Route::get('quotations','QuotationController@index');
     Route::get('quotations/create','QuotationController@create');
 
-    Route::get('ajax-address',function()
+    Route::get('ajax-address/{user}',function(\App\User $user)
     {
-        $customer_id = \Illuminate\Support\Facades\Input::get('customer_id');
-
-//        $addresses = City::where('state_id','=',$state_id)->get();
-        $addresses = \App\Address::where('user_id','=',$customer_id)->get();
+        $addresses = $user->addresses;
         return Response::json($addresses);
 
     });
