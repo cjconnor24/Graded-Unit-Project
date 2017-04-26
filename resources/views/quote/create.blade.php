@@ -1,6 +1,74 @@
 @extends('layouts.admin_master')
 @section('scripts')
     <script>
+        /**
+         *
+         */
+        $('#category_id').on('change', function(e) {
+
+            var category_id = e.target.value;
+
+            // SEND REQUET
+            $.get('/admin/ajax-product/' + category_id, function(data) {
+
+                // CLEAR DROPDOWN
+                $('#product_id').empty();
+                $('#paper_id').empty();
+                $('#size_id').empty();
+
+
+                $('#product_id').append($('<option></option>').attr("value","").text('-- Select Product --'));
+
+                $.each(data, function(i,item){
+                console.log(item);
+                    $('#product_id').append($('<option>', {
+                        value: item.id,
+                        text : item.name
+                    }));
+
+                });
+
+            });
+        });
+
+        $('#product_id').on('change', function(e) {
+
+            var product_id = e.target.value;
+
+            // SEND REQUET
+            $.get('/admin/ajax-product-options/' + product_id, function(data) {
+
+                // CLEAR DROPDOWN
+                $('#paper_id').empty();
+                $('#size_id').empty();
+
+                console.log(data);
+
+                $('#paper_id').append($('<option></option>').attr("value","").text('-- Select Paper --'));
+                $('#size_id').append($('<option></option>').attr("value","").text('-- Select Size --'));
+
+                $.each(data.sizes, function(i,item){
+                    console.log(item);
+                    $('#size_id').append($('<option>', {
+                        value: i,
+                        text : item
+                    }));
+
+                });
+
+                $.each(data.papers, function(i,item){
+                    console.log(item);
+                    $('#paper_id').append($('<option>', {
+                        value: i,
+                        text : item
+                    }));
+
+                });
+
+            });
+        });
+
+
 //        console.log('HELLO');
         $('#customer_id').on('change', function(e) {
 
@@ -44,6 +112,8 @@ $('#address_id').on('change', function(e) {
     <h1>Create New Quote</h1>
     <p>Please select details below</p>
 
+    {!! Form::open(['action' => 'Admin\QuotationController@store']) !!}
+
     <div class="row">
 
         <div class="col-md-6 col-lg-6">
@@ -67,6 +137,13 @@ $('#address_id').on('change', function(e) {
             <h2>Quotation Date</h2>
             <input type="date" name="date" id="inputID" class="form-control" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" title="" required="required" disabled>
 
+            <h2>Add Product</h2>
+            {!! Form::select('category_id', $categories, null, ['id'=>'category_id','placeholder' => 'Choose a category customer','class'=>'form-control']) !!}
+
+            <select id="product_id" class="form-control"></select>
+            <select id="paper_id" class="form-control"></select>
+            <select id="size_id" class="form-control"></select>
+
         </div>
 
     </div>
@@ -87,17 +164,22 @@ $('#address_id').on('change', function(e) {
             </thead>
 
 <tbody>
+@for($i =1; $i <= 3; $i++)
 <tr>
-    <td>Product</td>
-    <td>Paper</td>
-    <td>Size</td>
-    <td>Qty</td>
+    <td>{!! Form::text("order[$i][product_id]",null,['class'=>'form-control']) !!}</td>
+    <td>{!! Form::text("order[$i][paper_id]",null,['class'=>'form-control']) !!}</td>
+    <td>{!! Form::text("order[$i][size_id]",null,['class'=>'form-control']) !!}</td>
+    <td>{!! Form::text("order[$i][qty]",null,['class'=>'form-control']) !!}</td>
     <td>Price</td>
 </tr>
+@endfor
 </tbody>
         </table>
 
     <a href="#" class="btn btn-sm btn-success">Add Product</a>
 
+    {!! Form::submit('Create Quotation',['class'=>'btn btn-success']) !!}
+    
+    {!! Form::close() !!}
 
 @endsection

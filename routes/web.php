@@ -62,6 +62,7 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
 
     Route::get('quotations','QuotationController@index');
     Route::get('quotations/create','QuotationController@create');
+    Route::post('quotations/','QuotationController@store');
 
     Route::get('ajax-address/{user}',function(\App\User $user, \Illuminate\Http\Request $request)
     {
@@ -71,6 +72,27 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
         } else {
             abort(500);
         }
+    });
+
+    Route::get('ajax-product/{category}',function(\App\Category $category, \Illuminate\Http\Request $request)
+    {
+//        if($request->ajax()) {
+            $products = $category->products;
+            return Response::json($products);
+//        } else {
+//            abort(500);
+//        }
+    });
+
+    Route::get('ajax-product-options/{product}',function(\App\Product $product, \Illuminate\Http\Request $request)
+    {
+//        if($request->ajax()) {
+        $papers = $product->papers->pluck('name','id');
+        $sizes = $product->sizes->pluck('name','id');
+        return Response::json(['papers'=>$papers,'sizes'=>$sizes]);
+//        } else {
+//            abort(500);
+//        }
     });
 
     Route::resource('categories','CategoryController');
