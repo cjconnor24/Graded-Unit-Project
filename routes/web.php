@@ -63,11 +63,14 @@ Route::group(['prefix' => 'admin','middleware'=>['authenticate','admin']], funct
     Route::get('quotations','QuotationController@index');
     Route::get('quotations/create','QuotationController@create');
 
-    Route::get('ajax-address/{user}',function(\App\User $user)
+    Route::get('ajax-address/{user}',function(\App\User $user, \Illuminate\Http\Request $request)
     {
-        $addresses = $user->addresses;
-        return Response::json($addresses);
-
+        if($request->ajax()) {
+            $addresses = $user->addresses;
+            return Response::json($addresses);
+        } else {
+            abort(500);
+        }
     });
 
     Route::resource('categories','CategoryController');

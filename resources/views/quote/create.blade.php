@@ -14,6 +14,11 @@
 
                 // CLEAR DROPDOWN
                 $('#address_id').empty();
+                $('#customer_address_line').empty();
+
+                $('#customer_address_line').append(
+//                    add.join(', ')
+                );
 
                 $.each(data, function(i,item){
 
@@ -26,6 +31,10 @@
 
             });
         });
+
+$('#address_id').on('change', function(e) {
+    console.log('Address'+e.target.value+'was clicked');
+});
 
 
 
@@ -50,7 +59,7 @@
 
 
             <h2>Customer Address</h2>
-            <p>12 Linn Gdns,<br />Craiglinn,<br>Cumbernauld, <br>G68 9AN</p>
+            <p id="customer_address_line">12 Linn Gdns,<br />Craiglinn,<br>Cumbernauld, <br>G68 9AN</p>
 
         </div>
 

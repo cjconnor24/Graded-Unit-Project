@@ -27,11 +27,7 @@ class CreateOrdersTable extends Migration
 
             $table->decimal('discount');
 
-            /**
-             * CHANGE THESE TO A TABLE -
-             */
-//            $table->enum('state',['quotation','order','invoice']);
-//            $table->enum('status',['Awaiting Approval','Design','Print','Finishing','Complete']);
+            $table->date('due_date')->nullable();
 
             $table->timestamps();
 
