@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Branch;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBranch;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -50,7 +51,7 @@ class BranchController extends Controller
             'email'=>$request->email
             ]);
 
-        return redirect()->action('BranchController@index')->with('success','The branch was successfully added');
+        return redirect()->action('Admin\BranchController@index')->with('success','The branch was successfully added');
 
     }
 
@@ -95,7 +96,7 @@ class BranchController extends Controller
 
         $branch->update($request->all());
 
-        return redirect()->action('BranchController@index')->with('success','The branch was updated successfully');
+        return redirect()->action('Admin\BranchController@index')->with('success','The branch was updated successfully');
 
     }
 

@@ -1,7 +1,8 @@
 @extends('layouts.admin_master')
 @section('content')
 
-    <form action="/sizes/{{$size->id}}" method="post" role="form">
+    {{--<form action="{{action('Admin\SizesController@edit',['size'=>$size->id])}}" method="post" role="form">--}}
+        {!! Form::model($size,['action' => ['Admin\SizesController@update','size'=>$size->id]]) !!}
         {{csrf_field()}}
         {{method_field('PATCH')}}
         <h1>TEST</h1>

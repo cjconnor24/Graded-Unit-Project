@@ -5,7 +5,7 @@
 
     @include('includes.errors')
 
-    {!! Form::open(['action'=>'ProductsController@store']) !!}
+    {!! Form::open(['action'=>'Admin\ProductsController@store']) !!}
 @include('product.form')
 
     <div class="form-group">

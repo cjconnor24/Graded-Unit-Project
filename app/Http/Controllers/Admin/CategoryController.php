@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -55,7 +56,7 @@ class CategoryController extends Controller
             'name'=>$request->input('name')
         ]);
 
-        return redirect()->action('CategoryController@index');
+        return redirect()->action('Admin\CategoryController@index');
 
     }
 
@@ -97,7 +98,7 @@ class CategoryController extends Controller
             ]
         ]);
         $category->update(['name'=>$request->input('name')]);
-        return redirect()->action('CategoryController@index');
+        return redirect()->action('Admin\CategoryController@index');
     }
 
     /**

@@ -15,13 +15,13 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
                 <li><a href="#">Home</a></li>
-                <li><a href="{{action('QuotationController@index')}}">Quotations</a></li>
-                <li><a href="{{ action("ProductsController@index") }}">Products</a></li>
-                <li><a href="{{ action("PaperController@index") }}">Papers</a></li>
-                <li><a href="{{ action("CategoryController@index") }}">Categories</a></li>
-                <li><a href="{{ action("SizesController@index")}}">Sizes</a></li>
-                <li><a href="{{ action("CustomerController@index")}}">Customers</a></li>
-                <li><a href="{{ action("BranchController@index")}}">Branches</a></li>
+                <li><a href="{{action('Admin\QuotationController@index')}}">Quotations</a></li>
+                <li><a href="{{ action("Admin\ProductsController@index") }}">Products</a></li>
+                <li><a href="{{ action("Admin\PaperController@index") }}">Papers</a></li>
+                <li><a href="{{ action("Admin\CategoryController@index") }}">Categories</a></li>
+                <li><a href="{{ action("Admin\SizesController@index")}}">Sizes</a></li>
+                <li><a href="{{ action("Admin\CustomerController@index")}}">Customers</a></li>
+                <li><a href="{{ action("Admin\BranchController@index")}}">Branches</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

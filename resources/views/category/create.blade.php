@@ -3,7 +3,7 @@
 
     <h1>Create Category</h1>
 <p>Please add the category below</p>
-    {!! Form::open(['action' => 'CategoryController@store']) !!}
+    {!! Form::open(['action' => 'Admin\CategoryController@store']) !!}
     <div class="form-group">
         {!! Form::label('name',"Category Name") !!}
         {!! Form::text('name',null,['class'=>'form-control']) !!}

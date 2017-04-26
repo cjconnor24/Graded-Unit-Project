@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -73,7 +74,7 @@ class ProductsController extends Controller
         // ATTACH TO MANY PAPERS
         $product->papers()->attach($request->input('papers'));
 
-        return redirect()->action('ProductsController@index');
+        return redirect()->action('Admin\ProductsController@index');
 
     }
 
@@ -141,7 +142,7 @@ class ProductsController extends Controller
 
 
 
-        return redirect()->action('ProductsController@index');
+        return redirect()->action('Admin\ProductsController@index');
     }
 
     /**

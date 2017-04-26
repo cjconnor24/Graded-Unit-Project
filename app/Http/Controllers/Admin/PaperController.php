@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 
+use App\Http\Controllers\Controller;
 use \App\Paper;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -58,7 +59,7 @@ class PaperController extends Controller
         $paper->weight = $request->weight;
         $paper->save();
 
-        return redirect()->action('PaperController@index');
+        return redirect()->action('Admin\PaperController@index');
 
     }
 
@@ -102,7 +103,7 @@ class PaperController extends Controller
 
         $paper->update($request->only(['name','manufacturer','weight']));
 
-        return redirect()->action('PaperController@index');
+        return redirect()->action('Admin\PaperController@index');
     }
 
     /**

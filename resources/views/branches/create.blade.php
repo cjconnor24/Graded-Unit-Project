@@ -3,7 +3,7 @@
     <h1>Add New Branch</h1>
 
     @include('includes.errors')
-    {!! Form::open(['action' => 'BranchController@store']) !!}
+    {!! Form::open(['action' => 'Admin\BranchController@store']) !!}
 
    @include('branches._form')
 

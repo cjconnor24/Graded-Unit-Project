@@ -4,7 +4,7 @@
 
     <p>Below are a list of products</p>
 
-    <p><a href="{{ action('ProductsController@create') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> New Product</a></p>
+    <p><a href="{{ action('Admin\ProductsController@create') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> New Product</a></p>
 
     @if(count($products)>0)
 
@@ -21,7 +21,7 @@
             <tbody>
             @foreach($products as $product)
             <tr>
-                <td><a href="{{ action('ProductsController@edit',['id'=>$product->id]) }}">{{$product->name}}</a></td>
+                <td><a href="{{ action('Admin\ProductsController@edit',['id'=>$product->id]) }}">{{$product->name}}</a></td>
                 <td><span class="label label-primary">{{$product->category->name}}</span></td>
                 <td>
                     @foreach($product->sizes as $size)

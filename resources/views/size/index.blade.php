@@ -2,7 +2,7 @@
 @section('content')
 <h1>Manage Paper Sizes</h1>
 
-<p><a href="{{ action("SizesController@create") }}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add New Size</a></p>
+<p><a href="{{ action("Admin\SizesController@create") }}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add New Size</a></p>
 
 <p>Below are a list of sizes</p>
 
@@ -23,7 +23,7 @@
     <tr>
         <td>{{$size->name}}</td>
         <td>{{$size->height}} x {{$size->width}}</td>
-        <td><a href="{{ action("SizesController@edit",["id"=>$size->id]) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+        <td><a href="{{ action("Admin\SizesController@edit",["id"=>$size->id]) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
         <td><a href="#">Delete</a></td>
     </tr>
 

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Size;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -55,7 +56,7 @@ class SizesController extends Controller
             'width'=>$request->input('width')
         ]);
 
-        return redirect()->action('SizesController@index');
+        return redirect()->action('Admin\SizesController@index');
     }
 
     /**
@@ -100,7 +101,7 @@ class SizesController extends Controller
             'width' => 'required'
         ]);
         $size->update($request->all());
-        return redirect()->action('SizesController@index');
+        return redirect()->action('Admin\SizesController@index');
     }
 
     /**

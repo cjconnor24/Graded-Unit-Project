@@ -58,7 +58,7 @@ Route::group(['middleware'=>'authenticate'], function(){
  * Adminisrator Routes
  */
 
-Route::group(['prefix' => 'admin','middleware'=>['authenticate','admin']], function () {
+Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authenticate','admin']], function () {
 
     Route::get('quotations','QuotationController@index');
     Route::get('quotations/create','QuotationController@create');

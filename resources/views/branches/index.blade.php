@@ -2,7 +2,7 @@
 @section('content')
     <h1>Manage Branches</h1>
 
-    <a href="{{action('BranchController@create')}}">Add Branch</a>
+    <a href="{{action('Admin\BranchController@create')}}">Add Branch</a>
 
     @include('includes.errors')
 
@@ -25,7 +25,7 @@
             <td>{{$branch->address1}}</td>
             <td>{{$branch->email}}</td>
             <td>{{$branch->telephone}}</td>
-            <td><a href="{{action('BranchController@edit',['id'=>$branch->id])}}" class="btn btn-sm btn-success">Edit</a> </td>
+            <td><a href="{{action('Admin\BranchController@edit',['id'=>$branch->id])}}" class="btn btn-sm btn-success">Edit</a> </td>
         </tr>
          @endforeach
         </tbody>
