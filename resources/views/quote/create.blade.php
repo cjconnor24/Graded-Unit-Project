@@ -6,7 +6,7 @@
 
             jQuery('#quote_form').bind('submit',function(e){
 
-                if($('#form-check').val()!==0){
+                if($('#form-check').val()!==""){
                     alert('ok');
                 } else {
                     alert('not ok');
@@ -74,6 +74,7 @@
                 });
 
                 clearDropDown();
+                $('#form-check').val('test');
 
             });
 
