@@ -1,6 +1,20 @@
 @extends('layouts.admin_master')
 @section('scripts')
     <script>
+
+        //add_product
+        $( "#add_product" ).click(function() {
+
+
+            $( "#product_builder" ).find( "select" ).each(function(i, data){
+                console.log($(this).find("option:selected").val());
+                console.log($(this).find("option:selected").text());
+            });
+
+        });
+
+
+
         /**
          *
          */
@@ -138,11 +152,18 @@ $('#address_id').on('change', function(e) {
             <input type="date" name="date" id="inputID" class="form-control" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" title="" required="required" disabled>
 
             <h2>Add Product</h2>
-            {!! Form::select('category_id', $categories, null, ['id'=>'category_id','placeholder' => 'Choose a category customer','class'=>'form-control']) !!}
 
-            <select id="product_id" class="form-control"></select>
-            <select id="paper_id" class="form-control"></select>
-            <select id="size_id" class="form-control"></select>
+            <div id="product_builder">
+
+            <div class="form-group">{!! Form::select('category_id', $categories, null, ['id'=>'category_id','placeholder' => 'Choose a category customer','class'=>'form-control']) !!}</div>
+
+                <div class="form-group"><select id="product_id" class="form-control"></select></div>
+                <div class="form-group"><select id="paper_id" class="form-control"></select></div>
+                <div class="form-group"><select id="size_id" class="form-control"></select></div>
+
+            <button type="button" class="btn-sm btn btn-success" id="add_product">Add Product to Quotation</button>
+
+            </div>
 
         </div>
 
