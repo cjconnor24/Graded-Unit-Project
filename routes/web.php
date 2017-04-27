@@ -89,7 +89,8 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
 //        if($request->ajax()) {
         $papers = $product->papers->pluck('name','id');
         $sizes = $product->sizes->pluck('name','id');
-        return Response::json(['papers'=>$papers,'sizes'=>$sizes]);
+        $price = $product->price;
+        return Response::json(['papers'=>$papers,'sizes'=>$sizes,'price'=>$price]);
 //        } else {
 //            abort(500);
 //        }
