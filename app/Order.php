@@ -7,6 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
 
+    protected $fillable = [
+        'address_id',
+        'staff_id',
+        'branch_id',
+        'state_id',
+
+    ];
+
 //    /**
 //     * Associating the order has many products relationship
 //     * @return \Illuminate\Database\Eloquent\Relations\HasMany

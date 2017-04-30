@@ -4,16 +4,16 @@
 
         $( document ).ready(function() {
 
-            jQuery('#quote_form').bind('submit',function(e){
-
-                if($('#form-check').val()!==""){
-                    alert('ok');
-                } else {
-                    alert('not ok');
-                    e.preventDefault();
-                }
-
-            });
+//            jQuery('#quote_form').bind('submit',function(e){
+//
+//                if($('#form-check').val()!==""){
+//                    alert('ok');
+//                } else {
+//                    alert('not ok');
+//                    e.preventDefault();
+//                }
+//
+//            });
 
             //add_product
 //            $("#add_product").click(function () {
@@ -26,20 +26,13 @@
 //
 //            });
 
+
             $('#add_product').click(function () {
 
                 // COPY THE INVOICE LINE
                 $('#invoice_table tbody').append($('#invoice_table tbody tr:first').clone());
 
                 console.log('clones');
-
-//                var newRow = $('#invoice_table tbody tr:last');
-
-                // REMOVE THE FIRST LINE TEMPLATE
-//                if($('#invoice_table tbody tr:first').find('input')[0].name.indexOf(1)==-1){
-//                    $('#invoice_table tbody tr:first').remove();
-//                }
-
 
                 var product_builder = getInvoiceLine();
 
@@ -76,6 +69,8 @@
                 clearDropDown();
                 $('#form-check').val('test');
 
+                $('<div class="alert alert-success push-notification">Success!</div>').insertAfter('#product_builder');
+
             });
 
 
@@ -86,7 +81,7 @@
 
                 var category_id = e.target.value;
 
-                // SEND REQUET
+                // SEND REQUEST
                 $.get('/admin/ajax-product/' + category_id, function (data) {
 
                     // CLEAR DROPDOWN
@@ -217,12 +212,13 @@
     </script>
 @endsection
 @section('content')
-    <button class="btn" type="button">BUTTON</button>
+
     <h1>Create New Quote</h1>
     <p>Please select details below</p>
 
     {!! Form::open(['action' => 'Admin\QuotationController@store','id'=>'quote_form']) !!}
 
+    @include('includes.errors')
     <div class="row">
 
         <div class="col-md-6 col-lg-6">
@@ -230,7 +226,7 @@
 
             <div class="form-group">
                 <label for="customer_id">Choose Customer</label>
-            {!! Form::select('customer_id', $customers, null, ['id'=>'customer_id','placeholder' => 'Choose customer','class'=>'form-control','required']) !!}
+            {!! Form::select('customer_id', $customers, null, ['id'=>'customer_id','placeholder' => 'Choose customer','class'=>'form-control']) !!}
             </div>
 
             <div class="form-group">
@@ -249,19 +245,7 @@
             <input type="date" name="date" id="inputID" class="form-control" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" title="" required="required" disabled>
 
             <h2>Add Product</h2>
-
-            <div id="product_builder">
-
-            <div class="form-group">{!! Form::select('', $categories, null, ['id'=>'category_id','placeholder' => 'Choose a category customer','class'=>'form-control']) !!}</div>
-
-                <div class="form-group"><select id="product_id" class="form-control"></select></div>
-                <div class="form-group"><select id="paper_id" class="form-control"></select></div>
-                <div class="form-group"><select id="size_id" class="form-control"></select></div>
-                <input type="hidden" id="product_price">
-
-            <button type="button" class="btn-sm btn btn-success" id="add_product">Add Product to Quotation</button>
-
-            </div>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#product_modal">Add Product</button>
 
         </div>
 
@@ -299,10 +283,42 @@
 
     <input type="hidden" id="form-check" value="">
 
-    <a href="#" class="btn btn-sm btn-success">Add Product</a>
-
     {!! Form::submit('Create Quotation',['class'=>'btn btn-success']) !!}
     
     {!! Form::close() !!}
+
+    <!-- Modal -->
+    <div id="product_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Product to Quotation</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div id="product_builder">
+
+                        <div class="form-group"><label for="category_id">Product Category</label>{!! Form::select('', $categories, null, ['id'=>'category_id','placeholder' => 'Choose a product','class'=>'form-control']) !!}</div>
+
+                        <div class="form-group"><label for="product-id">Product</label><select id="product_id" class="form-control"></select></div>
+                        <div class="form-group"><label for="paper_id">Paper Stock</label><select id="paper_id" class="form-control"></select></div>
+                        <div class="form-group"><label for="size_id">Size Option</label><select id="size_id" class="form-control"></select></div>
+                        <input type="hidden" id="product_price">
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="add_product">Add Product</button>
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Finished</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 @endsection
