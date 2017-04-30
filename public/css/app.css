@@ -4,10 +4,13 @@
     bottom:20px;
     width:200px;
 }
+
 /*
-TESTING THIS
+QUOTATION
  */
-/* WHAT ABOUT THIS */@charset "UTF-8";
+#invoice_table tbody tr:first-child{
+    display:none;
+}@charset "UTF-8";
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)

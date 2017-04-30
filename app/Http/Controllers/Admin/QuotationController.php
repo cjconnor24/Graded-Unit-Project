@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateQuote;
 use App\Order;
 use App\OrderProduct;
 use App\State;
@@ -45,20 +46,27 @@ class QuotationController extends Controller
      * Create the order and associated order lines with approriate relationships
      * @param Request $request
      */
-    public function store(Request $request)
+    public function store(CreateQuote $request)
     {
+        \Log::info($request);
+//dd($request->all());
+//        return;
 
 //            dd($request->all());
 
-        // VALIDATE ORDER
-     $this->validate($request,[
-         'customer_id'=>'required',
-         'address_id'=>'required',
-         'order'=>'required|array',
-         'order.*.product_id'=>'required|integer',
-         'order.*.paper_id'=>'required|integer',
-         'order.*.size_id'=>'required|integer',
-     ]);
+//        // VALIDATE ORDER
+//     $this->validate($request,[
+//         'customer_id'=>'required',
+//         'address_id'=>'required',
+//         'order'=>'required|array',
+//         'order.*.product_id'=>'required|integer',
+//         'order.*.paper_id'=>'required|integer',
+//         'order.*.size_id'=>'required|integer',
+//     ]);
+//
+//     if($errors){
+//         return response()->json(['error'=>"$errors"],500);
+//     }
 
 
 
@@ -91,7 +99,11 @@ class QuotationController extends Controller
             ]);
     }
 
-    return redirect()->action('Admin\QuotationController@index')->with('success','Quotation successfully created');
+//    return json
+        $request->session()->flash('success', 'The quote was created successfully');
+        return response()->json(['redirect'=>action('Admin\QuotationController@index')],200);
+
+//    return redirect()->action('Admin\QuotationController@index')->with('success','Quotation successfully created');
 
     }
 

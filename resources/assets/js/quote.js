@@ -11,16 +11,15 @@ $( document ).ready(function() {
 //
 //            });
 
-    //add_product
-//            $("#add_product").click(function () {
-//
-//
-//                $("#product_builder").find("select").each(function (i, data) {
-////                    console.log($(this).find("option:selected").val());
-////                    console.log($(this).find("option:selected").text());
-//                });
-//
-//            });
+           $("#add_product").click(function () {
+
+
+               $("#product_builder").find("select").each(function (i, data) {
+                   console.log($(this).find("option:selected").val());
+                   console.log($(this).find("option:selected").text());
+               });
+
+           });
 
 
     $('#add_product').click(function () {

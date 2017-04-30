@@ -4,7 +4,10 @@
     bottom:20px;
     width:200px;
 }
+
 /*
-TESTING THIS
+QUOTATION
  */
-/* WHAT ABOUT THIS */
+#invoice_table tbody tr:first-child{
+    display:none;
+}

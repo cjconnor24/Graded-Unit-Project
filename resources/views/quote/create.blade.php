@@ -1,13 +1,52 @@
 @extends('layouts.admin_master')
+@section('meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 @section('scripts')
     <script src="{{asset('js/quote.js')}}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#quote_form').submit(function(event){
+            event.preventDefault();
+
+            var postData = $('form').serializeArray();
+
+            $.ajax({
+               type:'POST',
+                data:postData,
+                url:'/admin/quotations',
+                success: function(response){
+
+                    window.location.href = response.redirect;
+                },
+                error: function(response){
+                    console.log('ERROR TRIGGED');
+                    $.each(response.responseJSON,function(i,v){
+                       $('.alert-danger').append('<p>'+v[0]+'</p>');
+                    });
+
+                }
+            })
+
+        });
+    </script>
 @endsection
 @section('content')
 
     <h1>Create New Quote</h1>
     <p>Please select details below</p>
 
-    {!! Form::open(['action' => 'Admin\QuotationController@store','id'=>'quote_form']) !!}
+    <div class="alert alert-danger">
+
+    </div>
+
+    <form id="quote_form" method="POST" action="{{action('Admin\QuotationController@store')}}">
+        {{csrf_field()}}
 
     @include('includes.errors')
     <div class="row">
@@ -45,11 +84,7 @@
 
 <h2>Order Details</h2>
 
-<style type="text/css">
-    #invoice_table tbody tr:first-child{
-        display:none;
-    }
-</style>
+
         <table class="table table-responsive table-hover" id="invoice_table">
             <thead>
             <tr>
@@ -76,8 +111,7 @@
 
     {!! Form::submit('Create Quotation',['class'=>'btn btn-success']) !!}
     
-    {!! Form::close() !!}
-
+</form>
     <!-- Modal -->
     <div id="product_modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
