@@ -3,6 +3,8 @@
     <h1>Manage Quotations</h1>
     <p>Below are a list of quotations</p>
 
+    @include('includes.errors')
+
     <p><a href="{{action('Admin\QuotationController@create')}}" class="btn btn-sm btn-success">Create Quote</a></p>
 
     <table class="table table-responsive">

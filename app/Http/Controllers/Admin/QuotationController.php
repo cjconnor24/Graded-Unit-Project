@@ -91,6 +91,8 @@ class QuotationController extends Controller
             ]);
     }
 
+    return redirect()->action('Admin\QuotationController@index')->with('success','Quotation successfully created');
+
     }
 
 }

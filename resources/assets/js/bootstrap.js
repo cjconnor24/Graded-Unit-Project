@@ -1,4 +1,4 @@
-
+//TEST
 window._ = require('lodash');
 
 /**

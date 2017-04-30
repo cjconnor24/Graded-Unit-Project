@@ -1,9 +1,19 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+//@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 // Variables
-@import "variables";
+//@import "variables";
+//@import "bootswatch";
+//@import "variables";
+//@import "bootswatch";
+//.body {
+//  background:#F00;
+//}
+//TEST
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "variables";
+@import "bootswatch";
+@import "custom.css";
