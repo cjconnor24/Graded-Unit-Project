@@ -4,6 +4,8 @@
     <h1>{{$user->first_name}} {{$user->last_name}}</h1>
     <p>{{$user->email}}</p>
 
+    @include('includes.errors')
+
         <div class="row">
 
                 <div class="panel panel-primary">

@@ -63,6 +63,7 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
     Route::get('quotations','QuotationController@index');
     Route::get('quotations/create','QuotationController@create');
     Route::post('quotations/','QuotationController@store');
+    Route::get('quotations/{quotation}','QuotationController@show');
 
     Route::get('ajax-address/{user}',function(\App\User $user, \Illuminate\Http\Request $request)
     {

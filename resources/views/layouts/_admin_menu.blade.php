@@ -1,5 +1,13 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
 
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="/img/spectrum-logo.svg" style="width:200px" />
+            </a>
+        </div>
+    </div>
+
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
@@ -16,12 +24,21 @@
             <ul class="nav navbar-nav">
                 <li><a href="#">Home</a></li>
                 <li><a href="{{action('Admin\QuotationController@index')}}">Quotations</a></li>
-                <li><a href="{{ action("Admin\ProductsController@index") }}">Products</a></li>
-                <li><a href="{{ action("Admin\PaperController@index") }}">Papers</a></li>
-                <li><a href="{{ action("Admin\CategoryController@index") }}">Categories</a></li>
-                <li><a href="{{ action("Admin\SizesController@index")}}">Sizes</a></li>
-                <li><a href="{{ action("Admin\CustomerController@index")}}">Customers</a></li>
-                <li><a href="{{ action("Admin\BranchController@index")}}">Branches</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ action("Admin\ProductsController@index") }}">Products</a></li>
+                        <li><a href="{{ action("Admin\PaperController@index") }}">Papers</a></li>
+                        <li><a href="{{ action("Admin\CategoryController@index") }}">Categories</a></li>
+                        <li><a href="{{ action("Admin\SizesController@index")}}">Sizes</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ action("Admin\CustomerController@index")}}">Customers</a></li>
+                        <li><a href="{{ action("Admin\BranchController@index")}}">Branches</a></li>
+                    </ul>
+                </li>
+
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -31,10 +48,9 @@
                     <li><a href="{{ action("LoginController@loginForm")}}">Login</a></li>
                 @else
                     <li class="dropdown">
-                        {{--<a class="dropdown-toggle" data-toggle="dropdown" href="{{action('UserProfileController@')}}">Page 1--}}
-                            <span class="caret"></span></a>
+                        <a href="{{action('UserProfileController@view')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{action('UserProfileController@view')}}">Addresses</a></li>
+                            <li><a href="{{action('UserProfileController@viewAddresses')}}">Addresses</a></li>
                             <li><a href="{{action('UserProfileController@createAddress')}}">Create New Address</a></li>
                         </ul>
                     </li>

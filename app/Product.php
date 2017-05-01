@@ -43,4 +43,13 @@ class Product extends Model
         return $this->belongsToMany(Order::class);
     }
 
+    /**
+     * Associate a product with many OrderProduct lines
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function OrderProducts()
+    {
+        return $this->hasMany(OrderProduct::class);
+    }
+
 }

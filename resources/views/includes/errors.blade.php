@@ -12,7 +12,7 @@ OUTPUT NOTIFICATIONS IF AVAILABLE
     </div>
     @endif
 @if(session('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success {{session('notification') ? 'notification' : ''}}">
         {{session('success')}}
     </div>
 @endif
@@ -28,4 +28,14 @@ OUTPUT NOTIFICATIONS IF AVAILABLE
         {{session('error')}}
     </div>
 @endif
+
+@section('scripts')
+@if(session('notification'))
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $('.notification').delay(3000).fadeOut();
+        });
+    </script>
+@endif
+@endsection
 

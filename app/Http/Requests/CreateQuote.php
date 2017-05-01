@@ -32,4 +32,13 @@ class CreateQuote extends FormRequest
             'order.*.size_id'=>'required|integer',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'customer_id.required'=>'Please select the customer.',
+            'address_id.required'=>'Please select the customer\'s address.',
+            'order.required'=>'Please add at least one item to the quotation.'
+        ];
+    }
 }

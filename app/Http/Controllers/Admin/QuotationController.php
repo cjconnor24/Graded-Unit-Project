@@ -36,46 +36,18 @@ class QuotationController extends Controller
     {
         $customers= User::whereHas('roles',function($query){
             $query->where('slug','customer');
-        })->get()->pluck('full_name','id');
+        })->has('addresses')->get()->pluck('full_name','id');
         $categories = Category::has('products')->get()->pluck('name','id');
 
         return view('quote.create')->with(['customers'=>$customers,'categories'=>$categories]);
     }
 
-    /**
-     * Create the order and associated order lines with approriate relationships
-     * @param Request $request
-     */
+
     public function store(CreateQuote $request)
     {
-        \Log::info($request);
-//dd($request->all());
-//        return;
-
-//            dd($request->all());
-
-//        // VALIDATE ORDER
-//     $this->validate($request,[
-//         'customer_id'=>'required',
-//         'address_id'=>'required',
-//         'order'=>'required|array',
-//         'order.*.product_id'=>'required|integer',
-//         'order.*.paper_id'=>'required|integer',
-//         'order.*.size_id'=>'required|integer',
-//     ]);
-//
-//     if($errors){
-//         return response()->json(['error'=>"$errors"],500);
-//     }
-
-
 
     $customer = User::find($request->customer_id);
-//    $customer->addresses->find($request->address_id);
-
-//    $state = State::find(1);
     $staff = Sentinel::getUser();
-
 
         $order = new Order;
         $order->customer_id= $customer->id;
@@ -89,7 +61,6 @@ class QuotationController extends Controller
         $order->save();
 
         foreach($request->order as $line){
-//            print_r($line);
             $order->orderProducts()->create([
                 'product_id'=>$line['product_id'],
                 'paper_id'=>$line['paper_id'],
@@ -97,14 +68,51 @@ class QuotationController extends Controller
                 'qty'=>$line['qty'],
                 'description'=>''
             ]);
-    }
+        }
 
-//    return json
+
         $request->session()->flash('success', 'The quote was created successfully');
+        $request->session()->flash('notification', 'true');
+
         return response()->json(['redirect'=>action('Admin\QuotationController@index')],200);
 
 //    return redirect()->action('Admin\QuotationController@index')->with('success','Quotation successfully created');
 
     }
+
+    public function show(Order $quotation)
+    {
+        $customers= User::whereHas('roles',function($query){
+            $query->where('slug','customer');
+        })->get()->pluck('full_name','id');
+        $categories = Category::has('products')->get()->pluck('name','id');
+
+        $quotation->load('OrderProducts','OrderProducts.product');
+        return view('quote.view',compact('customers','categories','quotation'));
+    }
+
+//    public function show()
+//    {
+//
+//
+//        $orders = Order::all();
+////        return $orders;
+//        $temp = $orders->map(function($order){
+//
+//            $r = new \stdClass();
+//            $r->order = $order;
+//
+//            $r->total_price = $order->OrderProducts->sum(function($orderProduct){
+//                return $orderProduct->product->price;
+//            });
+//            return $r;
+//        });
+//
+//        return $temp;
+//
+//
+//
+//
+//    }
 
 }

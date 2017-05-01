@@ -10334,26 +10334,44 @@ return jQuery;
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {
 
-    //            jQuery('#quote_form').bind('submit',function(e){
-    //
-    //                if($('#form-check').val()!==""){
-    //                    alert('ok');
-    //                } else {
-    //                    alert('not ok');
-    //                    e.preventDefault();
-    //                }
-    //
-    //            });
-
-    $("#add_product").click(function () {
-
-        $("#product_builder").find("select").each(function (i, data) {
-            console.log($(this).find("option:selected").val());
-            console.log($(this).find("option:selected").text());
-        });
+    $('#invoice_table').on('click', '.remove-row', function () {
+        // event.preventDefault();
+        $(this).closest('tr').remove();
+        renumberRows();
     });
 
+    function renumberRows() {
+        var inputsPerRow = 4;
+        // $( "input[name^='order']" ).each(function(i,item){
+        $("#invoice_table tbody tr").each(function (i, item) {
+            console.log(item);
+        });
+    }
+
+    /**
+     * Check to make sure the product builder entries are valid before amending
+     * @returns {boolean}
+     */
+    function productBuilderValid() {
+
+        var result = true;
+
+        $("#product_builder").find("select").each(function (i, data) {
+            var lineValue = $(this).find("option:selected").val();
+
+            result = $.isNumeric(lineValue);
+        });
+
+        return result;
+    }
+
     $('#add_product').click(function () {
+
+        // CHECK BOXES ARE FILLED, IF NOT DISPLAY ERROR
+        if (!productBuilderValid()) {
+            $('<div class="alert alert-danger notification"><span class="glyphicon glyphicon-alert"></span>  Please select all options before adding.</div>').insertAfter('#product_builder').delay(3000).fadeOut();
+            return false;
+        }
 
         // COPY THE INVOICE LINE
         $('#invoice_table tbody').append($('#invoice_table tbody tr:first').clone());
@@ -10384,7 +10402,7 @@ return jQuery;
             value: product_builder[3].id
         }).parent().append(product_builder[3].value);
 
-        $('#invoice_table tbody tr td:last').html('£' + product_builder[4].price);
+        $('#invoice_table tbody tr td:nth-child(5)').html('£' + product_builder[4].price);
 
         qty.attr({
             name: 'order[' + count + '][qty]',
@@ -10460,6 +10478,8 @@ return jQuery;
         });
     });
 
+    var addressData;
+
     /**
      * GET THE CUSTOMER ID AND LOAD THEIR ADDRESSES INTO THE DROP DOWN
      */
@@ -10473,6 +10493,9 @@ return jQuery;
             // CLEAR DROPDOWNS
             $('#address_id').empty();
 
+            addressData = data;
+
+            writeCustomerAddress(data[0]);
             // LOOP THROUGH RESULTS AND ADD THE OPTIONS
             $.each(data, function (i, item) {
 
@@ -10486,9 +10509,22 @@ return jQuery;
 
     // FOR DEBUGGING
     $('#address_id').on('change', function (e) {
-        //                console.log('Address' + e.target.value + 'was clicked');
+        console.log('Address' + e.target.value + 'was clicked');
+        console.log(e.target.selectedIndex);
+        writeCustomerAddress(addressData[e.target.selectedIndex]);
     });
 });
+
+function writeCustomerAddress(addressData) {
+    $('#customer_address').empty();
+    $('#customer_address').append(addressData.address1 + '<br />');
+    $('#customer_address').append(addressData.address2 + '<br />');
+    $('#customer_address').append(addressData.address3 + '<br />');
+    $('#customer_address').append(addressData.address4 + '<br />');
+    $('#customer_address').append(addressData.postcode + '');
+    // $('#customer_address').append(addressData);
+    return true;
+}
 
 function getInvoiceLine() {
 
@@ -10517,6 +10553,36 @@ function clearDropDown() {
     });
     return true;
 }
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$('#quote_form').submit(function (event) {
+    event.preventDefault();
+
+    var postData = $('form').serializeArray();
+
+    $.ajax({
+        type: 'POST',
+        data: postData,
+        url: '/admin/quotations',
+        success: function success(response) {
+
+            window.location.href = response.redirect;
+        },
+        error: function error(response) {
+            var errorString = '';
+            $.each(response.responseJSON, function (i, v) {
+                errorString += '<p>' + v[0] + '</p>';
+            });
+
+            $('.alert-danger').html(errorString).slideDown();
+        }
+    });
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
