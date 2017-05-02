@@ -48,6 +48,15 @@ class Order extends Model
     }
 
     /**
+     * An order can have many order approvals
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orderApprovals()
+    {
+        return $this->hasMany(QuoteApproval::class);
+    }
+
+    /**
      * An order belongs to a member of staff
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
