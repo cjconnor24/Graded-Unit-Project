@@ -30,5 +30,10 @@ class OrderProduct extends Model
         return $this->belongsTo(Size::class);
     }
 
+    public function getLineTotalAttribute()
+    {
+        return ($this->qty * $this->product->price);
+    }
+
 
 }

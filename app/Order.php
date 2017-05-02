@@ -110,4 +110,22 @@ class Order extends Model
         return sprintf('INV%03d',$this->id);
     }
 
+    /**
+     * Accessor to return the number of items on the order
+     * @return mixed
+     */
+    public function getItemCountAttribute()
+    {
+        return $this->OrderProducts->count();
+    }
+
+    /**
+     * Calculate the total order value based on the line total accessor on the OrderProduct Model
+     * @return mixed
+     */
+    public function getOrderTotalAttribute()
+    {
+        return $this->OrderProducts->sum('line_total');
+    }
+
 }
