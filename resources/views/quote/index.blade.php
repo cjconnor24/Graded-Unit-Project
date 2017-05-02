@@ -24,7 +24,7 @@
             <td>{{$quote->customer->full_name}}</td>
             <td>{{$quote->created_at->diffForHumans()}}</td>
             <td>{{$quote->due_date}} <a href="{{action('Admin\QuotationController@show',['quote'=>$quote->id])}}">View</a></td>
-            <td>£{{money_format('%.2n',$quote->total_price)}}</td>
+            <td>£{{money_format('%.2n',$quote->order_total)}}</td>
         </tr>
             @endforeach
 

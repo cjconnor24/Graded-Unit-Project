@@ -24,13 +24,8 @@ class QuotationController extends Controller
 
         $quotations = Order::with('customer','OrderProducts.product')->whereHas('state',function($query){
             $query->where('name','quote');
-        })->get()->map(function ($order) {
-            $order->total_price = $order->OrderProducts->sum(function ($orderProduct) {
-                return $orderProduct->product->price * $orderProduct->qty;
-            });
+        })->get();
 
-            return $order;
-        });
 
         return view('quote.index')->with('quotations',$quotations);
     }
@@ -98,7 +93,12 @@ class QuotationController extends Controller
 
         $quotation->load(['state'=>function($query) {
             $query->where('id',10);
-        },'OrderProducts','OrderProducts.product']);
+        },'customer','OrderProducts','OrderProducts.product'])->get();
+
+//        $quotation->total_price = 1234;
+
+//        return $quotation;
+
         return view('quote.view',compact('customers','categories','quotation'));
     }
 

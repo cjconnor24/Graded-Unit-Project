@@ -29,7 +29,7 @@
                 <td><input name="order[{{$key+1}}][paper_id]" value="{{$line->paper->id}}" type="hidden">{{$line->paper->name}}</td>
                 <td><input name="order[{{$key+1}}][size_id]" value="{{$line->size->id}}" type="hidden">{{$line->size->name}}</td>
                 <td><input name="order[{{$key+1}}][qty]" type="hidden" value="{{$line->qty}}">{{$line->qty}}</td>
-                <td>{{$line->product->price}}</td>
+                <td>{{$line->product->price}} - total {{$line->line_total}}</td>
                 <td>&nbsp;</td>
             </tr>
             {{++$key}}

@@ -53,7 +53,7 @@
         </tr>
         <tr>
             <td><strong>Total</strong></td>
-            <td>£00.00</td>
+            <td>£{{$quotation->order_total}}</td>
         </tr>
     </table>
     </div>
