@@ -12,16 +12,19 @@
         <tr>
             <th>Order Number</th>
             <th>Customer</th>
-            <th>Date</th>
+            <th>Created</th>
+            <th>Due Date</th>
+            <th>Quote Total</th>
         </tr>
         </thead>
         <tbody>
         @foreach($quotations as $quote)
         <tr>
-            <td>{{$quote->id}}</td>
+            <td>{{$quote->quote_number}}</td>
             <td>{{$quote->customer->full_name}}</td>
             <td>{{$quote->created_at->diffForHumans()}}</td>
-            <td>{{$quote->due_date}}</td>
+            <td>{{$quote->due_date}} <a href="{{action('Admin\QuotationController@show',['quote'=>$quote->id])}}">View</a></td>
+            <td>£{{money_format('%.2n',$quote->total_price)}}</td>
         </tr>
             @endforeach
 

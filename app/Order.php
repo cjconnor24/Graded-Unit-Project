@@ -42,6 +42,11 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
+
     /**
      * An order belongs to a member of staff
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -67,6 +72,33 @@ class Order extends Model
     public function state()
     {
         return $this->belongsTo(State::class);
+    }
+
+    /**
+     * Accessor for formatting Quotation Number based on ID
+     * @return string
+     */
+    public function getQuoteNumberAttribute()
+    {
+        return sprintf('EST%03d',$this->id);
+    }
+
+    /**
+     * Accessor for formatting Order Number based on ID
+     * @return string
+     */
+    public function getOrderNumberAttribute()
+    {
+        return sprintf('ORD%03d',$this->id);
+    }
+
+    /**
+     * Accessor for formatting Order Number based on ID
+     * @return string
+     */
+    public function getInvoiceNumberAttribute()
+    {
+        return sprintf('INV%03d',$this->id);
     }
 
 }

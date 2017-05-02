@@ -13,7 +13,8 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('welcome');
+    return redirect()->action('LoginController@loginForm');
 });
 
 Route::get('/home', 'HomeController@index');
@@ -59,6 +60,8 @@ Route::group(['middleware'=>'authenticate'], function(){
  */
 
 Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authenticate','admin']], function () {
+
+    Route::get('/','AdminController@index');
 
     Route::get('quotations','QuotationController@index');
     Route::get('quotations/create','QuotationController@create');

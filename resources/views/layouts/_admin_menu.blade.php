@@ -24,6 +24,9 @@
             <ul class="nav navbar-nav">
                 <li><a href="#">Home</a></li>
                 <li><a href="{{action('Admin\QuotationController@index')}}">Quotations</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">Invoices</a></li>
+                <li><a href="#">Reports</a></li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>

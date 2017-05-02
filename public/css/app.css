@@ -10,7 +10,8 @@ QUOTATION
  */
 #invoice_table tbody tr:first-child{
     display:none;
-}@charset "UTF-8";
+}
+@charset "UTF-8";
 
 
 

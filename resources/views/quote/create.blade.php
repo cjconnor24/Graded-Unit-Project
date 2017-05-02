@@ -41,10 +41,14 @@
 
         <div class="col-md-6 col-lg-6">
             <h2>Quotation Date</h2>
+            <div class="form-group">
+                <label for="inputID">Order Date</label>
             <input type="date" name="date" id="inputID" class="form-control" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" title="" required="required" disabled>
+            </div>
+            <div class="form-group">
+                <input type="datetime-local" name="due_date" class="form-control" value="{{\Carbon\Carbon::tomorrow()}}" required="required">
+            </div>
 
-            <h2>Add Product</h2>
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#product_modal">Add Product</button>
 
         </div>
 
@@ -53,6 +57,7 @@
 
 <h2>Order Details</h2>
 
+<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#product_modal"><span class="glyphicon glyphicon-plus"></span> Add Product</button>
 
 @include('quote._invoicetable')
 

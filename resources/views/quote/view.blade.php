@@ -1,65 +1,60 @@
 @extends('layouts.admin_master')
-@section('meta')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-@endsection
-@section('scripts')
-    <script src="{{asset('js/quote.js')}}"></script>
-@endsection
 @section('content')
-
-    <h1>Create New Quote</h1>
-    <p>Please select details below</p>
-
-    <div class="alert alert-danger" style="display:none;"></div>
-
-    <form id="quote_form" method="POST" action="{{action('Admin\QuotationController@store')}}">
-        {{csrf_field()}}
-
-    @include('includes.errors')
 
     <div class="row">
 
-        <div class="col-md-6 col-lg-6">
-            <h2>Customer Details</h2>
-
-            <div class="form-group">
-                <label for="customer_id">Choose Customer</label>
-            {!! Form::select('customer_id', $customers, null, ['id'=>'customer_id','placeholder' => 'Choose customer','class'=>'form-control']) !!}
-            </div>
-
-            <div class="form-group">
-                <label for="address_id">Choose Address</label>
-            {!! Form::select('address_id', [], null, ['id'=>'address_id','placeholder' => 'Please select a customer','class'=>'form-control input-sm']) !!}
-            </div>
-
-
-            <h2>Customer Address</h2>
-            <p id="customer_address"></p>
-
-
+        <div class="col-md-6">
+        <h1>{{$quotation->invoice_number}}</h1>
         </div>
 
-        <div class="col-md-6 col-lg-6">
-            <h2>Quotation Date</h2>
-            <input type="date" name="date" id="inputID" class="form-control" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" title="" required="required" disabled>
-
-            <h2>Add Product</h2>
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#product_modal">Add Product</button>
-
+        <div class="col-md-6">
+        <div class="visible-print">
+            <img src="{{asset('img/spectrum-logo.svg')}}" alt="" style="width:100%" />
+            <p>Spectrum Digital Print Solutions <br>
+            DIFC <br>
+            Dubai <br>
+            PO Box 482043</p>
+        </div>
         </div>
 
     </div>
 
 
-<h2>Order Details</h2>
+    <div class="row">
 
 
-@include('quote._invoicetable')
+    <div class="col-md-6">
+        <h2>Customer Information</h2>
+<p>Below are the customer details</p>
+        <h3>{{$quotation->customer->full_name}}</h3>
+        <p><strong>{{$quotation->address->name}}</strong></p>
+        <p>{{$quotation->address->address1}}<br>
+        {{$quotation->address->address2}}<br>
+        {{$quotation->address->address3}}<br>
+        {{$quotation->address->address4}}<br>
+        {{$quotation->address->postcode}}</p>
 
+    </div>
 
-    {!! Form::submit('Create Quotation',['class'=>'btn btn-success']) !!}
-    
-</form>
-@include('quote._productmodal')
+        <div class="col-md-6">
+            <h2>Branch Information</h2>
 
+        </div>
+
+    </div>
+
+    @include('quote._invoicetable')
+
+    <div class="col-md-4 pull-right">
+    <table class="table table-hover">
+        <tr>
+            <td><strong>Sub-Total</strong></td>
+            <td>£00.00</td>
+        </tr>
+        <tr>
+            <td><strong>Total</strong></td>
+            <td>£00.00</td>
+        </tr>
+    </table>
+    </div>
 @endsection

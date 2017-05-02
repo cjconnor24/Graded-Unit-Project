@@ -21,9 +21,16 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        $quotations = Order::whereHas('state',function($query){
+
+        $quotations = Order::with('customer','OrderProducts.product')->whereHas('state',function($query){
             $query->where('name','quote');
-        })->get();
+        })->get()->map(function ($order) {
+            $order->total_price = $order->OrderProducts->sum(function ($orderProduct) {
+                return $orderProduct->product->price;
+            });
+
+            return $order;
+        });
 
         return view('quote.index')->with('quotations',$quotations);
     }
@@ -45,6 +52,8 @@ class QuotationController extends Controller
 
     public function store(CreateQuote $request)
     {
+
+//        dd($request->all());
 
     $customer = User::find($request->customer_id);
     $staff = Sentinel::getUser();
@@ -87,7 +96,9 @@ class QuotationController extends Controller
         })->get()->pluck('full_name','id');
         $categories = Category::has('products')->get()->pluck('name','id');
 
-        $quotation->load('OrderProducts','OrderProducts.product');
+        $quotation->load(['state'=>function($query) {
+            $query->where('id',10);
+        },'OrderProducts','OrderProducts.product']);
         return view('quote.view',compact('customers','categories','quotation'));
     }
 
