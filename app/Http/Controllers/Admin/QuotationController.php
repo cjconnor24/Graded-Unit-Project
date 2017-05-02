@@ -26,7 +26,7 @@ class QuotationController extends Controller
             $query->where('name','quote');
         })->get()->map(function ($order) {
             $order->total_price = $order->OrderProducts->sum(function ($orderProduct) {
-                return $orderProduct->product->price;
+                return $orderProduct->product->price * $orderProduct->qty;
             });
 
             return $order;
