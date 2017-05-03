@@ -20,17 +20,18 @@ $( document ).ready(function() {
      */
     function productBuilderValid(){
 
-               var result = true;
+               var result = [];
 
                $("#product_builder").find("select").each(function (i, data) {
-                   var lineValue = $(this).find("option:selected").val();
 
-                   result = $.isNumeric(lineValue);
+                   var lineValue = $(this).find("option:selected").val();
+                   result.push($.isNumeric(lineValue));
 
                });
 
-               return result;
-           }
+               return (result.indexOf(false)==-1);
+               
+    }
 
 
     $('#add_product').click(function () {
@@ -199,14 +200,21 @@ $( document ).ready(function() {
 
 });
 
+/**
+ * Write The Address Data to the customer address element
+ * @param addressData
+ * @returns {boolean}
+ */
 function writeCustomerAddress(addressData){
+
     $('#customer_address').empty();
+
     $('#customer_address').append(addressData.address1+'<br />');
     $('#customer_address').append(addressData.address2+'<br />');
     $('#customer_address').append(addressData.address3+'<br />');
     $('#customer_address').append(addressData.address4+'<br />');
     $('#customer_address').append(addressData.postcode+'');
-    // $('#customer_address').append(addressData);
+
     return true;
 }
 
@@ -231,7 +239,7 @@ function getInvoiceLine(){
 function clearDropDown(){
     $('#product_builder').find('select').each(function(item){
         $(this).prop('selectedIndex',0);
-        if(item>1){
+        if(item>=1){
             $(this).empty();
         }
     });
