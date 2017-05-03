@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
 
+    /**
+     * Allowable mass assignment values
+     * @var array
+     */
     protected $fillable = [
         'address_id',
         'staff_id',
@@ -15,14 +19,7 @@ class Order extends Model
 
     ];
 
-//    /**
-//     * Associating the order has many products relationship
-//     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-//     */
-//    public function products()
-//    {
-//        return $this->belongsToMany(Product::class);
-//    }
+    // ELOQUENT RELATIONSHIPS
 
     /**
      * Order has many order products
@@ -42,6 +39,10 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * An order has an address
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function address()
     {
         return $this->belongsTo(Address::class);
@@ -82,6 +83,8 @@ class Order extends Model
     {
         return $this->belongsTo(State::class);
     }
+
+    // ACCESSORS
 
     /**
      * Accessor for formatting Quotation Number based on ID
