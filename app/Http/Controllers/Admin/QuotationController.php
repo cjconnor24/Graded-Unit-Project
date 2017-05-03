@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Events\QuoteCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateQuote;
 use App\Order;
@@ -74,11 +75,14 @@ class QuotationController extends Controller
             ]);
         }
 
+        event(new QuoteCreated($customer,$order));
+
+//        dd('test');
 
         $request->session()->flash('success', 'The quote was created successfully');
         $request->session()->flash('notification', 'true');
 
-        return response()->json(['redirect'=>action('Admin\QuotationController@index')],200);
+        return response()->json(['redirect'=>action('Admin\QuotationController@index')],500);
 
 //    return redirect()->action('Admin\QuotationController@index')->with('success','Quotation successfully created');
 

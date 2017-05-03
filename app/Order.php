@@ -51,7 +51,7 @@ class Order extends Model
      * An order can have many order approvals
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function orderApprovals()
+    public function quoteApprovals()
     {
         return $this->hasMany(QuoteApproval::class);
     }

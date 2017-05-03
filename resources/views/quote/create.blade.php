@@ -45,9 +45,9 @@
                 <label for="inputID">Order Date</label>
             <input type="date" name="date" id="inputID" class="form-control" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" title="" required="required" disabled>
             </div>
-            <div class="form-group">
-                <input type="datetime-local" name="due_date" class="form-control" value="{{\Carbon\Carbon::tomorrow()}}" required="required">
-            </div>
+            {{--<div class="form-group">--}}
+                {{--<input type="datetime-local" name="due_date" class="form-control" value="{{\Carbon\Carbon::tomorrow()}}" required="required">--}}
+            {{--</div>--}}
 
 
         </div>
