@@ -22,9 +22,7 @@
     }
 </style>
     <ul id="admin_menu">
-        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+        <li><a href="{{action('Admin\AdminController@index')}}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+        <li><a href="{{action('Admin\QuotationController@index')}}"><span class="glyphicon glyphicon-list-alt"></span> Quotations</a></li>
     </ul>
 @endsection
