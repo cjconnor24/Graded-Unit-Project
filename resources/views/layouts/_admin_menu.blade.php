@@ -21,12 +21,13 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar">
+            @if(Sentinel::check())
             <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
+                <li><a href="{{action('Admin\AdminController@index')}}">Home</a></li>
                 <li><a href="{{action('Admin\QuotationController@index')}}">Quotations</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Invoices</a></li>
-                <li><a href="#">Reports</a></li>
+                <li><a href="javascript:alert('It\'s coming');">Orders</a></li>
+                <li><a href="javascript:alert('It\'s coming');">Invoices</a></li>
+                <li><a href="javascript:alert('It\'s coming');">Reports</a></li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
@@ -40,9 +41,8 @@
                         <li><a href="{{ action("Admin\BranchController@index")}}">Branches</a></li>
                     </ul>
                 </li>
-
-
             </ul>
+            @endif
 
             <ul class="nav navbar-nav navbar-right">
 
@@ -50,14 +50,14 @@
                     <li><a href="{{ action("RegistrationController@create")}}">Register</a></li>
                     <li><a href="{{ action("LoginController@loginForm")}}">Login</a></li>
                 @else
-                    <li class="dropdown">
-                        <a href="{{action('UserProfileController@view')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{action('UserProfileController@viewAddresses')}}">Addresses</a></li>
-                            <li><a href="{{action('UserProfileController@createAddress')}}">Create New Address</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ action("UserProfileController@view")}}">Profile</a></li>
+                    {{--<li class="dropdown">--}}
+                        {{--<a href="{{action('UserProfileController@view')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>--}}
+                        {{--<ul class="dropdown-menu">--}}
+                            {{--<li><a href="{{action('UserProfileController@viewAddresses')}}">Addresses</a></li>--}}
+                            {{--<li><a href="{{action('UserProfileController@createAddress')}}">Create New Address</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
+                    {{--<li><a href="{{ action("UserProfileController@view")}}">Profile</a></li>--}}
                     <li><a href="{{ action("LoginController@logout")}}">Logout</a></li>
                 @endif
             </ul>

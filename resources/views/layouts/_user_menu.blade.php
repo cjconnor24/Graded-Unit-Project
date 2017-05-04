@@ -1,5 +1,13 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
 
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="/img/spectrum-logo.svg" style="width:200px" />
+            </a>
+        </div>
+    </div>
+
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
@@ -14,7 +22,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
+                <li><a href="{{action('UserProfileController@view')}}">Home</a></li>
+                <li><a href="{{action('UserQuotationController@index')}}">Quotations</a></li>
+                <li><a href="javascript:alert('I\'m getting there...');">Orders</a></li>
+                <li><a href="javascript:alert('I\'m getting there...');">Invoices</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -24,7 +35,7 @@
                     <li><a href="{{ action("LoginController@loginForm")}}">Login</a></li>
                 @else
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="{{action('UserProfileController@')}}">Page 1
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Account
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{action('UserProfileController@view')}}">Addresses</a></li>
