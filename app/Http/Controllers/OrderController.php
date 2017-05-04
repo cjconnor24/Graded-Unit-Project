@@ -19,8 +19,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::where('state','order')->get();
-        // RETURN VIEW ORDERS
+        $orders = Order::where('state','order')->all();
+
+        return $orders;
     }
 
     /**
