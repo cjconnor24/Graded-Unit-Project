@@ -54,6 +54,7 @@ Route::group(['middleware'=>'authenticate'], function(){
 
     // USER QUOTATION CONTROLLER
     Route::get('/quotations/approve/{quotation}/{token}','UserQuotationController@approveQuotation');
+    Route::get('/quotations','UserQuotationController@index');
 
 });
 
@@ -69,6 +70,8 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
     Route::get('quotations/create','QuotationController@create');
     Route::post('quotations/','QuotationController@store');
     Route::get('quotations/{quotation}','QuotationController@show');
+
+    Route::get('orders/','OrderController@index');
 
     Route::get('ajax-address/{user}',function(\App\User $user, \Illuminate\Http\Request $request)
     {
