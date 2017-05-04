@@ -10354,15 +10354,15 @@ return jQuery;
      */
     function productBuilderValid() {
 
-        var result = true;
+        var result = [];
 
         $("#product_builder").find("select").each(function (i, data) {
-            var lineValue = $(this).find("option:selected").val();
 
-            result = $.isNumeric(lineValue);
+            var lineValue = $(this).find("option:selected").val();
+            result.push($.isNumeric(lineValue));
         });
 
-        return result;
+        return result.indexOf(false) == -1;
     }
 
     $('#add_product').click(function () {
@@ -10478,6 +10478,9 @@ return jQuery;
         });
     });
 
+    /**
+     * Holds address data
+     */
     var addressData;
 
     /**
@@ -10495,7 +10498,7 @@ return jQuery;
 
             addressData = data;
 
-            writeCustomerAddress(data[0]);
+            writeCustomerAddress(data[0], '#customer_address');
             // LOOP THROUGH RESULTS AND ADD THE OPTIONS
             $.each(data, function (i, item) {
 
@@ -10511,18 +10514,32 @@ return jQuery;
     $('#address_id').on('change', function (e) {
         console.log('Address' + e.target.value + 'was clicked');
         console.log(e.target.selectedIndex);
-        writeCustomerAddress(addressData[e.target.selectedIndex]);
+        writeCustomerAddress(addressData[e.target.selectedIndex], '#customer_address');
     });
+
+    // $('#branch_id').on('change', function (e) {
+    //     console.log('Address' + e.target.value + 'was clicked');
+    //     console.log(e.target.selectedIndex);
+    //     writeCustomerAddress(addressData[e.target.selectedIndex],'#customer_address');
+    // });
+
 });
 
-function writeCustomerAddress(addressData) {
-    $('#customer_address').empty();
-    $('#customer_address').append(addressData.address1 + '<br />');
-    $('#customer_address').append(addressData.address2 + '<br />');
-    $('#customer_address').append(addressData.address3 + '<br />');
-    $('#customer_address').append(addressData.address4 + '<br />');
-    $('#customer_address').append(addressData.postcode + '');
-    // $('#customer_address').append(addressData);
+/**
+ * Write The Address Data to the customer address element
+ * @param addressData
+ * @returns {boolean}
+ */
+function writeCustomerAddress(addressData, idEl) {
+
+    $(idEl).empty();
+
+    $(idEl).append(addressData.address1 + '<br />');
+    $(idEl).append(addressData.address2 !== '' ? addressData.address2 + '<br />' : '');
+    $(idEl).append(addressData.address3 !== '' ? addressData.address3 + '<br />' : '');
+    $(idEl).append(addressData.address4 !== '' ? addressData.address4 + '<br />' : '');
+    $(idEl).append(addressData.postcode + '');
+
     return true;
 }
 
@@ -10547,7 +10564,7 @@ function getInvoiceLine() {
 function clearDropDown() {
     $('#product_builder').find('select').each(function (item) {
         $(this).prop('selectedIndex', 0);
-        if (item > 1) {
+        if (item >= 1) {
             $(this).empty();
         }
     });
@@ -10561,6 +10578,8 @@ $.ajaxSetup({
 });
 
 $('#quote_form').submit(function (event) {
+
+    console.log('this triggers');
     event.preventDefault();
 
     var postData = $('form').serializeArray();

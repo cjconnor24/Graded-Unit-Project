@@ -4,17 +4,11 @@
     <div class="row">
 
         <div class="col-md-6">
-        <h1>{{$quotation->invoice_number}}</h1>
+        <h1>{{$quotation->quote_number}}</h1>
         </div>
 
         <div class="col-md-6">
-        <div class="visible-print">
-            <img src="{{asset('img/spectrum-logo.svg')}}" alt="" style="width:100%" />
-            <p>Spectrum Digital Print Solutions <br>
-            DIFC <br>
-            Dubai <br>
-            PO Box 482043</p>
-        </div>
+        <h2></h2>
         </div>
 
     </div>

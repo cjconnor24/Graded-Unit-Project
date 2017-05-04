@@ -32,7 +32,7 @@
                 <td>{{$line->product->price}} - total {{$line->line_total}}</td>
                 <td>&nbsp;</td>
             </tr>
-            {{++$key}}
+{{--            {{++$key}}--}}
         @endforeach
     @endif
     </tbody>

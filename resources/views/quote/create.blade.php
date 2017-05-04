@@ -20,7 +20,7 @@
     <div class="row">
 
         <div class="col-md-6 col-lg-6">
-            <h2>Customer Details</h2>
+            <h3>Customer Details</h3>
 
             <div class="form-group">
                 <label for="customer_id">Choose Customer</label>
@@ -33,18 +33,26 @@
             </div>
 
 
-            <h2>Customer Address</h2>
+            <h3>Customer Address</h3>
             <p id="customer_address"></p>
 
 
         </div>
 
         <div class="col-md-6 col-lg-6">
-            <h2>Quotation Date</h2>
+            <h3>Order Details</h3>
+
+            <div class="form-group">
+                <label for="branch_id">Choose Branch</label>
+                {!! Form::select('branch_id', $branches, null, ['id'=>'branch_id','placeholder' => 'Please select a branch','class'=>'form-control input-sm']) !!}
+            </div>
+
             <div class="form-group">
                 <label for="inputID">Order Date</label>
             <input type="date" name="date" id="inputID" class="form-control" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" title="" required="required" disabled>
             </div>
+
+            <h3>Branch Address</h3>
             {{--<div class="form-group">--}}
                 {{--<input type="datetime-local" name="due_date" class="form-control" value="{{\Carbon\Carbon::tomorrow()}}" required="required">--}}
             {{--</div>--}}
@@ -55,11 +63,13 @@
     </div>
 
 
-<h2>Order Details</h2>
+<h3>Order Details</h3>
 
 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#product_modal"><span class="glyphicon glyphicon-plus"></span> Add Product</button>
 
+
 @include('quote._invoicetable')
+
 
 
     {!! Form::submit('Create Quotation',['class'=>'btn btn-success']) !!}

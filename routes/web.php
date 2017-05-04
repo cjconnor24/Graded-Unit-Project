@@ -26,7 +26,6 @@ Route::get('/home', 'HomeController@index');
     Route::post('/register','RegistrationController@store');
     Route::get('/activate/{email}/{activationCode}','ActivationController@activate');
 
-
     /**
      * LOGIN ROUTES
      */
@@ -53,6 +52,9 @@ Route::group(['middleware'=>'authenticate'], function(){
     Route::get('/profile/addresses/create','UserProfileController@createAddress');
     Route::post('/profile/addresses/create','UserProfileController@storeAddress');
 
+    // USER QUOTATION CONTROLLER
+    Route::get('/quotations/approve/{quotation}/{token}','UserQuotationController@approveQuotation');
+
 });
 
 /**
@@ -70,34 +72,36 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
 
     Route::get('ajax-address/{user}',function(\App\User $user, \Illuminate\Http\Request $request)
     {
+
         if($request->ajax()) {
             $addresses = $user->addresses;
             return Response::json($addresses);
         } else {
             abort(500);
         }
+
     });
 
     Route::get('ajax-product/{category}',function(\App\Category $category, \Illuminate\Http\Request $request)
     {
-//        if($request->ajax()) {
+        if($request->ajax()) {
             $products = $category->products;
             return Response::json($products);
-//        } else {
-//            abort(500);
-//        }
+        } else {
+            abort(500);
+        }
     });
 
     Route::get('ajax-product-options/{product}',function(\App\Product $product, \Illuminate\Http\Request $request)
     {
-//        if($request->ajax()) {
+        if($request->ajax()) {
         $papers = $product->papers->pluck('name','id');
         $sizes = $product->sizes->pluck('name','id');
         $price = $product->price;
         return Response::json(['papers'=>$papers,'sizes'=>$sizes,'price'=>$price]);
-//        } else {
-//            abort(500);
-//        }
+        } else {
+            abort(500);
+        }
     });
 
     Route::resource('categories','CategoryController');

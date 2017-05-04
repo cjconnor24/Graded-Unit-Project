@@ -15,7 +15,7 @@ class CreateQuoteApprovalsTable extends Migration
     {
         Schema::create('quote_approvals', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->integer('order_id')->unsigned();
             $table->string('token',16);
             $table->boolean('completed')->default(false);

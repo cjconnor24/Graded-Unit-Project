@@ -19,7 +19,9 @@ Product | Options | Qty | Cost
     |   |   | **_Total_** | £350.00
 @endcomponent
 
-@component('mail::button', ['url' => 'http://www.google.com', 'color' => 'green'])
+@php ($url = action('UserQuotationController@approveQuotation',['quotation'=>$quotation->id,'token'=>$approval->token]))
+
+@component('mail::button', ['url' => $url, 'color' => 'green'])
 Approve Quotation
 @endcomponent
 

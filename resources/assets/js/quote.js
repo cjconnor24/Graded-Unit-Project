@@ -30,7 +30,7 @@ $( document ).ready(function() {
                });
 
                return (result.indexOf(false)==-1);
-               
+
     }
 
 
@@ -158,6 +158,9 @@ $( document ).ready(function() {
         });
     });
 
+    /**
+     * Holds address data
+     */
     var addressData;
 
     /**
@@ -175,7 +178,7 @@ $( document ).ready(function() {
 
             addressData = data;
 
-            writeCustomerAddress(data[0]);
+            writeCustomerAddress(data[0],'#customer_address');
             // LOOP THROUGH RESULTS AND ADD THE OPTIONS
             $.each(data, function (i, item) {
 
@@ -193,8 +196,14 @@ $( document ).ready(function() {
     $('#address_id').on('change', function (e) {
                console.log('Address' + e.target.value + 'was clicked');
                console.log(e.target.selectedIndex);
-               writeCustomerAddress(addressData[e.target.selectedIndex]);
+               writeCustomerAddress(addressData[e.target.selectedIndex],'#customer_address');
     });
+
+    // $('#branch_id').on('change', function (e) {
+    //     console.log('Address' + e.target.value + 'was clicked');
+    //     console.log(e.target.selectedIndex);
+    //     writeCustomerAddress(addressData[e.target.selectedIndex],'#customer_address');
+    // });
 
 
 
@@ -205,15 +214,15 @@ $( document ).ready(function() {
  * @param addressData
  * @returns {boolean}
  */
-function writeCustomerAddress(addressData){
+function writeCustomerAddress(addressData,idEl){
 
-    $('#customer_address').empty();
+    $(idEl).empty();
 
-    $('#customer_address').append(addressData.address1+'<br />');
-    $('#customer_address').append(addressData.address2+'<br />');
-    $('#customer_address').append(addressData.address3+'<br />');
-    $('#customer_address').append(addressData.address4+'<br />');
-    $('#customer_address').append(addressData.postcode+'');
+    $(idEl).append(addressData.address1+'<br />');
+    $(idEl).append((addressData.address2!=='' ? addressData.address2 +'<br />':''));
+    $(idEl).append((addressData.address3!=='' ? addressData.address3 +'<br />':''));
+    $(idEl).append((addressData.address4!=='' ? addressData.address4 +'<br />':''));
+    $(idEl).append(addressData.postcode+'');
 
     return true;
 }
@@ -253,6 +262,8 @@ $.ajaxSetup({
 });
 
 $('#quote_form').submit(function(event){
+
+    console.log('this triggers');
     event.preventDefault();
 
     var postData = $('form').serializeArray();

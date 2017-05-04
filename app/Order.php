@@ -84,6 +84,15 @@ class Order extends Model
         return $this->belongsTo(State::class);
     }
 
+    /**
+     * An order belongs to a branch
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
     // ACCESSORS
 
     /**

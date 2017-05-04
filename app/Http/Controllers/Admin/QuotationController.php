@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Branch;
 use App\Category;
 use App\Events\QuoteCreated;
 use App\Http\Controllers\Controller;
@@ -25,7 +26,12 @@ class QuotationController extends Controller
 
         $quotations = Order::with('customer','OrderProducts.product')->whereHas('state',function($query){
             $query->where('name','quote');
-        })->get();
+        })->orderBy('id','desc')->paginate();
+
+//        $quotations = Order::paginate();
+
+//        dd($quotations);
+
 
 
         return view('quote.index')->with('quotations',$quotations);
@@ -41,8 +47,9 @@ class QuotationController extends Controller
             $query->where('slug','customer');
         })->has('addresses')->get()->pluck('full_name','id');
         $categories = Category::has('products')->get()->pluck('name','id');
+        $branches = Branch::pluck('name','id');
 
-        return view('quote.create')->with(['customers'=>$customers,'categories'=>$categories]);
+        return view('quote.create')->with(['customers'=>$customers,'categories'=>$categories,'branches'=>$branches]);
     }
 
 
@@ -58,7 +65,7 @@ class QuotationController extends Controller
         $order->customer_id= $customer->id;
         $order->address_id = $request->address_id;
         $order->staff_id = $staff->id;
-        $order->branch_id = 1;
+        $order->branch_id = $request->branch_id;
         $order->state_id = 1;
         $order->discount = 0.0;
         $order->due_date = Carbon::now();
@@ -77,12 +84,10 @@ class QuotationController extends Controller
 
         event(new QuoteCreated($customer,$order));
 
-//        dd('test');
-
         $request->session()->flash('success', 'The quote was created successfully');
         $request->session()->flash('notification', 'true');
 
-        return response()->json(['redirect'=>action('Admin\QuotationController@index')],500);
+        return response()->json(['redirect'=>action('Admin\QuotationController@index')],200);
 
 //    return redirect()->action('Admin\QuotationController@index')->with('success','Quotation successfully created');
 
@@ -97,37 +102,11 @@ class QuotationController extends Controller
 
         $quotation->load(['state'=>function($query) {
             $query->where('id',10);
-        },'customer','OrderProducts','OrderProducts.product'])->get();
-
-//        $quotation->total_price = 1234;
+        },'customer','OrderProducts','OrderProducts.product','branch'])->get();
 
 //        return $quotation;
 
         return view('quote.view',compact('customers','categories','quotation'));
     }
-
-//    public function show()
-//    {
-//
-//
-//        $orders = Order::all();
-////        return $orders;
-//        $temp = $orders->map(function($order){
-//
-//            $r = new \stdClass();
-//            $r->order = $order;
-//
-//            $r->total_price = $order->OrderProducts->sum(function($orderProduct){
-//                return $orderProduct->product->price;
-//            });
-//            return $r;
-//        });
-//
-//        return $temp;
-//
-//
-//
-//
-//    }
 
 }
