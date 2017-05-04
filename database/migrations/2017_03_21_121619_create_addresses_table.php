@@ -27,7 +27,7 @@ class CreateAddressesTable extends Migration
             /**
              * NAVIGATION PROPERTY FOR USER
              */
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
