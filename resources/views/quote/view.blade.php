@@ -18,8 +18,10 @@
 
 
     <div class="col-md-6">
+
         <h2>Customer Information</h2>
-<p>Below are the customer details</p>
+        <p>Below are the customer details</p>
+
         <h3>{{$quotation->customer->full_name}}</h3>
         <p><strong>{{$quotation->address->name}}</strong></p>
         <p>{{$quotation->address->address1}}<br>

@@ -2,7 +2,7 @@
 @section('content')
     <h1>Manage Branches</h1>
 
-    <a href="{{action('Admin\BranchController@create')}}">Add Branch</a>
+    <a href="{{action('Admin\BranchController@create')}}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add Branch</a>
 
     @include('includes.errors')
 
