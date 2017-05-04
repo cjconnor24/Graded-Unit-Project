@@ -4,11 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\QuoteApproval;
+use Sentinel;
 use Illuminate\Http\Request;
 use Mockery\Exception;
 
 class UserQuotationController extends Controller
 {
+
+    public function index()
+    {
+        $user = Sentinel::getUser();
+        $quotations = Order::whereHas('quoteApprovals')->where('customer_id',$user->id)->orderBy('id','desc')->paginate();
+//        $quotations = Order::whereHas('quoteApprovals')->where('id',5)->paginate();
+
+
+        return view('userviews.quote.index')->with('quotations',$quotations);
+
+    }
+
     /**
      * Approve quotation based on email or click-through from pending page
      * @param $quotation
@@ -30,11 +43,7 @@ class UserQuotationController extends Controller
             abort(404);
         }
 
-//        $order->quoteApprovals->first()->completed = true;
-//        $order->quoteApprovals->first()->save();
-
-
-        return $order->quoteApprovals->first();
+        return view('quote._invoicetable')->with('quotation',$order);
 
 
 
