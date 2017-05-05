@@ -6,6 +6,8 @@
 
     <p>Please find a list of quotations below</p>
 
+    @include('includes.errors')
+
     <table class="table table-responsive">
         <thead>
         <tr>
