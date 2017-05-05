@@ -12,6 +12,10 @@ use Mockery\Exception;
 class UserQuotationController extends Controller
 {
 
+    /**
+     * Load all active quotations belonging to the user and display them in a list
+     * @return $this
+     */
     public function index()
     {
         $user = Sentinel::getUser();
