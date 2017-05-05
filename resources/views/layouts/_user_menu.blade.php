@@ -24,7 +24,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{action('UserProfileController@view')}}">Home</a></li>
                 <li><a href="{{action('UserQuotationController@index')}}">Quotations</a></li>
-                <li><a href="javascript:alert('I\'m getting there...');">Orders</a></li>
+                <li><a href="{{action('UserOrderController@index')}}">Orders</a></li>
                 <li><a href="javascript:alert('I\'m getting there...');">Invoices</a></li>
             </ul>
 
