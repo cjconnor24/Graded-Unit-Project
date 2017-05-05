@@ -24,4 +24,10 @@ class QuoteApproval extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function approve()
+    {
+        $this->completed = true;
+        $this->save();
+    }
+
 }
