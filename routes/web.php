@@ -56,6 +56,8 @@ Route::group(['middleware'=>'authenticate'], function(){
     Route::get('/quotations/approve/{quotation}/{token}','UserQuotationController@approveQuotation');
     Route::get('/quotations','UserQuotationController@index');
 
+    Route::get('/orders','UserOrderController@index');
+
 });
 
 /**
