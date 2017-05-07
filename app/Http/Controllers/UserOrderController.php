@@ -21,7 +21,7 @@ class UserOrderController extends Controller
     {
         $orders = Order::whereHas('state',function($query){
             $query->where('name','order');
-        })->whereHas('customer',function($query){
+            })->whereHas('customer',function($query){
             $query->where('id',Sentinel::getUser()->id);
         })->get();
 
