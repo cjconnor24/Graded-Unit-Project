@@ -93,6 +93,15 @@ class Order extends Model
         return $this->belongsTo(Branch::class);
     }
 
+    /**
+     * Each order has an order status
+     * @return mixed
+     */
+    public function orderStatus()
+    {
+        return $this->belongTo(OrderStatus::class);
+    }
+
     // ACCESSORS
 
     /**
