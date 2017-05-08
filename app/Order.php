@@ -99,7 +99,7 @@ class Order extends Model
      */
     public function orderStatus()
     {
-        return $this->belongTo(OrderStatus::class);
+        return $this->belongsTo(OrderStatus::class,'status_id');
     }
 
     // ACCESSORS
