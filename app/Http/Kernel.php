@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'authenticate' => \App\Http\Middleware\AuthenticateMiddleware::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'address.owner' => \App\Http\Middleware\AddressOwner::class,
+        'quote.owner'=> \App\Http\Middleware\QuoteOwner::class,
     ];
 }
