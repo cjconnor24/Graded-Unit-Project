@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PapersTableSeeder::class);
         $this->call(RolesSeeder::class);
         $this->call(StatesTableSeeder::class);
+        $this->call(OrderStatusesSeeder::class);
 //        factory(App\User::class, 100)->create();
 
         // USER SEEDER FACTORY
