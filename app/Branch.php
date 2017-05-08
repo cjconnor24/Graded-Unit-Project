@@ -18,11 +18,12 @@ class Branch extends Model
     }
 
     /**
-     * ORDER RELATIONSHIP NOT CODED YET
+     * Branches have many orders related to them
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function orders()
     {
-
+        return $this->hasMany(Order::class);
     }
 
 }
