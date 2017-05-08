@@ -14,6 +14,7 @@
             <th>Quote Reference</th>
             <th>Created</th>
             <th>Expiry Date</th>
+            <th>Status</th>
             <th>Quote Total</th>
         </tr>
         </thead>
@@ -23,6 +24,7 @@
                 <td>{{$quotation->quote_number}}</td>
                 <td>{{$quotation->created_at->diffForHumans()}}</td>
                 <td>{{$quotation->created_at->addWeeks(4)->diffForHumans()}}</td>
+                <td>{{$quotation->state->name}}</td>
                 <td>£{{money_format('%.2n',$quotation->order_total)}}</td>
             </tr>
             @endforeach
