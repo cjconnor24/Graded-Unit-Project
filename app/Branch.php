@@ -26,4 +26,16 @@ class Branch extends Model
         return $this->hasMany(Order::class);
     }
 
+    public function getFullAddressAttribute()
+    {
+        $address = '';
+        $address .= $this->address1.', ';
+        $address.= $this->address2.', ';
+        $address.= $this->address3.', ';
+        $address.= $this->address4.', ';
+        $address.= $this->postcode;
+
+        return $address;
+    }
+
 }
