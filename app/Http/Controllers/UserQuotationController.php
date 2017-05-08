@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderStatus;
 use App\QuoteApproval;
 use App\State;
 use Sentinel;
@@ -24,6 +25,8 @@ class UserQuotationController extends Controller
             $query->where('id',Sentinel::getUser()->id);
         })->whereHas('state',function($query){
             $query->where('name','quote');
+        })->whereHas('quoteApprovals',function($query) {
+            $query->where('completed',false);
         })->paginate();
 
 
@@ -57,12 +60,21 @@ class UserQuotationController extends Controller
 
 
         $quote->quoteApprovals->last()->approve();
+
         $state = State::where('name','order')->first();
+        $status = OrderStatus::where('name','LIKE','%payment%')->first();
         $quote->state()->associate($state);
+        $quote->orderStatus()->associate($status);
         $quote->save();
 
         return redirect()->action('UserQuotationController@index')->with('success','Your quote has been approved and progressed to orders.');
+    }
 
+    public function show(Order $quotation)
+    {
+        $quotation->load('customer','OrderProducts.product','OrderProducts.paper','address','staff','branch');
 
+//        return $quotation;
+        return view('userviews.quote.view')->with('quotation',$quotation);
     }
 }

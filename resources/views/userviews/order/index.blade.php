@@ -2,6 +2,8 @@
 @section('content')
     <h1>Orders</h1>
 
+    @if(count($orders)>0)
+
     <table class="table table-responsive">
         <thead>
         <tr>
@@ -18,10 +20,13 @@
             <td>{{$order->order_number}}</td>
             <td>{{$order->created_at}}</td>
             <td>{{$order->due_date}}</td>
-            <td>{{$order->status}}</td>
+            <td>{{$order->orderStatus->name}}</td>
             <td>£{{money_format('%.2n',$order->order_total)}}</td>
         </tr>
             @endforeach
         </tbody>
     </table>
+    @else
+    <p>You have no active orders currently</p>
+    @endif
 @endsection
