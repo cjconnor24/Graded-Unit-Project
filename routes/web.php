@@ -53,7 +53,8 @@ Route::group(['middleware'=>'authenticate'], function(){
     Route::post('/profile/addresses/create','UserProfileController@storeAddress');
 
     // USER QUOTATION CONTROLLER
-    Route::get('/quotations/approve/{quotation}/{token}','UserQuotationController@approveQuotation');
+    Route::get('/quotations/approve/{quotation}/{token}','UserQuotationController@approveQuotation')
+    ->middleware('quote.owner');
     Route::get('/quotations','UserQuotationController@index');
 
     Route::get('/orders','UserOrderController@index');
