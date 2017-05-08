@@ -24,7 +24,6 @@ class CreateOrdersTable extends Migration
             $table->integer('branch_id')->unsigned();
 
             $table->integer('state_id')->unsigned();
-            $table->integer('status_id')->unsigned()->nullable();
 
             $table->decimal('discount');
 
@@ -37,7 +36,6 @@ class CreateOrdersTable extends Migration
             $table->foreign('address_id')->references('id')->on('addresses');
             $table->foreign('branch_id')->references('id')->on('branches');
             $table->foreign('state_id')->references('id')->on('states');
-            $table->foreign('status_id')->references('id')->on('order_statuses');
 
             // MAKE ORDERS START FROM 100,000 FOR READABILITY REASONS
 //            DB::update("ALTER TABLE orders AUTO_INCREMENT = 100000;");
