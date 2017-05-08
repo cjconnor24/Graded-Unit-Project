@@ -25,7 +25,8 @@ class UserOrderController extends Controller
             $query->where('id',Sentinel::getUser()->id);
         })->get();
 
-        return $orders;
+        return view('userviews.order.index')->with('orders',$orders);
+
     }
 
 }
