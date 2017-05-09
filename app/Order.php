@@ -107,6 +107,13 @@ class Order extends Model
         return $this->belongsTo(OrderStatus::class,'status_id');
     }
 
+    public function isQuote()
+    {
+        if($this->state->name=='quote'){
+            return true;
+        }
+    }
+
     // ACCESSORS
 
     /**
