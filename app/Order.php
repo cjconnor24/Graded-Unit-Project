@@ -99,6 +99,15 @@ class Order extends Model
     }
 
     /**
+     * An order has many payments
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    /**
      * Each order has an order status
      * @return mixed
      */
