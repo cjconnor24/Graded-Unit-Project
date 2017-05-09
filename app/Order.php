@@ -57,6 +57,11 @@ class Order extends Model
         return $this->hasMany(QuoteApproval::class);
     }
 
+    public function rejection()
+    {
+        return $this->hasOne(QuoteRejection::class);
+    }
+
     /**
      * An order belongs to a member of staff
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
