@@ -31,4 +31,9 @@ class UserOrderController extends Controller
 
     }
 
+    public function show(Order $order)
+    {
+        return $order;
+    }
+
 }

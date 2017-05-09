@@ -44,32 +44,40 @@ class UserQuotationController extends Controller
      * @param $token
      * @return mixed
      */
-    public function approveQuotation($quotation, $token)
+    public function approveQuotation(Order $quotation, $token)
     {
 
-        $quote = Order::whereHas('quoteApprovals',function($query) use($token,$quotation){
-                $query->where([
-                    'token'=>$token,
-                    'order_id'=>$quotation,
-                    'completed'=>false
-                ]);
-            })->whereHas('state',function($query){
-                $query->where('name','quote');
-        })->first();
+//        dd($quotation);
+
+        $quotation->load(['quoteApprovals'=>function($query) use($token){
+            $query->where('token',$token);
+        }]);
+//        return $quotation->quoteApprovals;
 
 
-        if($quote==null){
+//        $quote = Order::whereHas('quoteApprovals',function($query) use($token,$quotation){
+//                $query->where([
+//                    'token'=>$token,
+//                    'order_id'=>$quotation,
+//                    'completed'=>false
+//                ]);
+//            })->whereHas('state',function($query){
+//                $query->where('name','quote');
+//        })->first();
+
+
+
+        if(count($quotation->quoteApprovals)!==1){
             abort(404);
         }
 
-
-        $quote->quoteApprovals->last()->approve();
+        $quotation->quoteApprovals->last()->approve();
 
         $state = State::where('name','order')->first();
         $status = OrderStatus::where('name','LIKE','%payment%')->first();
-        $quote->state()->associate($state);
-        $quote->orderStatus()->associate($status);
-        $quote->save();
+        $quotation->state()->associate($state);
+        $quotation->orderStatus()->associate($status);
+        $quotation->save();
 
         return redirect()->action('UserQuotationController@index')->with('success','Your quote has been approved and progressed to orders.');
     }
@@ -99,19 +107,27 @@ class UserQuotationController extends Controller
 
     public function show(Order $quotation)
     {
-        $quotation->load([
-            'customer',
-            'OrderProducts.product',
-            'OrderProducts.paper',
-            'QuoteApprovals'=>function($query){
-                $query->select('order_id','token')->orderBy('id','DESC')->first();
-            },
-            'address',
-            'staff',
-            'branch'
-        ]);
-//return$quotation;
-//        return $quotation;
-        return view('userviews.quote.view')->with('quotation',$quotation);
+        if($quotation->state->name=='quote') {
+
+            $quotation->load([
+                'customer',
+                'OrderProducts.product',
+                'OrderProducts.paper',
+                'QuoteApprovals' => function ($query) {
+                    $query->select('order_id', 'token')->orderBy('id', 'DESC')->first();
+                },
+                'address',
+                'staff',
+                'branch'
+            ]);
+
+
+            return view('userviews.quote.view')->with('quotation', $quotation);
+
+        } else {
+            abort(404);
+        }
+
+
     }
 }

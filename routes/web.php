@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/', function () {
 //    return view('welcome');
     return redirect()->action('LoginController@loginForm');
@@ -53,13 +52,13 @@ Route::group(['middleware'=>'authenticate'], function(){
     Route::post('/profile/addresses/create','UserProfileController@storeAddress');
 
     // USER QUOTATION CONTROLLER
-    Route::get('/quotations/approve/{quotation}/{token}','UserQuotationController@approveQuotation')
-    ->middleware('quote.owner');
-    Route::post('/quotations/reject/{quotation}','UserQuotationController@rejectQuotation');
+    Route::get('/quotations/approve/{quotation}/{token}','UserQuotationController@approveQuotation')->middleware('quote.owner');
+    Route::post('/quotations/reject/{quotation}','UserQuotationController@rejectQuotation')->middleware('quote.owner');
     Route::get('/quotations','UserQuotationController@index');
-    Route::get('/quotations/{quotation}','UserQuotationController@show');
+    Route::get('/quotations/{quotation}','UserQuotationController@show')->middleware('quote.owner');;
 
     Route::get('/orders','UserOrderController@index');
+    Route::get('/orders/{order}','UserOrderController@show');
 
 });
 

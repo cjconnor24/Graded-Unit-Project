@@ -28,8 +28,8 @@
                 type:'POST',
                 data:postData,
                 url:'/quotations/reject/'+postData.order_id,
-                success: function(response){
-                console.log(response);
+                success: function(response) {
+                    console.log(response);
                     window.location.href = response.redirect;
                 },
                 error: function(response){
