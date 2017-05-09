@@ -15,7 +15,15 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('customer_id')->unsigned();
+            $table->integer('order_id')->unsigned();
+            $table->string('transaction_id');
+            $table->decimal('amount');
+            $table->boolean('success')->default(false);
             $table->timestamps();
+
+            $table->foreign('customer_id')->references('id')->on('users');
+            $table->foreign('order_id')->references('id')->on('orders');
         });
     }
 
