@@ -55,6 +55,11 @@ class User extends EloquentUser
         return $this->hasMany(Order::class,'customer_id');
     }
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
     /**
      * Accessor to return concatenated full name
      * @return string
