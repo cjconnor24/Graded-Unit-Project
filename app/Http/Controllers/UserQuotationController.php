@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserQuoteRejected;
 use App\Order;
 use App\OrderStatus;
 use App\QuoteApproval;
 use App\QuoteRejection;
 use App\State;
+use Illuminate\Support\Facades\Mail;
 use Sentinel;
 use Illuminate\Http\Request;
 use Mockery\Exception;
@@ -98,6 +100,9 @@ class UserQuotationController extends Controller
         $quotation->rejection()->create([
             'reason'=>$request->reason
         ]);
+
+
+        Mail::to($quotation->customer->email)->cc($quotation->staff->email)->send(new UserQuoteRejected($quotation));
 
         $request->session()->flash('success', 'The quote was rejected');
         $request->session()->flash('notification', 'true');

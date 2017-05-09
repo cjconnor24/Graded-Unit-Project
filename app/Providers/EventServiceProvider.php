@@ -19,7 +19,7 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\QuoteCreated' => [
             'App\Listeners\CreateQuoteApproval',
             'App\Listeners\SendApprovalMail',
-        ],
+        ]
     ];
 
     /**
