@@ -184,6 +184,9 @@ return [
         // ADDED FOR SENTINEL
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
 
+        // BRAINTREE ADD ON
+        Oureastudios\Laravel\BraintreeServiceProvider::class,
+
     ],
 
     /*

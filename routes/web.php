@@ -57,8 +57,12 @@ Route::group(['middleware'=>'authenticate'], function(){
     Route::get('/quotations','UserQuotationController@index');
     Route::get('/quotations/{quotation}','UserQuotationController@show')->middleware('quote.owner');;
 
+    // ORDERS
     Route::get('/orders','UserOrderController@index');
     Route::get('/orders/{order}','UserOrderController@show');
+
+    Route::get('/payments/{order}','PaymentController@index');
+    Route::post('/payments/{order}','PaymentController@checkout');
 
 });
 
