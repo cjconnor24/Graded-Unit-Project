@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\OrderStatus;
 use App\QuoteApproval;
+use App\QuoteRejection;
 use App\State;
 use Sentinel;
 use Illuminate\Http\Request;
@@ -27,7 +28,10 @@ class UserQuotationController extends Controller
             $query->where('name','quote');
         })->whereHas('quoteApprovals',function($query) {
             $query->where('completed',false);
-        })->paginate();
+        })->whereDoesntHave('rejection')->paginate();
+
+//        return $quotations;
+
 
 
         return view('userviews.quote.index')->with('quotations',$quotations);
@@ -70,10 +74,43 @@ class UserQuotationController extends Controller
         return redirect()->action('UserQuotationController@index')->with('success','Your quote has been approved and progressed to orders.');
     }
 
+    /**
+     * Reject quotation via Ajax POST from view
+     * @param Request $request
+     * @param Order $quotation
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function rejectQuotation(Request $request, Order $quotation)
+    {
+//        $rejection = QuoteRejection::create([
+//            'order_id'=>$quotation->id,
+//            'reason'=>$request->reason
+//        ]);
+
+        $quotation->rejection()->create([
+            'reason'=>$request->reason
+        ]);
+
+        $request->session()->flash('success', 'The quote was rejected');
+        $request->session()->flash('notification', 'true');
+
+        return response()->JSON(['redirect'=>'/quotations']);
+    }
+
     public function show(Order $quotation)
     {
-        $quotation->load('customer','OrderProducts.product','OrderProducts.paper','address','staff','branch');
-
+        $quotation->load([
+            'customer',
+            'OrderProducts.product',
+            'OrderProducts.paper',
+            'QuoteApprovals'=>function($query){
+                $query->select('order_id','token')->orderBy('id','DESC')->first();
+            },
+            'address',
+            'staff',
+            'branch'
+        ]);
+//return$quotation;
 //        return $quotation;
         return view('userviews.quote.view')->with('quotation',$quotation);
     }

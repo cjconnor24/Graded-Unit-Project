@@ -16,6 +16,7 @@
             <th>Expiry Date</th>
             <th>Status</th>
             <th>Quote Total</th>
+            <th>View</th>
         </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@
                 <td>{{$quotation->created_at->addWeeks(4)->diffForHumans()}}</td>
                 <td>{{$quotation->state->name}}</td>
                 <td>£{{money_format('%.2n',$quotation->order_total)}}</td>
+                <td><a class="btn btn-success" href="{{action('UserQuotationController@show',['quotation'=>$quotation->id])}}">View</a> </td>
             </tr>
             @endforeach
         </tbody>
