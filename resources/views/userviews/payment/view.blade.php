@@ -11,13 +11,26 @@
     </script>
     @endsection
 @section('content')
-    <h1>Payment {{$order->order_number}}</h1>
+    <h1>Payment for Order {{$order->order_number}}</h1>
 
-    <p><strong>Total Due:</strong> {{$order->order_total}}</p>
+    <p>Please enter your details below to complete the payment for {{$order->order_number}}</p>
 
     <form id="checkout" method="post" action="">
-        <div id="payment-form"></div>
-        <input type="submit" value="Pay £{{$order->order_total}}">
+
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Payment Details Details</div>
+            <div class="panel-body">
+
+                <div id="payment-form"></div>
+
+            </div>
+        </div>
+
+
+        <input type="submit" class="btn btn-success" value="Pay £{{$order->order_total}}">
+
     </form>
 
 @endsection
