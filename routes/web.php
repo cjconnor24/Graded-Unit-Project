@@ -74,7 +74,7 @@ Route::group(['middleware'=>'authenticate'], function(){
  * Adminisrator Routes
  */
 
-Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authenticate','admin']], function () {
+Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authenticate','staff']], function () {
 
     Route::get('/','AdminController@index');
 
