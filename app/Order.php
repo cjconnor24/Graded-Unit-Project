@@ -170,4 +170,9 @@ class Order extends Model
         return $this->OrderProducts->sum('line_total');
     }
 
+    public function getPaymentTotalAttribute()
+    {
+        return $this->payments->sum('amount');
+    }
+
 }
