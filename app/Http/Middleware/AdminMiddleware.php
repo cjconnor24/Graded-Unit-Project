@@ -16,15 +16,14 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-            if(Sentinel::getUser()->roles()->first()->slug=='admin') {
+            if(Sentinel::inRole('admin')) {
 
                 return $next($request);
 
             } else {
 
-            return redirect()
-                ->action('LoginController@loginForm')
-                ->withErrors(['msg' => 'You must have elevated access.']);
+            return redirect()->back()->with('error','You do not have permission to carry out this task.')
+                ->with('notification','true');
 
         }    }
 }

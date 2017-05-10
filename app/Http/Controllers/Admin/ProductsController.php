@@ -14,6 +14,12 @@ use Illuminate\Validation\Rule;
  */
 class ProductsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin')->except('index');
+    }
+
     /**
      * Display a listing of products
      * @return $this
