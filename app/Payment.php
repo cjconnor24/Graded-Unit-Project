@@ -10,6 +10,7 @@ class Payment extends Model
         'order_id',
         'transaction_id',
         'amount',
+        'payment_type',
         'braintree_response',
         'success'];
     // RELATIONSHIPS
