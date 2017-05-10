@@ -28,13 +28,6 @@ class QuotationController extends Controller
             $query->where('name','quote');
         })->orderBy('id','desc')->paginate();
 
-//        dd($quotations);
-
-//        $quotations = Order::paginate();
-
-//        dd($quotations);
-
-
 
         return view('quote.index')->with('quotations',$quotations);
     }
