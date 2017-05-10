@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Order;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::where('state','order')->all();
+        $orders = Order::whereHas('state',function($query){
+            $query->where('name','order');
+        })->get();
 
         return $orders;
     }
