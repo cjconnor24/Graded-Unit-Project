@@ -57,6 +57,9 @@ Route::group(['middleware'=>'authenticate'], function(){
     Route::get('/quotations','UserQuotationController@index');
     Route::get('/quotations/{quotation}','UserQuotationController@show')->middleware('quote.owner');;
 
+    // HISTORY
+    Route::get('/history','HistoryController@index');
+
     // ORDERS
     Route::get('/orders','UserOrderController@index');
     Route::get('/orders/{order}','UserOrderController@show');
@@ -114,6 +117,8 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
             abort(500);
         }
     });
+
+    Route::resource('orders','OrderController');
 
     Route::resource('categories','CategoryController');
     Route::resource('products','ProductsController');
