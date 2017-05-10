@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderStatus;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -57,12 +58,18 @@ class PaymentController extends Controller
 
 
         if($result->success){
+
             $order->payments()->create([
                 'customer_id'=>$customer->id,
                 'transaction_id'=>$transaction->id,
                 'amount'=>$transaction->amount,
                 'success'=>$result->success,
             ]);
+
+            $status = OrderStatus::where('name','LIKE','%Artworker%')->first();
+            $order->orderStatus()->associate($status);
+            $order->save();
+
             return response()->json($result);
 
         } else {
