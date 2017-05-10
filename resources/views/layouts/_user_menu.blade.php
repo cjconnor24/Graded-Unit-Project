@@ -26,6 +26,7 @@
                 <li><a href="{{action('UserQuotationController@index')}}">Quotations</a></li>
                 <li><a href="{{action('UserOrderController@index')}}">Orders</a></li>
                 <li><a href="javascript:alert('I\'m getting there...');">Invoices</a></li>
+                <li><a href="{{action('HistoryController@index')}}">Order History</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
