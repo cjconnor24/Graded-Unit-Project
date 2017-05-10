@@ -23,7 +23,7 @@
             <td>{{$order->due_date}}</td>
             <td>{{$order->order_total}}</td>
             <td><span class="label label-{{($order->orderStatus->id==1 ? 'danger' : 'default')}}">{{$order->orderStatus->name}}</span></td>
-            <td>View</td>
+            <td><a href="{{action('Admin\OrderController@show',['order'=>$order->id])}}">View</a></td>
         </tr>
             @endforeach
         </tbody>

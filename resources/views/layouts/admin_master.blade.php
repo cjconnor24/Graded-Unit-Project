@@ -27,6 +27,8 @@
 
 <div class="container">
 
+    @include('includes.errors')
+
     @yield('content')
 
 </div>
