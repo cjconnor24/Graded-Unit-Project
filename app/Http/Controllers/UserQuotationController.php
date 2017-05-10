@@ -49,25 +49,9 @@ class UserQuotationController extends Controller
     public function approveQuotation(Order $quotation, $token)
     {
 
-//        dd($quotation);
-
         $quotation->load(['quoteApprovals'=>function($query) use($token){
             $query->where('token',$token);
         }]);
-//        return $quotation->quoteApprovals;
-
-
-//        $quote = Order::whereHas('quoteApprovals',function($query) use($token,$quotation){
-//                $query->where([
-//                    'token'=>$token,
-//                    'order_id'=>$quotation,
-//                    'completed'=>false
-//                ]);
-//            })->whereHas('state',function($query){
-//                $query->where('name','quote');
-//        })->first();
-
-
 
         if(count($quotation->quoteApprovals)!==1){
             abort(404);
@@ -92,14 +76,15 @@ class UserQuotationController extends Controller
      */
     public function rejectQuotation(Request $request, Order $quotation)
     {
-//        $rejection = QuoteRejection::create([
-//            'order_id'=>$quotation->id,
-//            'reason'=>$request->reason
-//        ]);
 
         $quotation->rejection()->create([
             'reason'=>$request->reason
         ]);
+
+        $state = State::where('name','cancelled')->first();
+        $quotation->state()->associate($state);
+
+        $quotation->save();
 
 
         Mail::to($quotation->customer->email)->cc($quotation->staff->email)->send(new UserQuoteRejected($quotation));
