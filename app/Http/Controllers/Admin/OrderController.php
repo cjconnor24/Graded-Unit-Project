@@ -13,18 +13,23 @@ use Illuminate\Http\Request;
  */
 class OrderController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Show a list of all active orders
+     * @return mixed
      */
     public function index()
     {
         $orders = Order::whereHas('state',function($query){
             $query->where('name','order');
-        })->get();
+        })->with(['customer'=>function($query) {
+            $query->select('id','first_name','last_name');
+        },'orderStatus'=>function($query){
+            $query->select('id','name');
+        }])->paginate();
 
-        return $orders;
+//        dd($orders);
+        return view('order.index')->with('orders',$orders);
     }
 
     /**
@@ -48,16 +53,11 @@ class OrderController extends Controller
 //        //
 //    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
     public function show(Order $order)
     {
-        //
-    }
+        $order->load('state','customer','orderProducts','address','payments');
+        return $order;
+}
 
     /**
      * Show the form for editing the specified resource.
