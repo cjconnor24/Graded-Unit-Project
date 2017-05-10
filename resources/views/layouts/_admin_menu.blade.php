@@ -25,7 +25,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{action('Admin\AdminController@index')}}">Home</a></li>
                 <li><a href="{{action('Admin\QuotationController@index')}}">Quotations</a></li>
-                <li><a href="javascript:alert('It\'s coming');">Orders</a></li>
+                <li><a href="{{action('Admin\OrderController@index')}}">Orders</a></li>
                 <li><a href="javascript:alert('It\'s coming');">Invoices</a></li>
                 <li><a href="javascript:alert('It\'s coming');">Reports</a></li>
 

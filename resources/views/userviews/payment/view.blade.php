@@ -28,8 +28,8 @@
             </div>
         </div>
 
-
-        <input type="submit" class="btn btn-success" value="Pay £{{$order->order_total}}">
+<button type="submit" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-gbp"></span> Pay Balance</button>
+        {{--<input type="submit" class="btn btn-large btn-success" value="Pay Balance">--}}
 
     </form>
 

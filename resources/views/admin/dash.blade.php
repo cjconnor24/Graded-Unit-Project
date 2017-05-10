@@ -24,5 +24,6 @@
     <ul id="admin_menu">
         <li><a href="{{action('Admin\AdminController@index')}}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
         <li><a href="{{action('Admin\QuotationController@index')}}"><span class="glyphicon glyphicon-list-alt"></span> Quotations</a></li>
+        <li><a href="{{action('Admin\OrderController@index')}}"><span class="glyphicon glyphicon-list-alt"></span> Orders</a></li>
     </ul>
 @endsection
