@@ -55,8 +55,9 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order->load('state','customer','orderProducts','address','payments');
-        return $order;
+        $order->load('branch','staff','state','customer','orderProducts.product','orderProducts.paper','orderProducts.size','address','payments');
+//return $order;
+        return view('order.view')->with('order',$order);
 }
 
     /**
