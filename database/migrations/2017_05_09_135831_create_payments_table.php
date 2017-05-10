@@ -19,6 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('order_id')->unsigned();
             $table->string('transaction_id');
             $table->decimal('amount');
+            $table->string('payment_type',65)->nullable();
             $table->boolean('success')->default(false);
             $table->timestamps();
 

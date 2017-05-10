@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\OrderStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
@@ -54,7 +55,10 @@ class PaymentController extends Controller
 
 
 
-
+        Log::info([
+            'transactionData'=>$transaction,
+            'result'=>$result
+        ]);
 
 
         if($result->success){
@@ -62,6 +66,7 @@ class PaymentController extends Controller
             $order->payments()->create([
                 'customer_id'=>$customer->id,
                 'transaction_id'=>$transaction->id,
+                'payment_type'=>$transaction->paymentInstrumentType,
                 'amount'=>$transaction->amount,
                 'success'=>$result->success,
             ]);
