@@ -59,6 +59,8 @@ $( document ).ready(function() {
 //                    var hiddeninputs = $(this).find('input[type="text"]');
         var count = $('#invoice_table tbody tr').length;
 //
+        // FIND HIDDEN ATTRIBUTE...ASSIGN THE VALUE, THE NAME AND APPEND THE HTML
+        // FOR THE END USER TABLE VIEW
         hiddeninputs.eq(0).attr({
             name: 'order[' + count + '][product_id]',
             value: product_builder[1].id
@@ -261,6 +263,9 @@ $.ajaxSetup({
     }
 });
 
+/**
+ * FUNCTION TO SUBMIT NEW QUOTE
+ */
 $('#quote_form').submit(function(event){
 
     console.log('this triggers');
@@ -287,3 +292,34 @@ $('#quote_form').submit(function(event){
     })
 
 });
+
+// $('#quote_edit_form').submit(function(event){
+//
+//     console.log('this triggers the edit form');
+//     event.preventDefault();
+//
+//     var postData = $('form').serializeArray();
+//
+//     // console.log(postData);
+//
+//     $.ajax({
+//         type:'PATCH',
+//         data:postData,
+//         url:'/admin/quotations/18/edit',
+//         success: function(response){
+//
+//             // window.location.href = response.redirect;
+//             console.log(response);
+//         },
+//         error: function(response){
+//             console.log('ERROR');
+//             var errorString = '';
+//             $.each(response.responseJSON,function(i,v){
+//                 errorString+=('<p>'+v[0]+'</p>');
+//             });
+//
+//             $('.alert-danger').html(errorString).slideDown();
+//         }
+//     })
+//
+// });
