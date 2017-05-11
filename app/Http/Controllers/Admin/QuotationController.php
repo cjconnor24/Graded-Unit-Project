@@ -55,7 +55,7 @@ class QuotationController extends Controller
      */
     public function store(CreateQuote $request)
     {
-
+//        return response()->json($request->all(),500);
     $customer = User::find($request->customer_id);
     $staff = Sentinel::getUser();
 
@@ -70,17 +70,24 @@ class QuotationController extends Controller
 
         $order->save();
 
+//        return $request->all();
+//        \Log::info(['requestData'=>$request->all()]);
+
         foreach($request->order as $line){
+
             $order->orderProducts()->create([
                 'product_id'=>$line['product_id'],
                 'paper_id'=>$line['paper_id'],
                 'size_id'=>$line['size_id'],
                 'qty'=>$line['qty'],
-                'description'=>''
+                'description'=>$line['description']
             ]);
+
+            \Log::info($line['description']);
         }
 
-        event(new QuoteCreated($customer,$order));
+//        event(new QuoteCreated($customer,$order));
+//        return response()->json(['test'=>$request->all()],500);
 
         $request->session()->flash('success', 'The quote was created successfully');
         $request->session()->flash('notification', 'true');
@@ -148,7 +155,7 @@ class QuotationController extends Controller
                 'paper_id'=>$line['paper_id'],
                 'size_id'=>$line['size_id'],
                 'qty'=>$line['qty'],
-                'description'=>''
+                'description'=>$line['description']
             ]);
         }
 

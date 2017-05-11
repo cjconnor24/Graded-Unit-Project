@@ -10387,8 +10387,12 @@ return jQuery;
         var product_builder = getInvoiceLine();
 
         var hiddeninputs = $('#invoice_table tbody tr:last').find('input[type="hidden"]');
-        var qty = $('#invoice_table tbody tr:last').find('input[type="text"]');
+        var textboxes = '';
 
+        var qty = $('#invoice_table tbody tr:last input[type="text"]:first');
+        var descr = $('#invoice_table tbody tr:last input[type="text"]:last');
+
+        console.log(textboxes);
         console.log(qty);
 
         // INCREASE THE COUNTER SO NO NAME OVERWRITES
@@ -10413,11 +10417,19 @@ return jQuery;
             value: product_builder[3].id
         }).parent().append(product_builder[3].value);
 
-        $('#invoice_table tbody tr td:nth-child(5)').html('£' + product_builder[4].price);
+        // PRICE BOX
+        $('#invoice_table tbody tr td:nth-child(6)').html('£' + product_builder[4].price);
 
+        // QTY INPUT
         qty.attr({
             name: 'order[' + count + '][qty]',
             value: 1
+        });
+        // DESCRIPTION BOX
+        descr.attr({
+            name: 'order[' + count + '][description]',
+            value: '',
+            placeholder: 'Enter product notes here'
         });
 
         clearDropDown();
