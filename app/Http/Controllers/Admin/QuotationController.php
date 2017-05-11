@@ -33,7 +33,7 @@ class QuotationController extends Controller
     }
 
     /**
-     * Create new quotation
+     * Display the form to create the quote
      * @return $this
      */
     public function create()
@@ -48,10 +48,13 @@ class QuotationController extends Controller
     }
 
 
+    /**
+     * Save the quote by creating new order
+     * @param CreateQuote $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(CreateQuote $request)
     {
-
-//        dd($request->all());
 
     $customer = User::find($request->customer_id);
     $staff = Sentinel::getUser();
@@ -102,6 +105,57 @@ class QuotationController extends Controller
 //        return $quotation;
 
         return view('quote.view',compact('customers','categories','quotation'));
+    }
+
+    public function edit(Order $quotation)
+    {
+        $customers= User::whereHas('roles',function($query){
+            $query->where('slug','customer');
+        })->has('addresses')->get()->pluck('full_name','id');
+        $staff = Sentinel::findRoleBySlug('staff')->users->pluck('full_name','id');
+        $categories = Category::has('products')->get()->pluck('name','id');
+        $branches = Branch::pluck('name','id');
+
+
+
+        $quotation->load('customer.addresses','staff','orderProducts.product','orderProducts.paper','orderProducts.size','branch');
+//        return $quotation;
+        return view('quote.edit')->with([
+            'customers'=>$customers,
+            'categories'=>$categories,
+            'branches'=>$branches,
+            'staff'=>$staff,
+            'quotation'=>$quotation
+        ]);
+    }
+
+    public function update(Order $quotation, CreateQuote $request)
+    {
+
+        $quotation->customer_id= $request->customer_id;
+        $quotation->address_id = $request->address_id;
+        $quotation->staff_id = $request->staff_id;
+        $quotation->branch_id = $request->branch_id;
+
+        $quotation->save();
+
+        // REMOVE ANY CURRENT ORDER LINES AND UPDATE
+        $quotation->orderProducts()->delete();
+
+        foreach($request->order as $line){
+            $quotation->orderProducts()->create([
+                'product_id'=>$line['product_id'],
+                'paper_id'=>$line['paper_id'],
+                'size_id'=>$line['size_id'],
+                'qty'=>$line['qty'],
+                'description'=>''
+            ]);
+        }
+
+        return redirect()->back()->with([
+            'success'=>'Quotation Updated Successfully',
+            'notification'=>'true'
+        ]);
     }
 
 }

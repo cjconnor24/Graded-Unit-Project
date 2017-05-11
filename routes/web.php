@@ -82,6 +82,9 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
     Route::get('quotations/create','QuotationController@create');
     Route::post('quotations/','QuotationController@store');
     Route::get('quotations/{quotation}','QuotationController@show');
+    Route::get('quotations/{quotation}/edit','QuotationController@edit');
+
+    Route::patch('quotations/{quotation}/edit','QuotationController@update');
 
     Route::get('orders/','OrderController@index');
 
