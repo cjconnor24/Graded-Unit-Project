@@ -2,8 +2,10 @@ $( document ).ready(function() {
 
     var count = $('#invoice_table tbody tr').length;
 
-    $('#invoice_table').on('click', '.remove-row', function() {
-        // event.preventDefault();
+    $('#invoice_table').on('click', '.remove-row', function(e) {
+
+        e.preventDefault();
+
         $(this).closest('tr').remove();
         renumberRows();
     });
@@ -36,7 +38,9 @@ $( document ).ready(function() {
     }
 
 
-    $('#add_product').click(function () {
+    $('#add_product').click(function (e) {
+
+        e.preventDefault();
 
         // CHECK BOXES ARE FILLED, IF NOT DISPLAY ERROR
         if(!productBuilderValid()){
@@ -292,38 +296,51 @@ $('#quote_form').submit(function(event){
             });
 
             $('.alert-danger').html(errorString).slideDown();
+
+            $('html, body').animate({
+                scrollTop: $(".alert-danger").offset().top
+            }, 500);
+
         }
     })
 
 });
 
-// $('#quote_edit_form').submit(function(event){
-//
-//     console.log('this triggers the edit form');
-//     event.preventDefault();
-//
-//     var postData = $('form').serializeArray();
-//
-//     // console.log(postData);
-//
-//     $.ajax({
-//         type:'PATCH',
-//         data:postData,
-//         url:'/admin/quotations/18/edit',
-//         success: function(response){
-//
-//             // window.location.href = response.redirect;
-//             console.log(response);
-//         },
-//         error: function(response){
-//             console.log('ERROR');
-//             var errorString = '';
-//             $.each(response.responseJSON,function(i,v){
-//                 errorString+=('<p>'+v[0]+'</p>');
-//             });
-//
-//             $('.alert-danger').html(errorString).slideDown();
-//         }
-//     })
-//
-// });
+$('#quote_edit_form').submit(function(event){
+
+    event.preventDefault();
+    //
+    console.log('this triggers the edit form');
+    //
+    //
+    //
+    var postData = $('form').serializeArray();
+    //
+    console.log(postData);
+    //
+    $.ajax({
+        type:'PATCH',
+        data:postData,
+        url:window.location.pathname,
+        success: function(response){
+
+            window.location.href = response.redirect;
+            // console.log(response);
+        },
+        error: function(response){
+            console.log('ERROR');
+            var errorString = '';
+            $.each(response.responseJSON,function(i,v){
+                errorString+=('<p>'+v[0]+'</p>');
+            });
+
+            $('.alert-danger').html(errorString).slideDown();
+
+            // SCROLL TO SHOW ALERT INCASE IT ISN"T VISIBLE
+            $('html, body').animate({
+                scrollTop: $(".alert-danger").offset().top
+            }, 500);
+        }
+    })
+
+});

@@ -58,7 +58,8 @@ class CreateOrdersTable extends Migration
             $table->integer('qty');
             $table->text('description')->nullable();
 
-            $table->primary(['product_id','order_id','paper_id','size_id']);
+            // EDITING OUT SO THAT DUPLICATES CAN BE ADDED WITH SEPARATE NOTES
+//            $table->primary(['product_id','order_id','paper_id','size_id']);
 
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('paper_id')->references('id')->on('papers');

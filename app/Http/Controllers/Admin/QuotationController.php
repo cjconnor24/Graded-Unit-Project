@@ -152,10 +152,14 @@ class QuotationController extends Controller
             ]);
         }
 
-        return redirect()->back()->with([
-            'success'=>'Quotation Updated Successfully',
-            'notification'=>'true'
-        ]);
+        $request->session()->flash('success', 'The quote was updated successfully');
+        $request->session()->flash('notification', 'true');
+
+        return response()->json(['redirect'=>action('Admin\QuotationController@index')],200);
+//        return redirect()->back()->with([
+//            'success'=>'Quotation Updated Successfully',
+//            'notification'=>'true'
+//        ]);
     }
 
 }
