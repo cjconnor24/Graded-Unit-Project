@@ -51,40 +51,13 @@
     @endsection
 @section('content')
 
-
-
 @include('userviews.quote._rejectModal')
-
-    <div class="row">
-        <div class="col-md-4">
-    <div class="panel panel-default hidden-print">
-
-        <div class="panel-heading">
-            <h3 class="panel-title">{{$quotation->quote_number}} Quote Management</h3>
-        </div>
-        <div class="panel-body">
-
-
-
-                <a href="{{action('UserQuotationController@approveQuotation',['quotation'=>$quotation->QuoteApprovals->first()->order_id,'token'=>$quotation->QuoteApprovals->first()->token])}}" class="btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span> Approve Quote</a>
-                <button data-toggle="modal" data-target="#rejectModal" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-trash"></span> Reject Quote</button>
-
-
-
-        </div>
-    </div>
-        </div>
-    </div>
 
 
     <div class="row">
     <h1>{{$quotation->quote_number}}</h1>
 
     </div>
-
-
-
-
 
     <div class="row">
 
@@ -95,12 +68,23 @@
         </div>
 
         <div class="col-sm-6 text-right">
+
+            <div class="col-sm-6">@include('userviews.quote._managementBox')</div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+
+
+
+
             <h4>Spectrum Contact</h4>
             <p>{{$quotation->staff->full_name}} / {{$quotation->staff->email}}</p>
 
             <h4>{{$quotation->branch->name}}</h4>
             <p>{!! str_replace(', ',',<br />',$quotation->branch->full_address) !!}</p>
             <p><a href="mailto:{{$quotation->branch->email}}">{{$quotation->branch->email}}</a><br />{{$quotation->branch->telephone}}</p>
+            </div>
+
 
         </div>
 

@@ -36,7 +36,7 @@
         <div class="col-md-6">
             <h2>Branch Information</h2>
             <h3>{{$quotation->staff->full_name}}</h3>
-            <p>{{$quotation->branch->full_address}}</p>
+            <p>{!! str_replace(',',',<br />',$quotation->branch->full_address)!!}</p>
         </div>
 
     </div>
