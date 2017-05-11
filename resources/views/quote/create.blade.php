@@ -44,7 +44,7 @@
 
             <div class="form-group">
                 <label for="branch_id">Choose Branch</label>
-                {!! Form::select('branch_id', $branches, null, ['id'=>'branch_id','placeholder' => 'Please select a branch','class'=>'form-control input-sm']) !!}
+                {!! Form::select('branch_id', $branches,null, ['id'=>'branch_id','placeholder' => 'Please select a branch','class'=>'form-control input-sm']) !!}
             </div>
 
             <div class="form-group">

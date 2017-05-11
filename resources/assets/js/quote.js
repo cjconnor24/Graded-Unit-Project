@@ -1,5 +1,7 @@
 $( document ).ready(function() {
 
+    var count = $('#invoice_table tbody tr').length;
+
     $('#invoice_table').on('click', '.remove-row', function() {
         // event.preventDefault();
         $(this).closest('tr').remove();
@@ -56,9 +58,12 @@ $( document ).ready(function() {
         console.log(qty);
 
 
-//                    var hiddeninputs = $(this).find('input[type="text"]');
-        var count = $('#invoice_table tbody tr').length;
-//
+        // INCREASE THE COUNTER SO NO NAME OVERWRITES
+        /**
+         * Global scope further up
+         */
+        count++;
+
         // FIND HIDDEN ATTRIBUTE...ASSIGN THE VALUE, THE NAME AND APPEND THE HTML
         // FOR THE END USER TABLE VIEW
         hiddeninputs.eq(0).attr({
@@ -168,8 +173,7 @@ $( document ).ready(function() {
     /**
      * GET THE CUSTOMER ID AND LOAD THEIR ADDRESSES INTO THE DROP DOWN
      */
-    $('#customer_id').on('change', function (e) {
-
+    $('#customer_id').on('change', function(e){
         var customer_id = e.target.value;
 
         // SEND THE REQUEST TO GET TEH DADRESSES

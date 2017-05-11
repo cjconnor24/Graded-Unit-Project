@@ -70,6 +70,7 @@
                 <button data-toggle="modal" data-target="#rejectModal" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-trash"></span> Reject Quote</button>
 
 
+
         </div>
     </div>
         </div>
@@ -88,17 +89,18 @@
     <div class="row">
 
         <div class="col-sm-6">
-<h3>Customer</h3>
     <h4>{{$quotation->customer->first_name.' '.$quotation->customer->last_name}}</h4>
     <p>{!! str_replace(', ',',<br />',$quotation->address->full_address) !!}</p>
 
         </div>
 
         <div class="col-sm-6 text-right">
+            <h4>Spectrum Contact</h4>
+            <p>{{$quotation->staff->full_name}} / {{$quotation->staff->email}}</p>
 
-            <h3>Branch Details</h3>
             <h4>{{$quotation->branch->name}}</h4>
             <p>{!! str_replace(', ',',<br />',$quotation->branch->full_address) !!}</p>
+            <p><a href="mailto:{{$quotation->branch->email}}">{{$quotation->branch->email}}</a><br />{{$quotation->branch->telephone}}</p>
 
         </div>
 

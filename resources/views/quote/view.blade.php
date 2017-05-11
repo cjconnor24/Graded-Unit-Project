@@ -5,6 +5,7 @@
 
         <div class="col-md-6">
         <h1>{{$quotation->quote_number}}</h1>
+            <a class="btn btn-sm btn-default" href="{{action('Admin\QuotationController@index')}}">Return to Quotes</a> <a href="{{action('Admin\QuotationController@edit',['quotation'=>$quotation->id])}}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-edit"></span> Edit Quotation</a>
         </div>
 
         <div class="col-md-6">
@@ -34,7 +35,8 @@
 
         <div class="col-md-6">
             <h2>Branch Information</h2>
-
+            <h3>{{$quotation->staff->full_name}}</h3>
+            <p>{{$quotation->branch->full_address}}</p>
         </div>
 
     </div>

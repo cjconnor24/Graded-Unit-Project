@@ -6,10 +6,15 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Reject Quotation {{$quotation->quote_number}}</h4>
             </div>
-            <div class="modal-body">
-                <div class="alert alert-danger">
-                    <p>Are you sure you want to reject quote {{$quotation->quote_number}}?</p>
-                </div>
+            <div class="modal-body text-center">
+
+
+
+                <p><span class="glyphicon glyphicon-warning-sign" style="font-size:5em;color:#F00;"></span></p>
+
+                    <p class="lead">Are you sure you want to reject quote {{$quotation->quote_number}}?</p>
+
+
 
                 <p>Please let us know the main reason:</p>
 
