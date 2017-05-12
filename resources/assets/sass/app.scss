@@ -16,5 +16,6 @@
 // Bootstrap
 @import "variables";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "bootswatch";
+//@import "bootswatch";
+@import "bootflat.scss";
 @import "custom.css";
