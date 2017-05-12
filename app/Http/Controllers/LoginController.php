@@ -78,7 +78,7 @@ class LoginController extends Controller
     {
         Sentinel::logout(null,true);
 //        session()->flash(['success'=>'You have been successfully logged out.']);
-        return redirect()->action('LoginController@loginForm');
+        return redirect()->action('LoginController@loginForm')->with('success','You have been logged out.');
     }
 
 }

@@ -53,6 +53,7 @@
 
 @include('userviews.quote._rejectModal')
 
+<a href="{{action('UserQuotationController@index')}}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Return to Quotes</a>
 
     <div class="row">
     <h1>{{$quotation->quote_number}}</h1>
