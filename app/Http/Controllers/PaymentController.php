@@ -10,12 +10,10 @@ use Illuminate\Support\Facades\Log;
 class PaymentController extends Controller
 {
 
+
     public function index(Order $order)
     {
         $order->load('customer','address');
-
-//        return $order->address->toArray();
-//        return response()->json($order);
         return view('userviews.payment.view')->with('order',$order);
     }
 
@@ -25,8 +23,6 @@ class PaymentController extends Controller
         $customer = $order->customer;
 
         $address = $order->address->toArray();
-
-//        dd($address);
 
         $nonceFromTheClient = $request->payment_method_nonce;
 
@@ -49,12 +45,9 @@ class PaymentController extends Controller
             ]
         ]);
 
-//        dd($result);
         $transaction = $result->transaction;
-//        dd([$result,$transaction]);
 
-
-
+        // LOG TO FILE FOR TESTING PURPOSES
         Log::info([
             'transactionData'=>$transaction,
             'result'=>$result
@@ -82,7 +75,6 @@ class PaymentController extends Controller
             return response()->json($result);
 
         }
-
 
     }
 
