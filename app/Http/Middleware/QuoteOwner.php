@@ -18,7 +18,12 @@ class QuoteOwner
     public function handle($request, Closure $next)
     {
 
-        $order = $request->route('quotation');
+
+        if($request->route('quotation')!==null) {
+            $order = $request->route('quotation');
+        } else {
+            $order = $request->route('order');
+        }
 
         $user = Sentinel::getUser();
 

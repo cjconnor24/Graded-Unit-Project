@@ -24,7 +24,6 @@
 
 @include('layouts._user_menu')
 
-
 <div class="container">
 
 @yield('content')
