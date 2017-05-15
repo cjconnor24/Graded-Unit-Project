@@ -16,6 +16,7 @@ class StatesTableSeeder extends Seeder
             array('name'=>'order','created_at'=>'2017-03-21 09:43:18','updated_at'=>'2017-03-21 09:43:18'),
             array('name'=>'invoice','created_at'=>'2017-03-21 09:43:18','updated_at'=>'2017-03-21 09:43:18'),
 
+
         ));
 
     }
