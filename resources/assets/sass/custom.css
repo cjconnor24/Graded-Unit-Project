@@ -11,3 +11,20 @@ QUOTATION
 #invoice_table tbody tr:first-child{
     display:none;
 }
+
+/**
+FLEX THE PANELS SO THEY'RE THE SAME HEIGHT
+ */
+.row-eq-height {
+    display: -webkit-box!important;
+    display: -webkit-flex!important;
+    display: -ms-flexbox!important;
+    display: flex!important;
+}
+div[class*='col-'] {
+    flex:1 1 auto;
+    display: flex;
+}
+.panel {
+    flex:1 0 100%;
+}
