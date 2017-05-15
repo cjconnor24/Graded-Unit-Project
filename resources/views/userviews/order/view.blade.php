@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-
+<h1 style="font-family:Flaticon;">\f100</h1>
 
 <a href="{{action('UserOrderController@index')}}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Return to Orders</a>
 
@@ -34,15 +34,18 @@
         <div class="col-sm-4">
 
         @component('components.panel')
-        @slot('title')
-        Branch Information
-        @endslot
 
-        <h4>Spectrum Contact</h4>
+            @slot('title')
+            <span class="flaticon-groceries-store"></span> Branch Information <i class="flaticon-airplane49"></i>
+                <span class="flaticon-banknote"></span>
+            @endslot
+
+            <h4>Spectrum Contact</h4>
             <p>{{$quotation->staff->full_name}}<br /> <a class="btn btn-sm btn-info" href="mailto:{{$quotation->staff->email}}"><span class="glyphicon glyphicon-envelope"></span> E-Mail {{$quotation->staff->first_name}} </a></p>
-        <h4>{{$quotation->branch->name}}</h4>
-        <p>{!! str_replace(', ',',<br />',$quotation->branch->full_address) !!}</p>
-        <p><a href="mailto:{{$quotation->branch->email}}">{{$quotation->branch->email}}</a><br />{{$quotation->branch->telephone}}</p>
+
+            <h4>{{$quotation->branch->name}}</h4>
+            <p>{!! str_replace(', ',',<br />',$quotation->branch->full_address) !!}</p>
+            <p><a href="mailto:{{$quotation->branch->email}}">{{$quotation->branch->email}}</a><br />{{$quotation->branch->telephone}}</p>
 
         @endcomponent
 
