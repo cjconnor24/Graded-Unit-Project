@@ -14,4 +14,21 @@ class OrderStatus extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function getColourAttribute()
+    {
+        $colour = [
+            1=>'danger',
+            2=>'info',
+            3=>'warning',
+            4=>'info',
+            5=>'info',
+            6=>'success',
+            7=>'success',
+        ];
+
+        return $colour[$this->id];
+
+
+    }
 }

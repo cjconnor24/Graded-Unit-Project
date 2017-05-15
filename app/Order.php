@@ -175,4 +175,13 @@ class Order extends Model
         return $this->payments->sum('amount');
     }
 
+    /**
+     * Accessor to calculate the progress percentage of the order
+     * @return float|int
+     */
+    public function getOrderProgressAttribute()
+    {
+        return (100/7)*$this->orderStatus->id;
+    }
+
 }
