@@ -4,7 +4,9 @@
 
     <div class="row">
 
-        <div class="col-md-4">
+
+
+        <div class="col-md-3">
 
             <div class="panel panel-default">
                 <div class="panel-heading"><span class="glyphicon glyphicon-home"></span> Customer Details</div>
@@ -16,7 +18,7 @@
 
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="panel panel-default">
                 <div class="panel-heading">Branch Details</div>
                 <div class="panel-body">
@@ -26,17 +28,49 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
 
 
             <div class="panel panel-default">
 
-                <div class="panel-heading">Order Status</div>
+                <div class="panel-heading">Order Information</div>
                 <div class="panel-body">
+                    <div class="form-group">
+                        {!! Form::label('status_id',"Order Status") !!}
+                        {!! Form::select('status_id',$statuses,$order->orderStatus->id,['class'=>'form-control']) !!}
+                    </div>
+
+
                     <p><strong>Staff Member:</strong> {{$order->staff->full_name}}</p>
                     <p><strong>Order Place:</strong> {{$order->created_at->diffForHumans()}}</p>
                     <p><strong>Due Date:</strong> {{$order->due_date}}</p>
                     <p><strong>Status:</strong> {{$order->orderStatus->name}}</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Payments</div>
+
+                <div class="panel-body">
+
+                    @if(count($order->payments)>0)
+
+                        <h3>Payments</h3>
+
+                        @foreach($order->payments as $payment )
+
+                            <p>{{$order->created_at->diffForHumans()}} {{$payment->amount}} {{$payment->payment_type}}</p>
+
+                            @endforeach
+
+                        @endif
+
                 </div>
 
             </div>
