@@ -27,7 +27,7 @@ class CreateOrdersTable extends Migration
 
             $table->decimal('discount');
 
-            $table->date('due_date')->nullable();
+            $table->timestamp('due_date')->nullable();
 
             $table->timestamps();
 
