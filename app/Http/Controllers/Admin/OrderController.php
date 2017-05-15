@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\OrderStatus;
 use Illuminate\Http\Request;
 
 /**
@@ -20,16 +21,16 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::whereHas('state',function($query){
+        $orders = Order::wherehas('state',function($query){
             $query->where('name','order');
         })->with(['customer'=>function($query) {
             $query->select('id','first_name','last_name');
-        },'orderStatus'=>function($query){
+        },'orderstatus'=>function($query){
             $query->select('id','name');
         }])->paginate();
 
-//        dd($orders);
         return view('order.index')->with('orders',$orders);
+
     }
 
     /**
@@ -53,11 +54,21 @@ class OrderController extends Controller
 //        //
 //    }
 
+    /**
+     * Display the order and allow the admin to update the status of the order
+     * @param Order $order
+     * @return $this
+     */
     public function show(Order $order)
     {
         $order->load('branch','staff','state','customer','orderProducts.product','orderProducts.paper','orderProducts.size','address','payments');
-//return $order;
-        return view('order.view')->with('order',$order);
+
+        $statuses = OrderStatus::pluck('name','id');
+
+        return view('order.view')->with([
+            'order'=>$order,
+            'statuses'=>$statuses
+        ]);
 }
 
     /**
@@ -71,26 +82,7 @@ class OrderController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-//    public function destroy(Order $order)
-//    {
-//        //
-//    }
+
+
 }
