@@ -12,7 +12,9 @@ class HistoryController extends Controller
     {
 
         $orders = Sentinel::getUser()->orders;
+        $orders->load('state','orderStatus');
 
+        dd($orders);
 
         return view('userviews.history.index')->with('orders',$orders);
 
