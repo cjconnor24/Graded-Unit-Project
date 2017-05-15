@@ -12,6 +12,7 @@
             <th>Due Date</th>
             <th>Order Status</th>
             <th>Order Total</th>
+            <th>View</th>
         </tr>
         </thead>
         <tbody>
@@ -20,8 +21,9 @@
             <td>{{$order->order_number}}</td>
             <td>{{$order->created_at}}</td>
             <td>{{$order->due_date}}</td>
-            <td>{{$order->orderStatus->name}}</td>
+            <td><span class="label label-{{$order->orderStatus->colour}}">{{$order->orderStatus->name}}</span></td>
             <td>£{{money_format('%.2n',$order->order_total)}}</td>
+            <td><a href="{{action('UserOrderController@show',['order'=>$order->id])}}" class="btn btn-success">View</a></td>
         </tr>
             @endforeach
         </tbody>

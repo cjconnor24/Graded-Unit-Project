@@ -36,6 +36,8 @@ class UserOrderController extends Controller
         $order->load(['customer','OrderProducts.product','payments','orderStatus','quoteApprovals'=>function($query){
             $query->where('completed',true)->first();
         }]);
+
+//        dd($order);
         return view('userviews.order.view')->with('quotation',$order);
     }
 

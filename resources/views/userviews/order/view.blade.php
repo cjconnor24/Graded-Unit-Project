@@ -2,89 +2,122 @@
 @section('meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
-@section('scripts')
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#confirmReject').click(function () {
-
-                console.log('this triggers');
-//                event.preventDefault();
-
-                var postData = {
-                    reason: $('#rejectReason').val(),
-                    order_id: $('#order_id').val()
-                }
-
-                console.log(postData);
-
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                type:'POST',
-                data:postData,
-                url:'/quotations/reject/'+postData.order_id,
-                success: function(response) {
-                    console.log(response);
-                    window.location.href = response.redirect;
-                },
-//                error: function(response){
-//                    var errorString = '';
-//                    $.each(response.responseJSON,function(i,v){
-//                        errorString+=('<p>'+v[0]+'</p>');
-//                    });
-//
-//                    $('.alert-danger').html(errorString).slideDown();
-//                }
-            })
-
-            });
-        });
-
-
-
-    </script>
-    @endsection
 @section('content')
 
-@include('userviews.quote._rejectModal')
 
-<a href="{{action('UserQuotationController@index')}}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Return to Quotes</a>
+
+<a href="{{action('UserOrderController@index')}}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Return to Orders</a>
+
+
 
     <div class="row">
-    <h1>{{$quotation->quote_number}}</h1>
+
+    <h1>{{$quotation->order_number}}</h1>
 
     </div>
 
-    <div class="row">
 
-        <div class="col-sm-6">
-    <h4>{{$quotation->customer->first_name.' '.$quotation->customer->last_name}}</h4>
-    <p>{!! str_replace(', ',',<br />',$quotation->address->full_address) !!}</p>
+    <div class="row row-eq-height">
+
+        <div class="col-sm-4">
+
+            @component('components.panel')
+            @slot('title')
+            <span class="glyphicon glyphicon-user"></span> Customer Information
+            @endslot
+            <h4>{{$quotation->customer->first_name.' '.$quotation->customer->last_name}}</h4>
+            <p>{!! str_replace(', ',',<br />',$quotation->address->full_address) !!}</p>
+            @endcomponent
 
         </div>
 
-        <div class="col-sm-6 text-right">
+        <div class="col-sm-4">
 
-            <div class="col-sm-6">@include('userviews.quote._managementBox')</div>
+        @component('components.panel')
+        @slot('title')
+        Branch Information
+        @endslot
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <h4>Spectrum Contact</h4>
+            <p>{{$quotation->staff->full_name}}<br /> <a class="btn btn-sm btn-info" href="mailto:{{$quotation->staff->email}}"><span class="glyphicon glyphicon-envelope"></span> E-Mail {{$quotation->staff->first_name}} </a></p>
+        <h4>{{$quotation->branch->name}}</h4>
+        <p>{!! str_replace(', ',',<br />',$quotation->branch->full_address) !!}</p>
+        <p><a href="mailto:{{$quotation->branch->email}}">{{$quotation->branch->email}}</a><br />{{$quotation->branch->telephone}}</p>
+
+        @endcomponent
+
+        </div>
+
+        <div class="col-sm-4">
+            @component('components.panel')
+                @slot('title')
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Order Information
+                @endslot
+
+                <table class="table">
+                    <tr>
+                        <td><strong>Date Approved</strong></td>
+                        <td>{{$quotation->quoteApprovals->first()->updated_at}}</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Due Date</strong></td>
+                        <td>{{$quotation->due_date}}</td>
+                    </tr>
+                    <tr>
+
+                        <td><strong>Order Status</strong></td>
+                        <td><span class="label label-{{$quotation->orderStatus->colour}}">{{$quotation->orderStatus->name}}</span><br />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-{{$quotation->orderStatus->colour}}" role="progressbar" aria-valuenow="{{$quotation->order_progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$quotation->order_progress}}%">
+                                    <span class="sr-only">{{$quotation->orderStatus->name}}</span>
+                                </div>
+                            </div></td>
+                    </tr>
+                </table>
+
+                @endcomponent
 
 
+                    @component('components.panel')
+                        @slot('title')
+                            <span class="glyphicon glyphicon-credit-card"></span> Payments
+                        @endslot
 
+                @if(count($quotation->payments)>0)
 
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Payment Type</th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-            <h4>Spectrum Contact</h4>
-            <p>{{$quotation->staff->full_name}} / {{$quotation->staff->email}}</p>
+                            @foreach($quotation->payments as $payment)
+                                <tr>
+                                    <td>{{$payment->created_at}}</td>
+                                    <td>£{{$payment->amount}}</td>
+                                    <td>{{ title_case(str_replace('_',' ',$payment->payment_type))}}</td>
+                                </tr>
 
-            <h4>{{$quotation->branch->name}}</h4>
-            <p>{!! str_replace(', ',',<br />',$quotation->branch->full_address) !!}</p>
-            <p><a href="mailto:{{$quotation->branch->email}}">{{$quotation->branch->email}}</a><br />{{$quotation->branch->telephone}}</p>
-            </div>
+                            @endforeach
+                            </tbody>
+                        </table>
+
+                        @else
+                        <p class="text-center"><em>You haven't made any payments yet</em></p>
+                        <p class="text-center"><a href="{{action('PaymentController@index',['order'=>$quotation->id])}}" class="btn btn-success"><span class="glyphicon glyphicon-credit-card"></span> Make Payment</a></p>
+                        @endif
+
+                        @endcomponent
 
 
         </div>
