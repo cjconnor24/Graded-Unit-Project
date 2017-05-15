@@ -86,15 +86,13 @@ class QuotationController extends Controller
             \Log::info($line['description']);
         }
 
-//        event(new QuoteCreated($customer,$order));
-//        return response()->json(['test'=>$request->all()],500);
+        // TRIGGER THE QUOTE CREATED EVENT - CREATE APPROVAL AND EMAIL
+        event(new QuoteCreated($customer,$order));
 
         $request->session()->flash('success', 'The quote was created successfully');
         $request->session()->flash('notification', 'true');
 
         return response()->json(['redirect'=>action('Admin\QuotationController@index')],200);
-
-//    return redirect()->action('Admin\QuotationController@index')->with('success','Quotation successfully created');
 
     }
 
