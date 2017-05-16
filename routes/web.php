@@ -44,7 +44,7 @@ Route::get('/dashboard','PagesController@dashboard');
 /*
  * ADMIN ROUTES
  */
-Route::group(['middleware'=>'authenticate'], function(){
+Route::group(['middleware'=>['authenticate','customer']], function(){
 
     Route::get('/profile','UserProfileController@view');
     Route::get('/profile/addresses','UserProfileController@viewAddresses');
@@ -65,7 +65,7 @@ Route::group(['middleware'=>'authenticate'], function(){
     Route::get('/orders','UserOrderController@index');
     Route::get('/orders/{order}','UserOrderController@show')->middleware('quote.owner');
 
-    Route::get('/payments/{order}','PaymentController@index')->middleware('quote.owner');
+    Route::get('/payments/{order}','PaymentController@index')->middleware(['quote.owner','payment']);
     Route::post('/payments/{order}','PaymentController@checkout')->middleware('quote.owner');
 
 });

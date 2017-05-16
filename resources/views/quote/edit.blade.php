@@ -7,6 +7,8 @@
 @endsection
 @section('content')
 
+    <a class="btn btn-default" href="{{action('Admin\QuotationController@show',['quotation'=>$quotation->id])}}"><span class="fi-misc fi-misc-return"></span> Return to Quote</a>
+
     <h1>Edit Quote {{$quotation->quote_number}}</h1>
     <p>Please select details below</p>
 

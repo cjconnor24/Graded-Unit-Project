@@ -1,6 +1,7 @@
 @extends('layouts.admin_master')
 @section('content')
-    <h1>Manage Quotations</h1>
+
+    <h1><span class="fi-shop fi-shop-shopping-cart"></span> Manage Quotations</h1>
     <p>Below are a list of quotations</p>
 
     @include('includes.errors')

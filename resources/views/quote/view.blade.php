@@ -1,42 +1,34 @@
 @extends('layouts.admin_master')
 @section('content')
 
-    <div class="row">
+    <a class="btn btn-default" href="{{action('Admin\QuotationController@index')}}"><span class="fi-misc fi-misc-return"></span> Return to Quotes</a>
 
-        <div class="col-md-6">
-        <h1>{{$quotation->quote_number}}</h1>
-            <a class="btn btn-sm btn-default" href="{{action('Admin\QuotationController@index')}}">Return to Quotes</a> <a href="{{action('Admin\QuotationController@edit',['quotation'=>$quotation->id])}}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-edit"></span> Edit Quotation</a>
-        </div>
 
-        <div class="col-md-6">
-        <h2></h2>
-        </div>
-
-    </div>
-
+        <h1><span class="fi-shop-shopping-cart fi-shop"></span> Quotation {{$quotation->quote_number}}</h1>
 
     <div class="row">
 
 
     <div class="col-md-6">
 
-        <h2>Customer Information</h2>
-        <p>Below are the customer details</p>
+        @include('userviews.components._customer',['customer'=>$quotation->customer,'address'=>$quotation->address])
 
-        <h3>{{$quotation->customer->full_name}}</h3>
-        <p><strong>{{$quotation->address->name}}</strong></p>
-        <p>{{$quotation->address->address1}}<br>
-        {{$quotation->address->address2}}<br>
-        {{$quotation->address->address3}}<br>
-        {{$quotation->address->address4}}<br>
-        {{$quotation->address->postcode}}</p>
+        @component('components.panel')
+            @slot('title')
+                <span class="fi-misc fi-misc-settings"></span> Quote Management
+                @endslot
+
+                <a href="{{action('Admin\QuotationController@edit',['quotation'=>$quotation->id])}}" class="btn btn-lg btn-success btn-block"><span class="glyphicon glyphicon-edit"></span> Edit Quotation</a>
+                <a href="#" class="btn btn-danger btn-group-sm btn-block"><span class="fi-misc-trash fi-misc"></span> Cancel Quotation</a>
+
+        @endcomponent
 
     </div>
 
         <div class="col-md-6">
-            <h2>Branch Information</h2>
-            <h3>{{$quotation->staff->full_name}}</h3>
-            <p>{!! str_replace(',',',<br />',$quotation->branch->full_address)!!}</p>
+
+            @include('userviews.components._branch',['branch'=>$quotation->branch,'staff'=>$quotation->staff])
+
         </div>
 
     </div>

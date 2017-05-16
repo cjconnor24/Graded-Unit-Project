@@ -17,7 +17,7 @@
             <td class="hidden-xs">{{$quote->created_at->diffForHumans()}}</td>
             <td>{{date('D d M Y',strtotime($quote->due_date))}}</td>
             <td>£{{money_format('%.2n',$quote->order_total)}}</td>
-            <td><a href="{{action('Admin\QuotationController@show',['quotation'=>$quote->id])}}" class="btn btn-sm btn-default">View {{$quote->quote_number}}</a></td>
+            <td><a href="{{action('Admin\QuotationController@show',['quotation'=>$quote->id])}}" class="btn btn-sm btn-default"><span class="fi-misc-file fi-misc"></span> View {{$quote->quote_number}}</a></td>
         </tr>
     @endforeach
 
