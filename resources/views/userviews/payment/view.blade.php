@@ -12,6 +12,8 @@
     @endsection
 @section('content')
 
+    @include('includes.errors')
+
     <a href="{{action('UserOrderController@show',['order'=>$order->id])}}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Return to Order View</a>
 
     <h1>Payment for Order {{$order->order_number}}</h1>
@@ -120,7 +122,7 @@
         {{--<input type="submit" class="btn btn-large btn-success" value="Pay Balance">--}}
     </div>
         <button type="submit" class="btn btn-lg btn-success"><span class="glyphicon-credit-card glyphicon"></span> Pay £{{$order->order_total}} now.</button>
-        <a href="{{back()}}" class="btn btn-lg btn-default">Return to Order</a>
+        <a href="{{action('UserOrderController@show',['order'=>$order->id])}}" class="btn btn-lg btn-default">Return to Order</a>
 
     {!! Form::close() !!}
 

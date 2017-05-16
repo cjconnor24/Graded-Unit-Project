@@ -12,7 +12,7 @@
 
     <div class="row">
 
-    <h1>{{$quotation->order_number}}</h1>
+    <h1><span class="fi-shop-online-shop-1 fi-shop"></span> {{$quotation->order_number}}</h1>
 
     </div>
 
@@ -22,7 +22,7 @@
         <div class="col-sm-4">
             @component('components.panel',['colour'=>$quotation->orderStatus->colour])
                 @slot('title')
-                    <span class="glyphicon glyphicon-shopping-cart"></span> Order Information
+                    <span class="fi-shop fi-shop-shopping-cart"></span> Order Information
                 @endslot
 
                 <table class="table">
@@ -57,7 +57,7 @@
 
             @component('components.panel',['colour'=>$quotation->orderStatus->colour])
                 @slot('title')
-                    <span class="glyphicon glyphicon-credit-card"></span> Payments
+                    <span class="fi-shop fi-shop-credit-card"></span> Payments
                 @endslot
 
                 @if(count($quotation->payments)>0)
@@ -97,7 +97,7 @@
 
             @component('components.panel')
             @slot('title')
-            <span class="glyphicon glyphicon-user"></span> Customer Information
+            <span class="fi-misc fi-misc-user-1"></span> Customer Information
             @endslot
             <h4>{{$quotation->customer->first_name.' '.$quotation->customer->last_name}}</h4>
             <p>{!! str_replace(', ',',<br />',$quotation->address->full_address) !!}</p>
@@ -110,7 +110,7 @@
         @component('components.panel')
 
             @slot('title')
-            <span class="flaticon-groceries-store"></span> Branch Information <i class="flaticon-airplane49"></i>
+            <span class="fi-shop fi-shop-shop"></span> Branch Information <i class="flaticon-airplane49"></i>
                 <span class="flaticon-banknote"></span>
             @endslot
 

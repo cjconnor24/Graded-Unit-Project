@@ -1,3 +1,16 @@
+body {
+  background:$mint-dark;
+}
+.bg-container {
+  background:#FFF;
+}
+footer {
+  color: $white;
+  background:$mint-dark;
+  margin:2em 0 0 0;
+  padding:2em 0 2em 0;
+}
+
 .notification {
     position:absolute;
     right:20px;
@@ -17,6 +30,9 @@ QUOTATION
 /**
 FLEX THE PANELS SO THEY'RE THE SAME HEIGHT
  */
+.panel-heading span {
+  font-size:1.5em!important;
+}
 @media (min-width: $screen-sm-min) {
 
   .row-eq-height {

@@ -14,7 +14,6 @@ const { mix } = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/quote.js', 'public/js/quote.js')
     .sass('resources/assets/sass/app.scss', 'public/css')
-.sass('resources/assets/sass/bootflat.scss','public/css')
-    .sass('resources/assets/sass/_flaticon.scss','public/css');
+    .sass('resources/assets/sass/bootflat.scss','public/css');
     // .js('resources/assets/js/quote.js','public/js');
 // mix.scripts('resources/assets/js/quote.js','public/js/quote.js');

@@ -63,7 +63,7 @@ Route::group(['middleware'=>'authenticate'], function(){
 
     // ORDERS
     Route::get('/orders','UserOrderController@index');
-    Route::get('/orders/{order}','UserOrderController@show');
+    Route::get('/orders/{order}','UserOrderController@show')->middleware('quote.owner');
 
     Route::get('/payments/{order}','PaymentController@index')->middleware('quote.owner');
     Route::post('/payments/{order}','PaymentController@checkout')->middleware('quote.owner');

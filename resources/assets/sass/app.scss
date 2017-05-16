@@ -7,16 +7,20 @@
 //@import "bootswatch";
 //@import "variables";
 //@import "bootswatch";
-//.body {
-//  background:#F00;
-//}
 //TEST
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+
+// FONT AWESOME
+
+
 
 // Bootstrap
 @import "variables";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
 //@import "bootswatch";
 @import "bootflat.scss";
 @import "custom";
-//@import "flaticon";
+@import "flaticon_shopping";
+@import "flaticon_misc";
+//TEST
