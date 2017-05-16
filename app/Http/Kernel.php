@@ -62,5 +62,6 @@ class Kernel extends HttpKernel
         'address.owner' => \App\Http\Middleware\AddressOwner::class,
         'quote.owner'=> \App\Http\Middleware\QuoteOwner::class,
         'payment'=> \App\Http\Middleware\PaymentMiddleware::class,
+        'customer'=> \App\Http\Middleware\CustomerMiddleware::class,
     ];
 }
