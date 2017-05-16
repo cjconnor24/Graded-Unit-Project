@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\OrderStatus;
+use App\User;
+use Sentinel;
 use Illuminate\Http\Request;
 
 /**
@@ -64,6 +66,7 @@ class OrderController extends Controller
         $order->load('branch','staff','state','customer','orderProducts.product','orderProducts.paper','orderProducts.size','address','payments');
 
         $statuses = OrderStatus::pluck('name','id');
+        $staff = Sentinel::findRoleBySlug('staff')->users->pluck('id','full_name');
 
         return view('order.view')->with([
             'order'=>$order,
