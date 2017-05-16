@@ -17,7 +17,7 @@
         </thead>
         <tbody>
         @foreach($orders as $order)
-        <tr>
+        <tr class="{{$order->orderStatus->colour=='danger' ? 'danger' : ''}}">
             <td>{{$order->order_number}}</td>
             <td>{{$order->created_at}}</td>
             <td>{{$order->due_date}}</td>

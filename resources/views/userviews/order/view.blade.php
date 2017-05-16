@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-<h1 style="font-family:Flaticon;">\f100</h1>
+    @include('includes.errors')
 
 <a href="{{action('UserOrderController@index')}}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Return to Orders</a>
 
@@ -20,39 +20,7 @@
     <div class="row row-eq-height">
 
         <div class="col-sm-4">
-
-            @component('components.panel')
-            @slot('title')
-            <span class="glyphicon glyphicon-user"></span> Customer Information
-            @endslot
-            <h4>{{$quotation->customer->first_name.' '.$quotation->customer->last_name}}</h4>
-            <p>{!! str_replace(', ',',<br />',$quotation->address->full_address) !!}</p>
-            @endcomponent
-
-        </div>
-
-        <div class="col-sm-4">
-
-        @component('components.panel')
-
-            @slot('title')
-            <span class="flaticon-groceries-store"></span> Branch Information <i class="flaticon-airplane49"></i>
-                <span class="flaticon-banknote"></span>
-            @endslot
-
-            <h4>Spectrum Contact</h4>
-            <p>{{$quotation->staff->full_name}}<br /> <a class="btn btn-sm btn-info" href="mailto:{{$quotation->staff->email}}"><span class="glyphicon glyphicon-envelope"></span> E-Mail {{$quotation->staff->first_name}} </a></p>
-
-            <h4>{{$quotation->branch->name}}</h4>
-            <p>{!! str_replace(', ',',<br />',$quotation->branch->full_address) !!}</p>
-            <p><a href="mailto:{{$quotation->branch->email}}">{{$quotation->branch->email}}</a><br />{{$quotation->branch->telephone}}</p>
-
-        @endcomponent
-
-        </div>
-
-        <div class="col-sm-4">
-            @component('components.panel')
+            @component('components.panel',['colour'=>$quotation->orderStatus->colour])
                 @slot('title')
                     <span class="glyphicon glyphicon-shopping-cart"></span> Order Information
                 @endslot
@@ -84,47 +52,78 @@
                     </tr>
                 </table>
 
-                @endcomponent
+            @endcomponent
 
 
-                    @component('components.panel')
-                        @slot('title')
-                            <span class="glyphicon glyphicon-credit-card"></span> Payments
-                        @endslot
+            @component('components.panel',['colour'=>$quotation->orderStatus->colour])
+                @slot('title')
+                    <span class="glyphicon glyphicon-credit-card"></span> Payments
+                @endslot
 
                 @if(count($quotation->payments)>0)
 
-                        <table class="table table-hover">
-                            <thead>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Payment Type</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach($quotation->payments as $payment)
                             <tr>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th>Payment Type</th>
+                                <td>{{$payment->created_at}}</td>
+                                <td>£{{$payment->amount}}</td>
+                                <td>{{ title_case(str_replace('_',' ',$payment->payment_type))}}</td>
                             </tr>
-                            </thead>
-                            <tbody>
 
-                            @foreach($quotation->payments as $payment)
-                                <tr>
-                                    <td>{{$payment->created_at}}</td>
-                                    <td>£{{$payment->amount}}</td>
-                                    <td>{{ title_case(str_replace('_',' ',$payment->payment_type))}}</td>
-                                </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
 
-                            @endforeach
-                            </tbody>
-                        </table>
+                @else
+                    <p class="text-center"><em>You haven't made any payments yet</em></p>
+                    <p class="text-center"><a href="{{action('PaymentController@index',['order'=>$quotation->id])}}" class="btn btn-success"><span class="glyphicon glyphicon-credit-card"></span> Make Payment</a></p>
+                @endif
 
-                        @else
-                        <p class="text-center"><em>You haven't made any payments yet</em></p>
-                        <p class="text-center"><a href="{{action('PaymentController@index',['order'=>$quotation->id])}}" class="btn btn-success"><span class="glyphicon glyphicon-credit-card"></span> Make Payment</a></p>
-                        @endif
-
-                        @endcomponent
+            @endcomponent
 
 
         </div>
 
+        <div class="col-sm-4 stretch">
+
+            @component('components.panel')
+            @slot('title')
+            <span class="glyphicon glyphicon-user"></span> Customer Information
+            @endslot
+            <h4>{{$quotation->customer->first_name.' '.$quotation->customer->last_name}}</h4>
+            <p>{!! str_replace(', ',',<br />',$quotation->address->full_address) !!}</p>
+            @endcomponent
+
+        </div>
+
+        <div class="col-sm-4 stretch">
+
+        @component('components.panel')
+
+            @slot('title')
+            <span class="flaticon-groceries-store"></span> Branch Information <i class="flaticon-airplane49"></i>
+                <span class="flaticon-banknote"></span>
+            @endslot
+
+            <h4>Spectrum Contact</h4>
+            <p>{{$quotation->staff->full_name}}<br /> <a class="btn btn-sm btn-info" href="mailto:{{$quotation->staff->email}}"><span class="glyphicon glyphicon-envelope"></span> E-Mail {{$quotation->staff->first_name}} </a></p>
+
+            <h4>{{$quotation->branch->name}}</h4>
+            <p>{!! str_replace(', ',',<br />',$quotation->branch->full_address) !!}</p>
+            <p><a href="mailto:{{$quotation->branch->email}}">{{$quotation->branch->email}}</a><br />{{$quotation->branch->telephone}}</p>
+
+        @endcomponent
+
+        </div>
 
     </div>
 

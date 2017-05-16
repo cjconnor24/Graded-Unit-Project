@@ -36,9 +36,14 @@ class PaymentController extends Controller
             'customer' => [
                 'firstName' => $customer->first_name,
                 'lastName' => $customer->last_name,
-                'phone' => '312-555-1234',
-                'fax' => '312-555-1235',
+                'phone' => $customer->telephone,
                 'email' => $customer->email
+            ],
+            'billing'=> [
+                'firstName' => $request->billing_first_name,
+                'lastName' => $request->billing_last_name,
+                'streetAddress' => $request->billing_address1,
+                'postalCode' => $request->billing_postcode
             ],
             'options' => [
                 'submitForSettlement' => True
