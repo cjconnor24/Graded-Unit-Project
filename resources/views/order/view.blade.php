@@ -41,27 +41,40 @@
 
         <div class="col-lg-3 col-md-6 stretch">
 
-            <div class="panel panel-default">
+            @component('components.panel',['colour'=>$order->orderStatus->colour])
+                @slot('title')
+                    <span class="fi-shop fi-shop-credit-card"></span> Payments
+                @endslot
 
-                <div class="panel-heading">Payments</div>
+                @if(count($order->payments)>0)
 
-                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Payment Type</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                    @if(count($order->payments)>0)
+                        @foreach($order->payments as $payment)
+                            <tr>
+                                <td>{{$payment->created_at}}</td>
+                                <td>£{{$payment->amount}}</td>
+                                <td>{{ title_case(str_replace('_',' ',$payment->payment_type))}}</td>
+                            </tr>
 
-                        <h3>Payments</h3>
+                        @endforeach
+                        </tbody>
+                    </table>
 
-                        @foreach($order->payments as $payment )
+                @else
+                    <p class="text-center"><em>You haven't made any payments yet</em></p>
+                    <p class="text-center"><a href="{{action('PaymentController@index',['order'=>$quotation->id])}}" class="btn btn-success"><span class="glyphicon glyphicon-credit-card"></span> Make Payment</a></p>
+                @endif
 
-                            <p>{{$order->created_at->diffForHumans()}} {{$payment->amount}} {{$payment->payment_type}}</p>
-
-                            @endforeach
-
-                        @endif
-
-                </div>
-
-            </div>
+            @endcomponent
 
         </div>
 
