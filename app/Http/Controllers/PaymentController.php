@@ -73,11 +73,13 @@ class PaymentController extends Controller
             $order->orderStatus()->associate($status);
             $order->save();
 
-            return response()->json($result);
+            return redirect()->action('UserOrderController@show',['order'=>$order->id])->with(['success'=>'Your payment was accepted','notification'=>true]);
 
         } else {
 
-            return response()->json($result);
+//            dd($result);
+            return back()->with('error',$result->message);
+//            return response()->json($result);
 
         }
 
