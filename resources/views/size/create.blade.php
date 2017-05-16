@@ -2,9 +2,12 @@
 
 @section('content')
 
+    <h1><span class="fi-misc-layers fi-misc"></span> Add New Size</h1>
+    <p>Please enter the details of the new size below.</p>
+
     <form action="{{ action('Admin\SizesController@store') }}" method="post" role="form">
+
         {{csrf_field()}}
-        <legend>Add New Size</legend>
 
         <div class="form-group">
             <label for="Name">Name</label>
@@ -23,7 +26,7 @@
 
         <div class="form-group">
 
-                <button type="submit" class="btn btn-default" name="submit">Add Size</button>
+            <button type="submit" class="btn btn-success" name="submit">Add Size</button>
 
         </div>
 

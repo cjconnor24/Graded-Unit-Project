@@ -1,6 +1,6 @@
 @extends('layouts.admin_master')
 @section('content')
-    <h1>Manage Products</h1>
+    <h1><span class="fi-man fi-man-business-card"></span> Manage Products</h1>
 
     <p>Below are a list of products</p>
 

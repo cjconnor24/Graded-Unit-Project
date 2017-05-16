@@ -1,6 +1,6 @@
 @extends('layouts.admin_master')
 @section('content')
-    <h1>Manage Customers</h1>
+    <h1><span class="fi-misc-users fi-misc"></span> Manage Customers</h1>
     <p>Please find list of customers below</p>
 
 

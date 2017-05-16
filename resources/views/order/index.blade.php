@@ -1,6 +1,6 @@
 @extends('layouts.admin_master')
 @section('content')
-    <h1>Current Orders</h1>
+    <h1><span class="fi-shop-online-shop-1 fi-shop"></span> Current Orders</h1>
 
     <table class="table table-responsive">
         <thead>

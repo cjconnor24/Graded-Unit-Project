@@ -1,6 +1,6 @@
 @extends('layouts.admin_master')
 @section('content')
-    <h1>Add New Branch</h1>
+    <h1><span class="fi-shop fi-shop-shop"></span> Add New Branch</h1>
 
     @include('includes.errors')
     {!! Form::open(['action' => 'Admin\BranchController@store']) !!}

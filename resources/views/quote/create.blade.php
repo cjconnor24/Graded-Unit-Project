@@ -7,7 +7,7 @@
 @endsection
 @section('content')
 
-    <h1>Create New Quote</h1>
+    <h1><span class="fi-shop-shopping-cart fi-shop"></span> Create New Quote</h1>
     <p>Please select details below</p>
 
     <div class="alert alert-danger" style="display:none;"></div>

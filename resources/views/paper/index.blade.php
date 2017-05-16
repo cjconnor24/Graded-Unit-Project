@@ -1,6 +1,6 @@
 @extends('layouts.admin_master')
 @section('content')
-    <h1>Manage Paper Stocks</h1>
+    <h1><span class="fi-misc-file fi-misc"></span> Manage Paper Stocks</h1>
 
 <p><a href="{{action('Admin\PaperController@create')}}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add Paper</a></p>
     <p>Below are a list of papers</p>

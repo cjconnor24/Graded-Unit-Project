@@ -1,6 +1,6 @@
 @extends('layouts.admin_master')
 @section('content')
-    <h1>Manage Branches</h1>
+    <h1><span class="fi-shop-shop fi-shop"></span> Manage Branches</h1>
 
     <a href="{{action('Admin\BranchController@create')}}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add Branch</a>
 

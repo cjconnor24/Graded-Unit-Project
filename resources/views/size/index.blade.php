@@ -1,6 +1,6 @@
 @extends('layouts.admin_master')
 @section('content')
-<h1>Manage Paper Sizes</h1>
+<h1><span class="fi-misc-layers fi-misc"></span> Manage Paper Sizes</h1>
 
 <p><a href="{{ action("Admin\SizesController@create") }}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add New Size</a></p>
 
