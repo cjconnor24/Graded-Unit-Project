@@ -1,16 +1,10 @@
+@component('components.panel')
 
-    <div class="panel panel-default hidden-print">
+    @slot('title')
+    <span class="fi-misc fi-misc-settings-1"></span> {{$quotation->quote_number}} Quote Management
+    @endslot
 
-        <div class="panel-heading">
-            <h3 class="panel-title">{{$quotation->quote_number}} Quote Management</h3>
-        </div>
+    <a href="{{action('UserQuotationController@approveQuotation',['quotation'=>$quotation->QuoteApprovals->first()->order_id,'token'=>$quotation->QuoteApprovals->first()->token])}}" class="btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span> Approve Quote</a>
+    <button data-toggle="modal" data-target="#rejectModal" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-trash"></span> Reject Quote</button>
 
-        <div class="panel-body">
-
-            <a href="{{action('UserQuotationController@approveQuotation',['quotation'=>$quotation->QuoteApprovals->first()->order_id,'token'=>$quotation->QuoteApprovals->first()->token])}}" class="btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span> Approve Quote</a>
-            <button data-toggle="modal" data-target="#rejectModal" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-trash"></span> Reject Quote</button>
-
-        </div>
-
-    </div>
-
+@endcomponent

@@ -53,80 +53,31 @@
 
 @include('userviews.quote._rejectModal')
 
-<a href="{{action('UserQuotationController@index')}}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Return to Quotes</a>
+<a href="{{action('UserQuotationController@index')}}" class="btn btn-default"><span class="fi-misc fi-misc-return"></span> Return to Quotes</a>
 
-    <div class="row">
-    <h1>{{$quotation->quote_number}}</h1>
+    <h1><span class="fi-shop fi-shop-shopping-cart"></span> Quotation {{$quotation->quote_number}}</h1>
 
-    </div>
-
-    <div class="row">
-
-        <div class="col-sm-6">
-    <h4>{{$quotation->customer->first_name.' '.$quotation->customer->last_name}}</h4>
-    <p>{!! str_replace(', ',',<br />',$quotation->address->full_address) !!}</p>
-
-        </div>
-
-        <div class="col-sm-6 text-right">
-
-            <div class="col-sm-6">@include('userviews.quote._managementBox')</div>
-
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+<div class="row row-eq-height">
 
 
-
-
-
-            <h4>Spectrum Contact</h4>
-            <p>{{$quotation->staff->full_name}} / {{$quotation->staff->email}}</p>
-
-            <h4>{{$quotation->branch->name}}</h4>
-            <p>{!! str_replace(', ',',<br />',$quotation->branch->full_address) !!}</p>
-            <p><a href="mailto:{{$quotation->branch->email}}">{{$quotation->branch->email}}</a><br />{{$quotation->branch->telephone}}</p>
-            </div>
-
-
+        <div class="col-sm-5">
+            @include('userviews.quote._managementBox')
+            @include('userviews.components._customer',['customer'=>$quotation->customer,'address'=>$quotation->address])
         </div>
 
 
-    </div>
 
-    <table class="table table-responsive">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Paper</th>
-            <th>Size</th>
-            <th>Cost</th>
-            <th>Qty</th>
-            <th>Line Total</th>
-        </tr>
-        </thead>
-        <tfoot>
-        <tr>
-            <td><strong>Payment Due</strong></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><strong>Sub Total</strong></td>
-            <td>£{{$quotation->order_total}}</td>
-        </tr>
-        </tfoot>
-        <tbody>
-        @foreach($quotation->OrderProducts as $line)
-        <tr>
-            <td>{{$line->product->name}}</td>
-            <td>{{$line->paper->name}}</td>
-            <td>{{$line->size->name}} <em>({{$line->size->height.' x '.$line->size->width}}mm)</em></td>
-            <td>£{{$line->product->price}}</td>
-            <td>{{$line->qty}}</td>
-            <td>£{{$line->line_total}}</td>
-        </tr>
-        @endforeach
-        </tbody>
+        <div class="col-sm-7 stretch">
 
-    </table>
+            @include('userviews.components._branch',['staff'=>$quotation->staff,'branch'=>$quotation->branch])
+
+        </div>
+
+</div>
+
+<h2><span class="fi-shop fi-shop-shopping-basket"></span> Quotation Details</h2>
+
+@include('userviews.components._ordertable',['order'=>$quotation])
 
 
 @endsection

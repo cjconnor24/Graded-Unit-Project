@@ -1,6 +1,6 @@
 @extends('layouts.user_master')
 @section('content')
-    <h1><span class="fi-shop flaticon-online-shop-1"></span> Orders</h1>
+    <h1><span class="fi-shop fi-shop-online-shop-1"></span> Orders</h1>
 
     @if(count($orders)>0)
 

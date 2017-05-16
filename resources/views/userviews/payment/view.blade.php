@@ -14,7 +14,7 @@
 
     @include('includes.errors')
 
-    <a href="{{action('UserOrderController@show',['order'=>$order->id])}}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Return to Order View</a>
+    <a href="{{action('UserOrderController@show',['order'=>$order->id])}}" class="btn btn-default"><span class="fi-misc fi-misc-return"></span> Return to Order View</a>
 
     <h1>Payment for Order {{$order->order_number}}</h1>
 

@@ -1,6 +1,6 @@
 @extends('layouts.user_master')
 @section('content')
-    <h1>Quotations</h1>
+    <h1><span class="fi-shop fi-shop-shopping-cart"></span> Quotations</h1>
 
     @if(count($quotations)>0)
 
@@ -9,6 +9,7 @@
     @include('includes.errors')
 
     <table class="table table-responsive">
+
         <thead>
         <tr>
             <th>Quote Reference</th>
@@ -19,6 +20,7 @@
             <th>View</th>
         </tr>
         </thead>
+
         <tbody>
         @foreach($quotations as $quotation)
             <tr>

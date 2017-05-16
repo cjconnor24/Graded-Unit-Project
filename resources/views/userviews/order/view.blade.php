@@ -95,73 +95,19 @@
 
         <div class="col-sm-4 stretch">
 
-            @component('components.panel')
-            @slot('title')
-            <span class="fi-misc fi-misc-user-1"></span> Customer Information
-            @endslot
-            <h4>{{$quotation->customer->first_name.' '.$quotation->customer->last_name}}</h4>
-            <p>{!! str_replace(', ',',<br />',$quotation->address->full_address) !!}</p>
-            @endcomponent
+            @include('userviews.components._customer',['customer'=>$quotation->customer,'address'=>$quotation->address])
 
         </div>
 
         <div class="col-sm-4 stretch">
 
-        @component('components.panel')
-
-            @slot('title')
-            <span class="fi-shop fi-shop-shop"></span> Branch Information <i class="flaticon-airplane49"></i>
-                <span class="flaticon-banknote"></span>
-            @endslot
-
-            <h4>Spectrum Contact</h4>
-            <p>{{$quotation->staff->full_name}}<br /> <a class="btn btn-sm btn-info" href="mailto:{{$quotation->staff->email}}"><span class="glyphicon glyphicon-envelope"></span> E-Mail {{$quotation->staff->first_name}} </a></p>
-
-            <h4>{{$quotation->branch->name}}</h4>
-            <p>{!! str_replace(', ',',<br />',$quotation->branch->full_address) !!}</p>
-            <p><a href="mailto:{{$quotation->branch->email}}">{{$quotation->branch->email}}</a><br />{{$quotation->branch->telephone}}</p>
-
-        @endcomponent
+            @include('userviews.components._branch',['staff'=>$quotation->staff,'branch'=>$quotation->branch])
 
         </div>
 
     </div>
 
-    <table class="table table-responsive">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Paper</th>
-            <th>Size</th>
-            <th>Cost</th>
-            <th>Qty</th>
-            <th>Line Total</th>
-        </tr>
-        </thead>
-        <tfoot>
-        <tr>
-            <td><strong>Payment Due</strong></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><strong>Sub Total</strong></td>
-            <td>£{{$quotation->order_total}}</td>
-        </tr>
-        </tfoot>
-        <tbody>
-        @foreach($quotation->OrderProducts as $line)
-        <tr>
-            <td>{{$line->product->name}}</td>
-            <td>{{$line->paper->name}}</td>
-            <td>{{$line->size->name}} <em>({{$line->size->height.' x '.$line->size->width}}mm)</em></td>
-            <td>£{{$line->product->price}}</td>
-            <td>{{$line->qty}}</td>
-            <td>£{{$line->line_total}}</td>
-        </tr>
-        @endforeach
-        </tbody>
-
-    </table>
+    @include('userviews.components._ordertable',['order'=>$quotation])
 
 
 @endsection
