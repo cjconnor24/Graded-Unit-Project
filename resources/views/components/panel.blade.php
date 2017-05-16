@@ -1,4 +1,4 @@
-<div class="panel panel-default hidden-print">
+<div class="panel panel-{{(isset($colour) ? ($colour=='warning' || $colour=='danger' ? $colour : 'default') : 'default')}} hidden-print">
 
     <div class="panel-heading">
         <h3 class="panel-title">{{$title}}</h3>
