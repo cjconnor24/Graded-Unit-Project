@@ -65,7 +65,7 @@ class UserQuotationController extends Controller
         $quotation->orderStatus()->associate($status);
         $quotation->save();
 
-        return redirect()->action('UserQuotationController@index')->with('success','Your quote has been approved and progressed to orders.');
+        return redirect()->action('UserOrderController@show',['order'=>$quotation->id])->with(['notification'=>true,'success'=>'Your quote has been approved and progressed to orders.']);
     }
 
     /**
