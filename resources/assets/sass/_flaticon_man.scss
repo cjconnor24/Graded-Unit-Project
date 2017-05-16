@@ -1,0 +1,199 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 24/10/2016 12:38
+    */
+
+    @font-face {
+  font-family: "Flaticon_man";
+  src: url("../fonts/Flaticon_man.eot");
+  src: url("../fonts/Flaticon_man.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/Flaticon_man.woff") format("woff"),
+       url("../fonts/Flaticon_man.ttf") format("truetype"),
+       url("../fonts/Flaticon_man.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon_man";
+    src: url("../fonts/Flaticon_man.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi-man:before{
+        display: inline-block;
+  font-family: "Flaticon_man";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .fi-man-agenda:before { content: "\f100"; }
+.fi-man-agreement:before { content: "\f101"; }
+.fi-man-balance:before { content: "\f102"; }
+.fi-man-bar-graph:before { content: "\f103"; }
+.fi-man-bar-graph-1:before { content: "\f104"; }
+.fi-man-box:before { content: "\f105"; }
+.fi-man-box-1:before { content: "\f106"; }
+.fi-man-box-2:before { content: "\f107"; }
+.fi-man-building:before { content: "\f108"; }
+.fi-man-business-card:before { content: "\f109"; }
+.fi-man-cabinet:before { content: "\f10a"; }
+.fi-man-calculator:before { content: "\f10b"; }
+.fi-man-calendar:before { content: "\f10c"; }
+.fi-man-calendar-1:before { content: "\f10d"; }
+.fi-man-calendar-2:before { content: "\f10e"; }
+.fi-man-certificate:before { content: "\f10f"; }
+.fi-man-checked:before { content: "\f110"; }
+.fi-man-checked-1:before { content: "\f111"; }
+.fi-man-clock:before { content: "\f112"; }
+.fi-man-coins:before { content: "\f113"; }
+.fi-man-container:before { content: "\f114"; }
+.fi-man-conversation:before { content: "\f115"; }
+.fi-man-credit-card:before { content: "\f116"; }
+.fi-man-curriculum:before { content: "\f117"; }
+.fi-man-delivery-truck:before { content: "\f118"; }
+.fi-man-document:before { content: "\f119"; }
+.fi-man-flag:before { content: "\f11a"; }
+.fi-man-folders:before { content: "\f11b"; }
+.fi-man-gear:before { content: "\f11c"; }
+.fi-man-hammer:before { content: "\f11d"; }
+.fi-man-hourglass:before { content: "\f11e"; }
+.fi-man-id-card:before { content: "\f11f"; }
+.fi-man-idea:before { content: "\f120"; }
+.fi-man-info:before { content: "\f121"; }
+.fi-man-job:before { content: "\f122"; }
+.fi-man-lamp:before { content: "\f123"; }
+.fi-man-laptop:before { content: "\f124"; }
+.fi-man-levels:before { content: "\f125"; }
+.fi-man-line-graph:before { content: "\f126"; }
+.fi-man-line-graph-1:before { content: "\f127"; }
+.fi-man-list:before { content: "\f128"; }
+.fi-man-list-1:before { content: "\f129"; }
+.fi-man-man:before { content: "\f12a"; }
+.fi-man-manager:before { content: "\f12b"; }
+.fi-man-network:before { content: "\f12c"; }
+.fi-man-network-1:before { content: "\f12d"; }
+.fi-man-note:before { content: "\f12e"; }
+.fi-man-notebook:before { content: "\f12f"; }
+.fi-man-notebook-1:before { content: "\f130"; }
+.fi-man-percentage:before { content: "\f131"; }
+.fi-man-pie-chart:before { content: "\f132"; }
+.fi-man-pie-chart-1:before { content: "\f133"; }
+.fi-man-pie-chart-2:before { content: "\f134"; }
+.fi-man-piggy-bank:before { content: "\f135"; }
+.fi-man-presentation:before { content: "\f136"; }
+.fi-man-push-pin:before { content: "\f137"; }
+.fi-man-pyramid:before { content: "\f138"; }
+.fi-man-search:before { content: "\f139"; }
+.fi-man-search-1:before { content: "\f13a"; }
+.fi-man-search-2:before { content: "\f13b"; }
+.fi-man-search-3:before { content: "\f13c"; }
+.fi-man-search-4:before { content: "\f13d"; }
+.fi-man-shield:before { content: "\f13e"; }
+.fi-man-shipping:before { content: "\f13f"; }
+.fi-man-shopping-basket:before { content: "\f140"; }
+.fi-man-smartphone:before { content: "\f141"; }
+.fi-man-stats:before { content: "\f142"; }
+.fi-man-stopwatch:before { content: "\f143"; }
+.fi-man-suitcase:before { content: "\f144"; }
+.fi-man-suitcase-1:before { content: "\f145"; }
+.fi-man-tag:before { content: "\f146"; }
+.fi-man-target:before { content: "\f147"; }
+.fi-man-target-1:before { content: "\f148"; }
+.fi-man-team:before { content: "\f149"; }
+.fi-man-teamwork:before { content: "\f14a"; }
+.fi-man-teamwork-1:before { content: "\f14b"; }
+.fi-man-telemarketer:before { content: "\f14c"; }
+.fi-man-wallet:before { content: "\f14d"; }
+.fi-man-worker:before { content: "\f14e"; }
+.fi-man-worldwide:before { content: "\f14f"; }
+    
+    $font-fi-man-agenda: "\f100";
+    $font-fi-man-agreement: "\f101";
+    $font-fi-man-balance: "\f102";
+    $font-fi-man-bar-graph: "\f103";
+    $font-fi-man-bar-graph-1: "\f104";
+    $font-fi-man-box: "\f105";
+    $font-fi-man-box-1: "\f106";
+    $font-fi-man-box-2: "\f107";
+    $font-fi-man-building: "\f108";
+    $font-fi-man-business-card: "\f109";
+    $font-fi-man-cabinet: "\f10a";
+    $font-fi-man-calculator: "\f10b";
+    $font-fi-man-calendar: "\f10c";
+    $font-fi-man-calendar-1: "\f10d";
+    $font-fi-man-calendar-2: "\f10e";
+    $font-fi-man-certificate: "\f10f";
+    $font-fi-man-checked: "\f110";
+    $font-fi-man-checked-1: "\f111";
+    $font-fi-man-clock: "\f112";
+    $font-fi-man-coins: "\f113";
+    $font-fi-man-container: "\f114";
+    $font-fi-man-conversation: "\f115";
+    $font-fi-man-credit-card: "\f116";
+    $font-fi-man-curriculum: "\f117";
+    $font-fi-man-delivery-truck: "\f118";
+    $font-fi-man-document: "\f119";
+    $font-fi-man-flag: "\f11a";
+    $font-fi-man-folders: "\f11b";
+    $font-fi-man-gear: "\f11c";
+    $font-fi-man-hammer: "\f11d";
+    $font-fi-man-hourglass: "\f11e";
+    $font-fi-man-id-card: "\f11f";
+    $font-fi-man-idea: "\f120";
+    $font-fi-man-info: "\f121";
+    $font-fi-man-job: "\f122";
+    $font-fi-man-lamp: "\f123";
+    $font-fi-man-laptop: "\f124";
+    $font-fi-man-levels: "\f125";
+    $font-fi-man-line-graph: "\f126";
+    $font-fi-man-line-graph-1: "\f127";
+    $font-fi-man-list: "\f128";
+    $font-fi-man-list-1: "\f129";
+    $font-fi-man-man: "\f12a";
+    $font-fi-man-manager: "\f12b";
+    $font-fi-man-network: "\f12c";
+    $font-fi-man-network-1: "\f12d";
+    $font-fi-man-note: "\f12e";
+    $font-fi-man-notebook: "\f12f";
+    $font-fi-man-notebook-1: "\f130";
+    $font-fi-man-percentage: "\f131";
+    $font-fi-man-pie-chart: "\f132";
+    $font-fi-man-pie-chart-1: "\f133";
+    $font-fi-man-pie-chart-2: "\f134";
+    $font-fi-man-piggy-bank: "\f135";
+    $font-fi-man-presentation: "\f136";
+    $font-fi-man-push-pin: "\f137";
+    $font-fi-man-pyramid: "\f138";
+    $font-fi-man-search: "\f139";
+    $font-fi-man-search-1: "\f13a";
+    $font-fi-man-search-2: "\f13b";
+    $font-fi-man-search-3: "\f13c";
+    $font-fi-man-search-4: "\f13d";
+    $font-fi-man-shield: "\f13e";
+    $font-fi-man-shipping: "\f13f";
+    $font-fi-man-shopping-basket: "\f140";
+    $font-fi-man-smartphone: "\f141";
+    $font-fi-man-stats: "\f142";
+    $font-fi-man-stopwatch: "\f143";
+    $font-fi-man-suitcase: "\f144";
+    $font-fi-man-suitcase-1: "\f145";
+    $font-fi-man-tag: "\f146";
+    $font-fi-man-target: "\f147";
+    $font-fi-man-target-1: "\f148";
+    $font-fi-man-team: "\f149";
+    $font-fi-man-teamwork: "\f14a";
+    $font-fi-man-teamwork-1: "\f14b";
+    $font-fi-man-telemarketer: "\f14c";
+    $font-fi-man-wallet: "\f14d";
+    $font-fi-man-worker: "\f14e";
+    $font-fi-man-worldwide: "\f14f";
