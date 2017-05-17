@@ -20,7 +20,7 @@ class CustomerMiddleware
         if(Sentinel::inRole('customer')) {
             return $next($request);
         } else {
-            return redirect()->action('Admin\AdminController@index');
+            return redirect()->action('Admin\AdminController@index')->with(['error'=>'You cannot access this section.','notification'=>'true']);
         }
 
     }
