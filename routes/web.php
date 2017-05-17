@@ -124,6 +124,8 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
     });
 
     Route::resource('orders','OrderController');
+    Route::post('orders/{order}/notes/add','OrderController@addNote');
+    Route::get('orders/{order}/status/{status}','OrderController@updateStatus')->middleware('restrict.status.update');
 
     Route::resource('categories','CategoryController');
     Route::resource('products','ProductsController');

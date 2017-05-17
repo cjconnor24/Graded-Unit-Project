@@ -6,10 +6,10 @@
 
         <h1><span class="fi-shop-shopping-cart fi-shop"></span> Quotation {{$quotation->quote_number}}</h1>
 
-    <div class="row">
+    <div class="row row-eq-height">
 
 
-    <div class="col-md-6">
+    <div class="col-md-6 stretch col-flex">
 
         @include('userviews.components._customer',['customer'=>$quotation->customer,'address'=>$quotation->address])
 
@@ -33,18 +33,12 @@
 
     </div>
 
-    @include('quote._invoicetable')
+        @include('userviews.components._ordertable',['order'=>$quotation])
 
-    <div class="col-md-4 pull-right">
-    <table class="table table-hover">
-        <tr>
-            <td><strong>Sub-Total</strong></td>
-            <td>£00.00</td>
-        </tr>
-        <tr>
-            <td><strong>Total</strong></td>
-            <td>£{{$quotation->order_total}}</td>
-        </tr>
-    </table>
+
+
+    <div class="col-md-6 col-md-offset-3">
+        @include('userviews.components._notes',['order'=>$quotation])
     </div>
+
 @endsection

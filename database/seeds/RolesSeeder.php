@@ -15,6 +15,7 @@ class RolesSeeder extends Seeder
             array('slug'=>'admin','name'=>'Administrators','created_at'=>\Carbon\Carbon::now()),
             array('slug'=>'accounts','name'=>'Accounts','created_at'=>\Carbon\Carbon::now()),
             array('slug'=>'customer','name'=>'Customers','created_at'=>\Carbon\Carbon::now())
+            array('slug'=>'staff','name'=>'Staff','created_at'=>\Carbon\Carbon::now())
         ));
 
     }

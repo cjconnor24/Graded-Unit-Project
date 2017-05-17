@@ -123,6 +123,29 @@ class Order extends Model
         }
     }
 
+    /**
+     * Add note to order
+     * @param $content
+     * @param $user
+     * @return bool
+     */
+    public function addNote($content, $user)
+    {
+
+        $note = new Note;
+        $note->content = $content;
+        $note->user_id = $user;
+
+        if($this->notes()->save($note)){
+            return true;
+        } else {
+            return false;
+        }
+
+
+
+    }
+
     // ACCESSORS
 
     /**

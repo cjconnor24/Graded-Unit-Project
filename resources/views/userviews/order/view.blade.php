@@ -19,7 +19,7 @@
 
     <div class="row row-eq-height">
 
-        <div class="col-sm-4">
+        <div class="col-sm-4 stretch col-flex">
             @component('components.panel',['colour'=>$quotation->orderStatus->colour])
                 @slot('title')
                     <span class="fi-shop fi-shop-shopping-cart"></span> Order Information
@@ -106,6 +106,8 @@
         </div>
 
     </div>
+
+
 
     @include('userviews.components._ordertable',['order'=>$quotation])
 

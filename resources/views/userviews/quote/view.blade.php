@@ -76,7 +76,7 @@
 <div class="row row-eq-height">
 
 
-        <div class="col-sm-5">
+        <div class="col-sm-5 stretch col-flex">
             @include('userviews.quote._managementBox')
             @include('userviews.components._customer',['customer'=>$quotation->customer,'address'=>$quotation->address])
         </div>

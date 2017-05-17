@@ -3,109 +3,12 @@
     <meta name="csrf-token" content="{{csrf_token()}}" />
     @endsection
 @section('scripts')
-    <script type="text/javascript">
-
-        $(document).ready(function(){
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            var postData = {
-                user_id: window.location.pathname.split('/')[3]
-            }
-
-            $('.role-button').on('click',function(e){
-
-                postData.role_id = $(this).attr('data-role-id');
-                e.preventDefault();
-                $.ajax({
-                    type:'POST',
-                    data:postData,
-                    url:'/admin/staff/role',
-                    success: function(response) {
-
-                    },
-                    error: function(response) {
-                        console.log('oh oh '+response)
-                    },
-                });
-
-                if($(this).hasClass('btn-default')){
-
-                        $(this).removeClass('btn-default').addClass('btn-success');
-                        $(this).text('Remove Role');
-
-                } else {
-                    $(this).removeClass('btn-success').addClass('btn-default');
-                    $(this).text('Add Role');
-                }
-
-            });
-
-            // DISABLE USER
-            $('#confirmDisable').click(function () {
-
-                console.log('this triggers');
-                event.preventDefault();
-
-                $.ajax({
-                    type:'POST',
-                    data:postData,
-                    url:'/admin/staff/disable',
-                    success: function(response) {
-                        console.log(response);
-
-                        // BUTTONS
-                        $('#stateButton').attr({
-                            "class": 'btn btn-lg btn-success btn-block',
-                            "data-target":'#activateModal'
-                            });
-                        $('#stateButton').text('Activate User');
-
-                        $( "#statePanel" ).removeClass( "panel-success" ).addClass( "panel-danger" );
-                        $('.fi-misc-padlock').removeClass('fi-misc-padlock').addClass('fi-misc-padlock-1');
-                        $('.panel-heading strong').text('Disabled');
-
-                    },
-
-                })
-
-            });
-
-            $('#confirmEnable').click(function () {
-
-                console.log('this triggers');
-                event.preventDefault();
-
-                $.ajax({
-                    type:'POST',
-                    data:postData,
-                    url:'/admin/staff/enable',
-                    success: function(response) {
-                        console.log(response);
-
-                        $('#stateButton').attr({
-                            "class": 'btn btn-lg btn-danger btn-block',
-                            "data-target":'#deactivateModal'
-                        });
-                        $('#stateButton').text('Disable User?');
-
-                        $( "#statePanel" ).removeClass( "panel-danger" ).addClass( "panel-success" );
-                        $('.fi-misc-padlock-1').removeClass('fi-misc-padlock-1').addClass('fi-misc-padlock');
-                        $('.panel-heading strong').text('Active');
-
-                    },
-
-                })
-
-            });
-
-        });
-</script> @endsection
+    <script type="text/javascript" src="{{asset('js/staff.js')}}"></script>
+@endsection
 @section('content')
+
+
+    <p><a href="{{action('Admin\StaffController@index')}}" class="btn btn-default"><span class="fi-misc-return fi-misc"></span> Return to Staff</a></p>
 
     {{--DISABLE USER--}}
     <div class="modal fade" id="deactivateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -153,9 +56,9 @@
 
 
 
-    <div class="row">
+    <div class="row row-eq-height">
 
-        <div class="col-md-6">
+        <div class="col-md-6 stretch col-flex">
 
             @component('components.panel')
                 @slot('title')
@@ -189,7 +92,7 @@
 
         </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 stretch col-flex">
 
         @php
         $active = ($staff->activations->count()>=1);

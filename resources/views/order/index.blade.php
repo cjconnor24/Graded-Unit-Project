@@ -2,6 +2,8 @@
 @section('content')
     <h1><span class="fi-shop-online-shop-1 fi-shop"></span> Current Orders</h1>
 
+    @if(count($orders)>0)
+
     <table class="table table-responsive">
         <thead>
         <tr>
@@ -28,5 +30,9 @@
             @endforeach
         </tbody>
     </table>
+
+    @else
+    <p><em>There are currently no orders</em></p>
+    @endif
 
 @endsection

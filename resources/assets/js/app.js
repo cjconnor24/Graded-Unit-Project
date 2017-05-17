@@ -6,6 +6,8 @@
  */
 
 require('./bootstrap');
+// require('quote');
+// require('staff');
 // require('./quote');
 //TESTING
 /**
