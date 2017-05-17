@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreNote;
+use App\Note;
 use App\Order;
 use App\OrderStatus;
 use App\User;
@@ -63,16 +65,60 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $order->load('branch','staff','state','customer','orderProducts.product','orderProducts.paper','orderProducts.size','address','payments');
+        $order->load([
+            'branch',
+            'staff',
+            'state',
+            'customer',
+            'orderProducts.product',
+            'orderProducts.paper',
+            'orderProducts.size',
+            'address',
+            'payments',
+            'notes'=>function($query){
+                $query->orderBy('id','DESC');
+            },
+            'notes.user'=>function($query){
+                $query->select('id','first_name','last_name');
+            }
+        ]);
 
         $statuses = OrderStatus::pluck('name','id');
-        $staff = Sentinel::findRoleBySlug('staff')->users->pluck('id','full_name');
+        $staff = Sentinel::findRoleBySlug('staff')->users->pluck('full_name','id');
+
+//        dd($order);
 
         return view('order.view')->with([
             'order'=>$order,
-            'statuses'=>$statuses
+            'statuses'=>$statuses,
+            'staff'=>$staff
         ]);
 }
+
+    /**
+     * Add note to an order
+     * @param Order $order
+     * @param StoreNote $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addNote(Order $order, StoreNote $request)
+    {
+
+        $order->addNote($request->input('content'),Sentinel::getUser()->id);
+
+        return redirect()->back()->with('success','Note Added');
+
+    }
+
+    public function updateStatus(Order $order, OrderStatus $status, Request $request)
+    {
+
+//        dd([$order,$status]);
+
+        $order->orderStatus()->associate($status);
+        $order->save();
+
+    }
 
     /**
      * Show the form for editing the specified resource.
