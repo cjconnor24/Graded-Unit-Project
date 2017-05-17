@@ -118,6 +118,8 @@ class OrderController extends Controller
         $order->orderStatus()->associate($status);
         $order->save();
 
+        return response()->json(['success'=>'Updated successfully'],200);
+
     }
 
     /**

@@ -1,10 +1,14 @@
 @extends('layouts.admin_master')
 @section('meta')
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('scripts')
     <script type="text/javascript">
         $(function() {
+
+            $('#successModal, #errorModal').on('hidden.bs.modal', function () {
+                window.location.reload();
+            })
 
             $('#status_id').on('change',function(e){
 
@@ -17,28 +21,24 @@
 
                 console.log(postData);
 
-//                $.ajax({
-//                    type:'POST',
-//                    data:postData,
-//                    url:'/admin/quotations',
-//                    success: function(response){
-//
-//                        window.location.href = response.redirect;
-//                    },
-//                    error: function(response){
-//                        var errorString = '';
-//                        $.each(response.responseJSON,function(i,v){
-//                            errorString+=('<p>'+v[0]+'</p>');
-//                        });
-//
-//                        $('.alert-danger').html(errorString).slideDown();
-//
-//                        $('html, body').animate({
-//                            scrollTop: $(".alert-danger").offset().top
-//                        }, 500);
-//
-//                    }
-//                })
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    type:'POST',
+                    data:postData,
+                    url:'/admin/orders/'+postData.order_id+'/status/'+postData.status_id,
+                    success: function(response){
+                        console.log(response);
+                        $('#successModal').modal('show');
+                    },
+                    error: function(response){
+                        $('#errorModal').modal('show');
+                    }
+                })
 
 
             });
@@ -47,6 +47,47 @@
     </script>
 @endsection
 @section('content')
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content panel-success">
+                <div class="modal-header panel-heading">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Success</h4>
+                </div>
+                <div class="modal-body text-center">
+
+                    <span class="fi-shop-like fi-shop" style="font-size:6em;"></span>
+                    <p class="lead">Status Successfully Updated</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content panel-danger">
+                <div class="modal-header panel-heading">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Error</h4>
+                </div>
+                <div class="modal-body text-center">
+
+                    <span class="fi-man-info fi-man" style="font-size:6em;color:"></span>
+                    <p class="lead">This order has already been completed.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <a href="{{action('Admin\OrderController@index')}}" class="btn btn-default"><span class="fi-misc-return fi-misc"></span> Return to Orders</a>
     

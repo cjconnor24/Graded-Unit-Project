@@ -16,9 +16,16 @@ class RestrictOrderStatus
     public function handle($request, Closure $next)
     {
         $order = $request->route('order');
+        $order->load('orderStatus');
 
-        dd($order);
+        $currentStatus = $order->orderStatus;
+        $newStatus = $request->route('status');
 
-        return $next($request);
+        if($currentStatus->name=='Completed'){
+            return response()->json(['error'=>'Order is already complete'],500);
+        } else {
+            return $next($request);
+        }
+
     }
 }
