@@ -46,7 +46,18 @@ class LoginController extends Controller
 
                 $user = Sentinel::getUser();
 
+                if($request->session()->exists('redirect')){
+
+                    $uri = $request->session()->get('redirect');
+                    $request->session()->forget('redirect');
+
+                    return redirect($uri);
+
+                } else {
+
                     return redirect()->intended(action('UserProfileController@view'))->with('success', 'Welcome back ')->with('notification', 'true');
+
+                }
 
 //                return redirect()->action('UserProfileController@view')->with('success','Welcome back ')->with('notification','true');
 

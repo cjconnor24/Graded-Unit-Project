@@ -16,11 +16,15 @@ class AuthenticateMiddleware
      */
     public function handle($request, Closure $next)
     {
+
         if(Sentinel::check()) {
 
             return $next($request);
 
         } else {
+
+            // SET A REDIRECT
+            session(['redirect'=>$request->path()]);
 
             return redirect()
                 ->action('LoginController@loginForm')
