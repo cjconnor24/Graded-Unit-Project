@@ -19,13 +19,13 @@ Product | Options | Qty | Cost
     |   |   | **_Total_** | £350.00
 @endcomponent
 
-@php ($url = action('UserQuotationController@approveQuotation',['quotation'=>$quotation->id,'token'=>$approval->token]))
-
-@component('mail::button', ['url' => $url, 'color' => 'green'])
+@php ($approvalurl = action('UserQuotationController@approveQuotation',['quotation'=>$quotation->id,'token'=>$approval->token]))
+@component('mail::button', ['url' => $approvalurl, 'color' => 'green'])
 Approve Quotation
 @endcomponent
 
-@component('mail::button', ['url' => 'http://www.google.com', 'color' => 'red'])
+@php ($rejectionurl = route('reject',['quotation'=>$quotation->id,'token'=>$approval->token]))
+@component('mail::button', ['url' => $rejectionurl, 'color' => 'red'])
     Reject Quotation
 @endcomponent
 

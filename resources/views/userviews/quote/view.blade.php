@@ -3,7 +3,23 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('scripts')
+
     <script type="text/javascript">
+
+        /**
+         * LOAD MODAL IF REJECT LINK
+         */
+        $(function() {
+            var hash = window.location.pathname.split('/')[2]
+
+            if(hash=='reject') {
+
+                $('#rejectModal').modal('show');
+            } else {
+                console.log('No hash present');
+            }
+        });
+
         $(document).ready(function(){
             $('#confirmReject').click(function () {
 

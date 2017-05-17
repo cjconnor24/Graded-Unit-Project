@@ -54,6 +54,7 @@ Route::group(['middleware'=>['authenticate','customer']], function(){
 
     // USER QUOTATION CONTROLLER
     Route::get('/quotations/approve/{quotation}/{token}','UserQuotationController@approveQuotation')->middleware('quote.owner');
+    Route::get('/quotations/reject/{quotation}/{token}','UserQuotationController@show')->middleware('quote.owner')->name('reject');
     Route::post('/quotations/reject/{quotation}','UserQuotationController@rejectQuotation')->middleware('quote.owner');
     Route::get('/quotations','UserQuotationController@index');
     Route::get('/quotations/{quotation}','UserQuotationController@show')->middleware('quote.owner');;
