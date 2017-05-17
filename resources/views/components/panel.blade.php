@@ -1,4 +1,4 @@
-<div class="panel panel-{{(isset($colour) ? ($colour=='warning' || $colour=='danger' ? $colour : 'default') : 'default')}} hidden-print">
+<div {{(isset($id) ? 'id='.$id.'' : '')}} class="panel panel-{{(isset($colour) ? ($colour) : 'default')}} hidden-print">
 
     <div class="panel-heading">
         {{$title}}

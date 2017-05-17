@@ -38,6 +38,8 @@
                         <li><a href="{{ action("Admin\SizesController@index")}}">Sizes</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ action("Admin\CustomerController@index")}}">Customers</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{action('Admin\StaffController@index')}}">Staff</a></li>
                         <li><a href="{{ action("Admin\BranchController@index")}}">Branches</a></li>
                     </ul>
                 </li>

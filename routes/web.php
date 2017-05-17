@@ -131,5 +131,9 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
     Route::resource('papers','PaperController');
     route::resource('customers','CustomerController');
     Route::resource('branches','BranchController');
+    Route::resource('staff','StaffController');
+    Route::post('staff/disable','StaffController@disabledUser');
+    Route::post('staff/enable','StaffController@enableUser');
+    Route::post('staff/role','StaffController@toggleRole');
 
 });

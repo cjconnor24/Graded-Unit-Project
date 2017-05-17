@@ -55,6 +55,15 @@ class User extends EloquentUser
         return $this->hasMany(Order::class,'customer_id');
     }
 
+    /**
+     * Associate staff user with their orders
+     * @return mixed
+     */
+    public function stafforders()
+    {
+        return $this->hasMany(Order::class,'staff_id');
+    }
+
     public function payments()
     {
         return $this->hasMany(Payment::class);
