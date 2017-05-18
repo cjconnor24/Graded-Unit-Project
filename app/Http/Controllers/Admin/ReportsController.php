@@ -44,10 +44,17 @@ class ReportsController extends Controller
 //            ->groupBy('products.id')
 //            ->orderBy('Total','DESC')
 //            ->get();
+        $topCustomers = \DB::table('payments')
+            ->join('users','users.id','payments.customer_id')
+            ->selectRaw('SUM(payments.amount) as total_spend, users.first_name, users.last_name, users.email, users.id')
+            ->groupBy('users.id')
+            ->orderBy('total_spend','DESC')
+            ->get();
+//        return $topCustomers;
 
         $popularProducts = \DB::table('order_product')
             ->join('products','products.id','order_product.product_id')
-            ->selectRaw('COUNT(*), SUM(products.price), order_product.order_id')
+            ->selectRaw('SUM(products.price), order_product.order_id,COUNT(*) as Total')
             ->groupBy('order_product.order_id')
             ->orderBy('order_product.order_id','DESC')
             ->get();
