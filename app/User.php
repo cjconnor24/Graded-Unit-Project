@@ -66,7 +66,7 @@ class User extends EloquentUser
 
     public function payments()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class,'customer_id');
     }
 
     /**
