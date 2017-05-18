@@ -110,10 +110,15 @@ class OrderController extends Controller
 
     }
 
+    /**
+     * Update the status of the order via Ajax from the view
+     * @param Order $order
+     * @param OrderStatus $status
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateStatus(Order $order, OrderStatus $status, Request $request)
     {
-
-//        dd([$order,$status]);
 
         $order->orderStatus()->associate($status);
         $order->save();
