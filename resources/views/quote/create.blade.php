@@ -4,6 +4,11 @@
 @endsection
 @section('scripts')
     <script src="{{asset('js/quote.js')}}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $( "#due_date" ).datepicker({ minDate: 0 });
+        });
+    </script>
 @endsection
 @section('content')
 
@@ -51,6 +56,12 @@
                 <label for="inputID">Order Date</label>
             <input type="date" name="date" id="inputID" class="form-control" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" title="" required="required" disabled>
             </div>
+
+            <div class="form-group">
+                {!! Form::label('due_date',"Due Date") !!}
+                {!! Form::text('due_date',null,['class'=>'form-control']) !!}
+            </div>
+
 
             <h3>Branch Address</h3>
             {{--<div class="form-group">--}}

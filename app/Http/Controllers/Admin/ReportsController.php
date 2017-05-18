@@ -27,71 +27,71 @@ class ReportsController extends Controller
             $query->where('slug','customer');
         })->select("first_name",'last_name','email','telephone','created_at')->get()->toArray();
 
+//        $users = \DB::table('users')
+//            ->join('orders','users.id','orders.customer_id')
+//            ->join('order_product','orders.id','order_id')
+//            ->join('products','products.id','order_product.product_id')
+//            ->select('users.first_name','users.last_name','products.name','orders.id','order_product.description')
+//            ->get();
+
+//        $popularProducts = \DB::table('order_product')
+//            ->join('order_product','orders.id','order_id')
+//            ->join('products','products.id','order_product.product_id')
+//            ->join('papers','papers.id','order_product.paper_id')
+//            ->join('sizes','sizes.id','order_product.size_id')
+//            ->join('states','states.id','orders.status_id')
+//            ->selectRaw('COUNT(*), products.name as Product')
+//            ->groupBy('products.id')
+//            ->orderBy('Total','DESC')
+//            ->get();
+
+        $popularProducts = \DB::table('order_product')
+            ->join('products','products.id','order_product.product_id')
+            ->selectRaw('COUNT(*), SUM(products.price), order_product.order_id')
+            ->groupBy('order_product.order_id')
+            ->orderBy('order_product.order_id','DESC')
+            ->get();
+
+        return $popularProducts;
+
+//        return $users;
+        $array = array();
+        foreach($popularProducts as $line){
+            $array[] = (array)$line;
+        }
+
+        return $this->downloadPDF($array,'Top Products / Configs');
+//        return $this->downloadCSV($array);
+        //            ->join('orders','users.id','orders.customer_id')
+//            ->select('users.first_name','users.last_name','products.name','orders.id','order_product.description')
+
+//        dd($users);
+//        return $this->downloadCSV($users);
+
+//        return $users;
 
 
-//        return $customers;
-        return $this->downloadCSV($customers);
+//        return $this->downloadCSV($users);
 
 
     }
 
-    public function downloadPDF()
+    public function show()
     {
 
-        $customers = User::whereHas('orders')->get();
+        $customers = User::select('first_name','last_name','email','last_login')->get()->toArray();
 
-
-
-
-
-
-        $customers->map(function($user){
-            $user->payment_total = $user->payments->sum(function($payment){
-                return $payment->amount;
-            });
-            $user->order_count = $user->orders->count();
-        });
-//        $orders = Order::with('payments')->get();
-
-
-        $sorted = $customers->sortBy('payment_total');
-return        $customers->get(['email','first_name']);
-
-        return $sorted->select('id')->get();
-
-
-
-        return $customers;
-
-            $customers->map(function($user){
-            $user->order_count = $user->orders->count();
-            $user->complete_spend = '1234';
-
-        });
-
-
-
-        return $customers;
-
-        $customers = User::whereHas('roles',function($query){
-            $query->where('slug','customer');
-        })->select("first_name",'last_name')->get()->toArray();
-
-
-//        return $customers;
-
-//        return $this->buildTable($customers);
-
-//        $pdf = PDF::loadView('reports.templates.customer',['customers'=>$customers]);
-                $pdf = PDF::loadView('reports.templates.template',[
-                    'title'=>'Customer Report',
-                    'table'=>$this->buildTable($customers)
-                ]);
-
-        return $pdf->download('invoice.pdf');
+            return $this->downloadCSV($customers);
+//        return $this->downloadPDF($customers,'Customer Report');
 
     }
 
+
+    /**
+     * Takes array data and returns an HTML table for use in PDF report
+     * @param $data
+     * @return string
+     */
     private function buildTable($data){
 
         $table='';
@@ -118,6 +118,31 @@ return        $customers->get(['email','first_name']);
 
     }
 
+    /**
+     * Takes data and renders a pdf
+     * @param $data
+     * @param string $title
+     * @param array $paper
+     * @return mixed
+     */
+    private function downloadPDF($data, $title = "Report",$paper = ['A4','portrait']){
+
+        $pdf = PDF::loadView('reports.templates.template',[
+            'title'=>$title,
+            'table'=>$this->buildTable($data)
+        ]);
+
+        $pdf->setPaper($paper[0], $paper[1]);
+
+        return $pdf->stream();
+
+    }
+
+    /**
+     * Takes array data and converts this to CSV report
+     * @param $data
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
     private function downloadCSV($data){
 
         $headers = [

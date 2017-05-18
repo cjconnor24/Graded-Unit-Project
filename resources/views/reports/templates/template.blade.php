@@ -5,7 +5,9 @@
         html, body, div, h1, h2, h3, p, blockquote, ul, ol, li, pre {
             margin: 0; padding: 0 }
 
-        @page {size: A4; margin: 10mm }
+        @page {
+            /*size: A4;*/
+            margin: 10mm }
         @media screen { body { margin: 5em }}
 
         address {
@@ -32,12 +34,21 @@
             margin:100px 0!important;
             width:100%;
             border-collapse: collapse;
+            font-size:x-small;
+            border-radius:10px;
         }
-        .table tr td {
+        .table, .table td, .table th {
+            border:1px solid #c9c9c9;
+        }
+        .table thead {
+            background:#666!important;
+            color:#FFF;
+        }
+        .table tr td, .table tr th {
             padding:0.5em!important;
         }
         .table tr:nth-child(even) {
-            background: #CCC
+            background: #e8e8e8;
         }
 
         .text-center {
@@ -45,7 +56,18 @@
         }
         .footer {
             position:absolute;
-            bottom:5mm;
+            bottom:0;
+            font-size:xx-small;
+
+        }
+        .footer small {
+            margin:1em 0;
+        }
+        .footer a {
+            text-decoration:none;
+            font-weight:bold;
+            color:#333;
+            margin:1em 0 0 0!important;
         }
 
     </style>
@@ -69,7 +91,7 @@
 
 <div class="left">
 
-    <h1>{{$title}}</h1>
+    <h1><span class="fi-"></span>{{$title}}</h1>
 
 </div>
 
@@ -97,8 +119,8 @@
 
 
 <div class="footer text-center">
-<p><small>SME Top 100 Number 75 This is an e-mail from Spectrum. Its contents are confidential to the intended recipient. If you are not the intended recipient, be advised that you have received this e-mail in error and that any use, dissemination, forwarding, printing or copying of this e-mail is strictly prohibited. It may not be disclosed to or used by anyone other than its intended recipient, nor may it be copied in any way.</small>
-<footer><a href="http://www.spectrumdubai.com">www.spectrumdubai.com</a></footer>
+<p><small>The information contained in this document is private and confidential and is the sole property of Spectrum Digital Print Solutions Ltd.. You may not disclose this information to anyone unless you have prior, written consent.</small>
+<p><a href="http://www.spectrumdubai.com">www.spectrumdubai.com</a></p>
 </div>
 
 </body>
