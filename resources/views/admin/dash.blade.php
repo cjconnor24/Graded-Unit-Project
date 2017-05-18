@@ -1,6 +1,6 @@
 @extends('layouts.admin_master')
 @section('content')
-    <h1>Administration Home</h1>
+    <h1><span class="fi-man fi-man-folders"></span> Administration Home</h1>
 <style type="text/css">
     #admin_menu {
         list-style: none;

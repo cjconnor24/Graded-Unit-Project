@@ -187,6 +187,9 @@ return [
         // BRAINTREE ADD ON
         Oureastudios\Laravel\BraintreeServiceProvider::class,
 
+        // DOM PDF
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -242,6 +245,8 @@ return [
         'Activation' => Cartalyst\Sentinel\Laravel\Facades\Activation::class,
         'Reminder'   => Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
         'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
+        // PDF
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

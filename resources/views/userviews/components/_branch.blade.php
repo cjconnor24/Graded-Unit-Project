@@ -6,7 +6,7 @@
     @endslot
 
     <h4>{{$branch->name}}</h4>
-    <p>{!! str_replace(', ',',<br />',$branch->full_address) !!}</p>
+    <address>{!! str_replace(', ',',<br />',$branch->full_address) !!}</address>
     <p><a href="mailto:{{$branch->email}}">{{$branch->email}}</a><br />{{$branch->telephone}}</p>
 
     <hr>

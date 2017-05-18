@@ -138,4 +138,9 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
     Route::post('staff/enable','StaffController@enableUser');
     Route::post('staff/role','StaffController@toggleRole');
 
+
+    Route::get('reports/','ReportsController@index');
+    Route::get('reports/customer','ReportsController@customer');
+    Route::get('reports/pdf','ReportsController@downloadPDF');
+
 });
