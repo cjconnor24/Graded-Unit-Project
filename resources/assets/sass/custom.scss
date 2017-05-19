@@ -11,6 +11,15 @@ footer {
   padding:2em 0 2em 0;
 }
 
+.report-selector .active {
+  background: $brand-success;
+}
+.report-selector span {
+  font-size:3em!important;
+}
+
+
+
 .notification {
     position:absolute;
     right:20px;

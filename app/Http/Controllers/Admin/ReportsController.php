@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Branch;
 use App\Order;
+use App\OrderStatus;
+use App\State;
 use App\User;
+use Carbon\Carbon;
 use PDF;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
@@ -18,6 +21,80 @@ class ReportsController extends Controller
     {
 
         return view('reports.index');
+    }
+
+    public function orders()
+    {
+        $states = State::pluck('name','id');
+        $statuses = OrderStatus::pluck('name','id');
+
+        return view('reports.orderReport')
+            ->with([
+                'states'=>$states,
+                'statuses'=>$statuses
+            ]);
+    }
+
+    public function ordersPost(Request $request)
+    {
+//        return $request->all();
+
+        $results = \DB::table('orders')
+        ->join('states','states.id','orders.state_id')
+        ->join('users','users.id','orders.customer_id');
+
+        $results->selectRaw(
+            'orders.id AS OrderID,
+            users.id as CustomerID,
+            CONCAT(users.first_name," ",users.last_name) AS CustomerName,
+            orders.created_at AS CreatedON,
+            states.name AS OrderType');
+
+        // SEARCH START DATE
+        if(isset($request->start_date)){
+
+            $results->where('orders.created_at','>=',Carbon::parse($request->start_date));
+        }
+
+        // SEARCH END DATE
+        if(isset($request->end_date)){
+
+            $results->where('orders.created_at','<=',Carbon::parse($request->end_date));
+        }
+
+        // ORDER TYPE
+        if(isset($request->state_id)){
+            $results->where('orders.state_id',$request->state_id);
+        }
+
+        if(isset($request->status_id)){
+            $results->where('orders.status_id',$request->status_id);
+        }
+
+        if(isset($request->customer_name)){
+            $results->where('users.first_name','LIKE',$request->customer_name)
+            ->orWhere('users.last_name','LIKE',$request->customer_name);
+        }
+
+
+
+        $temp = $results->get()->toArray();
+
+        if(count($temp)>0) {
+
+
+            if ($request->report_type == 'csv') {
+                return $this->downloadCSV($this->convertToArray($temp));
+            } else {
+                return $this->downloadPDF($this->convertToArray($temp), 'Order Report');
+            }
+
+        } else {
+
+            return redirect()->action('Admin\ReportsController@orders')->withErrors('There are no results');
+
+        }
+
     }
 
     public function customer()
@@ -95,6 +172,19 @@ class ReportsController extends Controller
 
 
     /**
+     * Flattens objects further down array
+     * @param $data
+     * @return array
+     */
+    private function convertToArray($data){
+        $array = array();
+        foreach($data as $line){
+            $array[] = (array)$line;
+        }
+        return $array;
+    }
+
+    /**
      * Takes array data and returns an HTML table for use in PDF report
      * @param $data
      * @return string
@@ -141,7 +231,8 @@ class ReportsController extends Controller
 
         $pdf->setPaper($paper[0], $paper[1]);
 
-        return $pdf->stream();
+//        return $pdf->stream();
+        return $pdf->download();
 
     }
 

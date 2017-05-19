@@ -144,4 +144,7 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
     Route::get('reports/pdf','ReportsController@downloadPDF');
     Route::get('reports/show','ReportsController@show');
 
+    Route::get('reports/orders','ReportsController@orders');
+    Route::post('reports/orders','ReportsController@ordersPost');
+
 });

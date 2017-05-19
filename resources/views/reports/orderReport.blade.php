@@ -1,43 +1,7 @@
 @extends('layouts.admin_master')
+
 @section('scripts')
-    <script type="text/javascript">
-        $(function() {
-            // DATE PICKERS
-            $( "#start_date" ).datepicker({dateFormat:'dd-mm-yy'});
-            $( "#end_date" ).datepicker({ maxDate: 0, dateFormat:'dd-mm-yy' });
-
-            var availableTags = [
-                "ActionScript",
-                "AppleScript",
-                "Asp",
-                "BASIC",
-                "C",
-                "C++",
-                "Clojure",
-                "COBOL",
-                "ColdFusion",
-                "Erlang",
-                "Fortran",
-                "Groovy",
-                "Haskell",
-                "Java",
-                "JavaScript",
-                "Lisp",
-                "Perl",
-                "PHP",
-                "Python",
-                "Ruby",
-                "Scala",
-                "Scheme"
-            ];
-            $( "#customer_name" ).autocomplete({
-                source: availableTags
-            });
-
-        });
-    </script>
-@endsection
-
+    @endsection
 @section('content')
 
     <h1><span class="fi-man-line-graph fi-man"></span>Search Orders</h1>
@@ -46,7 +10,7 @@
     @component('components.panel')
     @slot('title')
 
-        <span class="fi-man-search fi-man"></span> Search Orders
+        <span class="fi-man-search fi-man"></span> Export Orders Report
         @endslot
     {!! Form::open(['action' => 'Admin\ReportsController@ordersPost']) !!}
         <div class="row">
@@ -109,10 +73,38 @@
 
         </div>
 
+        <div class="col-md-6">
+
+            <div class="form-group">
+
+                {!! Form::label('report_type',"Report Type") !!}
+
+                <div class="btn-group report-selector" data-toggle="buttons">
+
+                    <label class="btn btn-success btn-lg active">
+                        <input type="radio" name="report_type" id="option1" autocomplete="off" value="csv" checked="checked" title="CSV Report">
+                        <span class="flaticon-form-txt fi-form"></span>
+                    </label>
+
+                    <label class="btn btn-success btn-lg">
+                        <input type="radio" name="report_type" id="option2" autocomplete="off" value="pdf" title="PDF Report">
+                        <span class="flaticon-form-pdf fi-form"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
     </div>
 
-        <button type="submit" class="btn btn-lg btn-success"><span class="glyphicon-search glyphicon"></span> Search</button>
+        <button type="submit" class="btn btn-lg btn-success"><span class="fi-misc-download fi-misc"></span> Export Report</button>
     {!! Form::close() !!}
+
+
     @endcomponent
     </div>
 
