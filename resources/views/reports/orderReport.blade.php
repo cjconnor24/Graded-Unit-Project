@@ -1,7 +1,13 @@
 @extends('layouts.admin_master')
 
 @section('scripts')
-    @endsection
+    <script type="text/javascript">
+        $( function() {
+            $( "#start_date" ).datepicker({dateFormat:'dd-mm-yy'});
+            $( "#end_date" ).datepicker({dateFormat:'dd-mm-yy',maxDate:0});
+        } );
+    </script>
+@endsection
 @section('content')
 
     <h1><span class="fi-man-line-graph fi-man"></span>Search Orders</h1>
