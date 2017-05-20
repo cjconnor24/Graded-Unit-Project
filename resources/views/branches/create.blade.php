@@ -5,10 +5,15 @@
     @include('includes.errors')
     {!! Form::open(['action' => 'Admin\BranchController@store']) !!}
 
+
+
    @include('branches._form')
+            {!! Form::submit('Add New Branch',['class'=>'btn btn-success']) !!}
 
 
-    {!! Form::submit('Add New Branch',['class'=>'btn btn-success']) !!}
+
+
+
 
 
     {!! Form::close() !!}
