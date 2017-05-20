@@ -2,6 +2,7 @@ $( document ).ready(function() {
 
     var count = $('#invoice_table tbody tr').length;
 
+
     $('#invoice_table').on('click', '.remove-row', function(e) {
 
         e.preventDefault();

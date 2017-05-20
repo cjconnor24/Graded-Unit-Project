@@ -66,7 +66,7 @@ class QuotationController extends Controller
         $order->branch_id = $request->branch_id;
         $order->state_id = 1;
         $order->discount = 0.0;
-        $order->due_date = Carbon::now();
+        $order->due_date = Carbon::parse($request->due_date);
 
         $order->save();
 
@@ -141,6 +141,7 @@ class QuotationController extends Controller
         $quotation->address_id = $request->address_id;
         $quotation->staff_id = $request->staff_id;
         $quotation->branch_id = $request->branch_id;
+        $quotation->due_date = Carbon::parse($request->due_date);
 
         $quotation->save();
 

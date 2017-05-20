@@ -6,7 +6,7 @@
     <script src="{{asset('js/quote.js')}}"></script>
     <script type="text/javascript">
         $(function() {
-            $( "#due_date" ).datepicker({ minDate: 0 });
+            $( "#due_date" ).datepicker({ minDate: 0, dateFormat:'dd-mm-yy' });
         });
     </script>
 @endsection
@@ -22,10 +22,15 @@
 
     @include('includes.errors')
 
-    <div class="row">
+    <div class="row row-eq-height">
 
-        <div class="col-md-6 col-lg-6">
-            <h3>Customer Details</h3>
+        <div class="col-md-6 col-lg-6 stretch">
+
+            @component('components.panel')
+
+                @slot('title')
+                   <span class="fi-misc-user fi-misc"></span> Customer Details
+                @endslot
 
             <div class="form-group">
                 <label for="customer_id">Choose Customer</label>
@@ -40,12 +45,16 @@
 
             <h3>Customer Address</h3>
             <p id="customer_address"></p>
-
+            @endcomponent
 
         </div>
 
-        <div class="col-md-6 col-lg-6">
-            <h3>Order Details</h3>
+        <div class="col-md-6 col-lg-6 stretch">
+
+            @component('components.panel')
+                @slot('title')
+                       <span class="fi-shop-shop fi-shop"></span> Order Details
+                @endslot
 
             <div class="form-group">
                 <label for="branch_id">Choose Branch</label>
@@ -67,6 +76,7 @@
             {{--<div class="form-group">--}}
                 {{--<input type="datetime-local" name="due_date" class="form-control" value="{{\Carbon\Carbon::tomorrow()}}" required="required">--}}
             {{--</div>--}}
+                @endcomponent
 
 
         </div>
@@ -74,17 +84,15 @@
     </div>
 
 
-<h3>Order Details</h3>
+<h3><span class="fi-shop-shopping-basket fi-shop"></span> Products</h3>
 
-<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#product_modal"><span class="glyphicon glyphicon-plus"></span> Add Product</button>
+<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#product_modal"><span class="fi-shop-price-tag fi-shop"></span> Add Product</button>
 
 
 @include('quote._invoicetable')
 
+<button type="submit" class="btn btn-success"><span class="glyphicon-save-file glyphicon"></span> Create Quotation</button>
 
-
-    {!! Form::submit('Create Quotation',['class'=>'btn btn-success']) !!}
-    
 </form>
 @include('quote._productmodal')
 

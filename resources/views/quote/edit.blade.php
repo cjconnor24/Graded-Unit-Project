@@ -4,6 +4,11 @@
 @endsection
 @section('scripts')
     <script src="{{asset('js/quote.js')}}"></script>
+<script type="text/javascript">
+    $(function() {
+        $( "#due_date" ).datepicker({ minDate: 0, dateFormat:'dd-mm-yy' });
+    });
+</script>
 @endsection
 @section('content')
 
@@ -21,10 +26,14 @@
 
     @include('includes.errors')
 
-    <div class="row">
+    <div class="row row-eq-height">
 
-        <div class="col-md-6 col-lg-6">
-            <h3>Customer Details</h3>
+        <div class="col-md-6 col-lg-6 stretch">
+            @component('components.panel')
+
+                @slot('title')
+                    <span class="fi-misc-user fi-misc"></span> Customer Details
+                @endslot
 
             <div class="form-group">
                 <label for="customer_id">Choose Customer</label>
@@ -43,31 +52,39 @@
 
             </p>
 
+                @endcomponent
 
         </div>
 
-        <div class="col-md-6 col-lg-6">
-            <h3>Order Details</h3>
+        <div class="col-md-6 col-lg-6 stretch">
+            @component('components.panel')
+                @slot('title')
+                    <span class="fi-shop-shop fi-shop"></span> Order Details
+                @endslot
 
             <div class="form-group">
                 <label for="branch_id">Choose Branch</label>
                 {!! Form::select('branch_id', $branches,$quotation->branch->id, ['id'=>'branch_id','placeholder' => 'Please select a branch','class'=>'form-control input-sm']) !!}
             </div>
 
-            <h3>Staff</h3>
+
+                    <div class="form-group">
+                    <label for="staff_id">Staff Member</label>
             {!! Form::select('staff_id', $staff,null, ['id'=>'staff_id','placeholder' => 'Please select a staff member','class'=>'form-control input-sm']) !!}
+                    </div>
 
-            <div class="form-group">
-                <label for="inputID">Order Date</label>
-            
-            </div>
+                    <div class="form-group">
+                        {!! Form::label('due_date',"Order Due Date") !!}
+                        {!! Form::text('due_date',null,['class'=>'form-control']) !!}
+                    </div>
+                
 
-            <h3>Branch Address</h3>
+            {{--<h3>Branch Address</h3>--}}
             {{--<div class="form-group">--}}
                 {{--<input type="datetime-local" name="due_date" class="form-control" value="{{\Carbon\Carbon::tomorrow()}}" required="required">--}}
             {{--</div>--}}
 
-
+@endcomponent
         </div>
 
     </div>
