@@ -1,29 +1,41 @@
 @extends('layouts.admin_master')
 @section('content')
     <h1><span class="fi-man fi-man-folders"></span> Administration Home</h1>
-<style type="text/css">
-    #admin_menu {
-        list-style: none;
-        padding:0;
-        margin:0;
-    }
-    #admin_menu li {
-        display:inline-block;
-    }
-    #admin_menu li a {
-        background:#0a6ebd!important;
-        display:block;
-        padding:3em;
-        margin:0 1em 0 0;
-        color:#FFF;
-    }
-    #admin_menu li a span {
-        font-size:3em;
-    }
-</style>
-    <ul id="admin_menu">
-        <li><a href="{{action('Admin\AdminController@index')}}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        <li><a href="{{action('Admin\QuotationController@index')}}"><span class="glyphicon glyphicon-list-alt"></span> Quotations</a></li>
-        <li><a href="{{action('Admin\OrderController@index')}}"><span class="glyphicon glyphicon-list-alt"></span> Orders</a></li>
-    </ul>
+
+
+    <div class="row">
+
+        <div class="col-md-3">
+            @component('components.dash-panel',[
+'colour'=>'warning',
+'icon'=>'fi-shop fi-shop-shopping-cart',
+'count'=>$totals[0]->total,
+'name'=>'Quotations',
+'link'=>action('Admin\QuotationController@index')])
+            @endcomponent
+        </div>
+
+        <div class="col-md-3">
+            @component('components.dash-panel',[
+'colour'=>'info',
+'icon'=>'fi-shop-online-shop-1 fi-shop',
+'count'=>$totals[1]->total,
+'name'=>'Orders',
+'link'=>action('Admin\OrderController@index')])
+            @endcomponent
+        </div>
+
+        <div class="col-md-3">
+            @component('components.dash-panel',[
+'colour'=>'danger',
+'icon'=>'fi-misc-users fi-misc',
+'count'=>$customers,
+'name'=>'Customers',
+'link'=>'#'])
+            @endcomponent
+        </div>
+
+    </div>
+
+
 @endsection
