@@ -6,7 +6,7 @@
     {!! Form::open(['action' => 'Admin\CategoryController@store']) !!}
     <div class="form-group">
         {!! Form::label('name',"Category Name") !!}
-        {!! Form::text('name',null,['class'=>'form-control']) !!}
+        {!! Form::text('name',null,['class'=>'form-control','required']) !!}
     </div>
     {!! Form::submit('Add Category',['class'=>'btn btn-success']) !!}
     {!! Form::close() !!}

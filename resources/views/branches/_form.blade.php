@@ -1,12 +1,12 @@
 
 <div class="form-group">
     {!! Form::label('name',"Branch Name") !!}
-    {!! Form::text('name',null,['class'=>'form-control']) !!}
+    {!! Form::text('name',null,['class'=>'form-control','required']) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('address1',"Address Line 1") !!}
-    {!! Form::text('address1',null,['class'=>'form-control']) !!}
+    {!! Form::text('address1',null,['class'=>'form-control','required']) !!}
 </div>
 
 <div class="form-group">
@@ -26,7 +26,7 @@
 
 <div class="form-group">
     {!! Form::label('postcode',"Postcode") !!}
-    {!! Form::text('postcode',null,['class'=>'form-control']) !!}
+    {!! Form::text('postcode',null,['class'=>'form-control','required']) !!}
 </div>
 
 <div class="row">
@@ -35,7 +35,7 @@
 
         <div class="form-group">
             {!! Form::label('telephone',"Telephone") !!}
-            {!! Form::text('telephone',null,['class'=>'form-control']) !!}
+            {!! Form::text('telephone',null,['class'=>'form-control','required']) !!}
         </div>
 
     </div>
@@ -43,7 +43,7 @@
 
         <div class="form-group">
             {!! Form::label('email',"Email Address") !!}
-            {!! Form::text('email',null,['class'=>'form-control']) !!}
+            {!! Form::text('email',null,['class'=>'form-control','required']) !!}
         </div>
 
     </div>
