@@ -41,14 +41,21 @@ class ReportsController extends Controller
 
         $results = \DB::table('orders')
         ->join('states','states.id','orders.state_id')
-        ->join('users','users.id','orders.customer_id');
+        ->join('users','users.id','orders.customer_id')
+        ->join('order_statuses','order_statuses.id','orders.status_id');
+
+
 
         $results->selectRaw(
-            'orders.id AS OrderID,
+            'orders.id AS OrderNumber,
             users.id as CustomerID,
             CONCAT(users.first_name," ",users.last_name) AS CustomerName,
             orders.created_at AS CreatedON,
-            states.name AS OrderType');
+            UCASE(states.name) AS OrderType,
+            order_statuses.name');
+
+
+
 
         // SEARCH START DATE
         if(isset($request->start_date)){
@@ -75,6 +82,8 @@ class ReportsController extends Controller
             $results->where('users.first_name','LIKE',$request->customer_name)
             ->orWhere('users.last_name','LIKE',$request->customer_name);
         }
+
+        return $results->get();
 
 
 
