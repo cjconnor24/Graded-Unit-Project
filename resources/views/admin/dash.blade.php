@@ -9,7 +9,7 @@
             @component('components.dash-panel',[
 'colour'=>'warning',
 'icon'=>'fi-shop fi-shop-shopping-cart',
-'count'=>$totals[0]->total,
+'count'=>$totals['quotes'],
 'name'=>'Quotations',
 'link'=>action('Admin\QuotationController@index')])
             @endcomponent
@@ -19,7 +19,7 @@
             @component('components.dash-panel',[
 'colour'=>'info',
 'icon'=>'fi-shop-online-shop-1 fi-shop',
-'count'=>$totals[1]->total,
+'count'=>$totals['orders'],
 'name'=>'Orders',
 'link'=>action('Admin\OrderController@index')])
             @endcomponent
@@ -31,7 +31,7 @@
 'icon'=>'fi-misc-users fi-misc',
 'count'=>$customers,
 'name'=>'Customers',
-'link'=>'#'])
+'link'=>action('Admin\CustomerController@index')])
             @endcomponent
         </div>
 

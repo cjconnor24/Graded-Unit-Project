@@ -14,6 +14,11 @@ use Illuminate\Http\Request;
 class UserProfileController extends Controller
 {
 
+    public function index()
+    {
+        return view('user.dash');
+    }
+
     /**
      * Display the information for the current logged in user
      * @return $this
@@ -21,7 +26,16 @@ class UserProfileController extends Controller
     public function view()
     {
         $user = Sentinel::getUser();
-        return view('user.profile')->with('user',$user);
+
+
+
+        $totals['orders'] = \DB::table('orders')->where('state_id',2)->where('customer_id',$user->id)->count();
+        $totals['quotes'] = \DB::table('orders')->where('state_id',1)->where('customer_id',$user->id)->count();
+
+        return view('user.profile')->with([
+            'user'=>$user,
+            'totals'=>$totals
+        ]);
     }
 
     /**

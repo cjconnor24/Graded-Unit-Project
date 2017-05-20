@@ -19,7 +19,7 @@
                 @endslot
 
                 <a href="{{action('Admin\QuotationController@edit',['quotation'=>$quotation->id])}}" class="btn btn-lg btn-success btn-block"><span class="glyphicon glyphicon-edit"></span> Edit Quotation</a>
-                <a href="#" class="btn btn-danger btn-group-sm btn-block"><span class="fi-misc-trash fi-misc"></span> Cancel Quotation</a>
+                <a href="javascript:alert('In the pipeline');" class="btn btn-danger btn-group-sm btn-block"><span class="fi-misc-trash fi-misc"></span> Cancel Quotation</a>
 
         @endcomponent
 

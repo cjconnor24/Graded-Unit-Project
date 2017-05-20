@@ -22,7 +22,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li><a href="{{action('UserProfileController@view')}}">Home</a></li>
+                <li><a href="{{action('PagesController@dashboard')}}">Home</a></li>
                 <li><a href="{{action('UserQuotationController@index')}}">Quotations</a></li>
                 <li><a href="{{action('UserOrderController@index')}}">Orders</a></li>
                 <li><a href="javascript:alert('I\'m getting there...');">Invoices</a></li>
@@ -35,15 +35,17 @@
                     <li><a href="{{ action("RegistrationController@create")}}">Register</a></li>
                     <li><a href="{{ action("LoginController@loginForm")}}">Login</a></li>
                 @else
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Account
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{action('UserProfileController@view')}}">Addresses</a></li>
-                            <li><a href="{{action('UserProfileController@createAddress')}}">Create New Address</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ action("UserProfileController@view")}}">Profile</a></li>
+                    <li><a href="{{ action("UserProfileController@view")}}">Account</a></li>
+
+                    {{--<li class="dropdown">--}}
+                        {{--<a class="dropdown-toggle" data-toggle="dropdown" href="{{action('UserProfileController@view')}}">Manage Account--}}
+                            {{--<span class="caret"></span></a>--}}
+                        {{--<ul class="dropdown-menu">--}}
+                            {{--<li><a href="{{action('UserProfileController@viewAddresses')}}">Addresses</a></li>--}}
+                            {{--<li><a href="{{action('UserProfileController@createAddress')}}">Create New Address</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
+                    {{--<li><a href="{{ action("UserProfileController@view")}}">Profile</a></li>--}}
                     <li><a href="{{ action("LoginController@logout")}}">Logout</a></li>
                 @endif
             </ul>
