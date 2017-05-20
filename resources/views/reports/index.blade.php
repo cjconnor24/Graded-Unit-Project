@@ -13,8 +13,20 @@
             'name'=>'Orders',
             'link'=>action('Admin\ReportsController@orders')])
             @endcomponent
+
+        </div>
+
+        <div class="col-md-4">
+
+            @component('components.dash-panel',[
+            'colour'=>'info',
+            'icon'=>'fi-misc-users fi-misc',
+            'name'=>'Customers',
+            'link'=>action('Admin\ReportsController@customers')])
+            @endcomponent
+
         </div>
 
     </div>
-    
+
 @endsection

@@ -23,10 +23,75 @@ class ReportsController extends Controller
         return view('reports.index');
     }
 
-    public function orders()
+    public function customers()
+    {
+
+        return view('reports.customerReport');
+    }
+
+    public function customersPost(Request $request)
+    {
+
+        if(!$request->total_spend){
+
+        $query = \DB::table('role_users')
+            ->join('roles','roles.id','role_users.role_id')
+            ->join('users','users.id','role_users.user_id')
+            ->where('roles.slug','customer')
+            ->selectRaw('users.id as customer_id, users.first_name,users.last_name,users.email,users.created_at as registered, users.telephone');
+
+
+
+        } else {
+
+            $query = \DB::table('order_product')
+                ->join('products', 'products.id', 'order_product.product_id')
+                ->join('orders', 'orders.id', 'order_product.order_id')
+                ->join('users', 'users.id', 'orders.customer_id')
+                ->selectRaw("users.id AS customer_id, users.first_name,users.last_name, users.email, users.created_at as registered, SUM(products.price * order_product.qty) AS total_spend ")
+                ->groupBy('users.id')
+                ->where('orders.state_id', '2')
+                ->orderBy('total_spend','DESC');
+
+        }
+
+        if($request->start_date){
+            $query->where('users.created_at','>=',Carbon::parse($request->start_date));
+        }
+
+        if($request->end_date){
+            $query->where('users.created_at','<=',Carbon::parse($request->end_date));
+        }
+
+        $result = $query->get()->toArray();
+
+
+
+        if(count($result)>0){
+
+        if ($request->report_type == 'csv') {
+            return $this->downloadCSV($this->convertToArray($result));
+        } else {
+            return $this->downloadPDF($this->convertToArray($result), 'Customer Report');
+        }
+
+        } else {
+
+            return back()->with('error','There are no results');
+
+        }
+
+
+//        return $query->get();
+
+    }
+
+
+        public function orders()
     {
         $states = State::pluck('name','id');
         $statuses = OrderStatus::pluck('name','id');
+
 
         return view('reports.orderReport')
             ->with([
@@ -44,6 +109,7 @@ class ReportsController extends Controller
         ->join('users','users.id','orders.customer_id')
         ->join('order_statuses','order_statuses.id','orders.status_id');
 
+//            return $results->get();
 
 
         $results->selectRaw(
@@ -83,8 +149,8 @@ class ReportsController extends Controller
             ->orWhere('users.last_name','LIKE',$request->customer_name);
         }
 
-        return $results->get();
-
+//        return $results->get();
+//
 
 
         $temp = $results->get()->toArray();

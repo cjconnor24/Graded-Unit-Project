@@ -147,4 +147,7 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
     Route::get('reports/orders','ReportsController@orders');
     Route::post('reports/orders','ReportsController@ordersPost');
 
+    Route::get('reports/customers','ReportsController@customers');
+    Route::post('reports/customers','ReportsController@customersPost');
+
 });
