@@ -8,12 +8,14 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
+/**
+ * Listener to Send approval E-Email to Customer
+ * @package App\Listeners
+ */
 class SendApprovalMail
 {
     /**
-     * Create the event listener.
-     *
-     * @return void
+     * SendApprovalMail constructor.
      */
     public function __construct()
     {
@@ -26,8 +28,8 @@ class SendApprovalMail
      */
     public function handle(QuoteCreated $event)
     {
-        \Log::info('Send mail',['user'=>$event->user,'order'=>$event->order,'activation'=>$event->activation]);
-
+//        LOG FOR DEBUGGING
+//        \Log::info('Send mail',['user'=>$event->user,'order'=>$event->order,'activation'=>$event->activation]);
         Mail::to($event->user->email)->send(new QuoteApprovalMail($event->user,$event->activation,$event->order));
 
     }

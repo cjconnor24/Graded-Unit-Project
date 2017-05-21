@@ -7,12 +7,15 @@ use App\QuoteApproval;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+/**
+ * Listener to Create Quote Approval
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ * @package App\Listeners
+ */
 class CreateQuoteApproval
 {
     /**
-     * Create the event listener.
-     *
-     * @return void
+     * CreateQuoteApproval constructor.
      */
     public function __construct()
     {
