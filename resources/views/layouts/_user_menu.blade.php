@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
-                <img alt="Brand" src="/img/spectrum-logo.svg" style="width:200px" />
+                <img alt="Brand" src="/img/spectrum-logo-white.svg" style="width:200px" />
             </a>
         </div>
     </div>

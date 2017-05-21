@@ -1,32 +1,34 @@
 <footer>
-
-    <div class="row">
-
-        <div class="container">
-
-            <div class="col-md-4">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#">One</a></li>
-                    <li><a href="#">Two</a></li>
-                    <li><a href="#">Three</a></li>
-                </ul>
-            </div>
-
-            <div class="col-md-4">
-                <h4>Another Footer Section</h4>
-            </div>
-
-            <div class="col-md-4">
-                <h4>Social Media Icons</h4>
-            </div>
+    <div class="container">
+<div class="row">
 
 
 
+        <div class="col-md-4">
+            <h4>Spectrum Digital Print</h4>
+            <address>
+            Dubai International Financial Centre,<br>
+                Level B1,<br>
+                The Marble Walk,<br>
+                Dubai,<br>
+                PO Box 482043
+            </address>
         </div>
 
-        <p class="text-center">All Rights Reserved Spectrum Digital Print {{\Carbon\Carbon::now()->year}}</p>
-
+    <div class="col-md-4">
+        <h3>Hello</h3>
+        <p>Column 2</p>
     </div>
 
+    <div class="col-md-4">
+        <h3>Hello</h3>
+        <p>Column 3</p>
+    </div>
+
+
+
+</div>
+        <p class="text-center">Spectrum Digital Print Solutions &copy; {{\Carbon\Carbon::now()->year}}</p>
+
+    </div>
 </footer>
