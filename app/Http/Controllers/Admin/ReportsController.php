@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Branch;
@@ -14,15 +13,28 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Sentinel;
 
+/**
+ * Class ReportsController Manages creation and export of reports
+ * @author Chris Connor chris@chrisconnor.co.uk
+ * @package App\Http\Controllers\Admin
+ */
 class ReportsController extends Controller
 {
 
+    /**
+     * Displays the Reports Dashboard
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Report Dashboard View
+     */
     public function index()
     {
 
         return view('reports.index');
     }
 
+    /**
+     * Displays the customer reporting view
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Customer Reporting View
+     */
     public function customers()
     {
 
