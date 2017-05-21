@@ -5,10 +5,15 @@ namespace App\Http\Middleware;
 use App\Order;
 use Closure;
 
+/**
+ * Middleware to restrict access to the payment page if order is already paid.
+ * Prevent overpaying.
+ * @package App\Http\Middleware
+ */
 class PaymentMiddleware
 {
     /**
-     * Handle an incoming request.
+     * Handle an incoming request to ensure order isn't already paid
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next

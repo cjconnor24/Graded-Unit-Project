@@ -1,6 +1,8 @@
 @extends('layouts.user_master')
 @section('content')
 
+    @include('includes.errors')
+
     <h1>Dashboard</h1>
 
     <div class="row row-eq-height">

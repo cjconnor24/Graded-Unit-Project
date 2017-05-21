@@ -5,6 +5,10 @@ namespace App\Http\Middleware;
 use Closure;
 use Sentinel;
 
+/**
+ * Middleware to restrict access to authenticated users only.
+ * @package App\Http\Middleware
+ */
 class AuthenticateMiddleware
 {
     /**

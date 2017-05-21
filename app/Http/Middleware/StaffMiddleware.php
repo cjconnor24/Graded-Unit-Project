@@ -5,6 +5,11 @@ namespace App\Http\Middleware;
 use Sentinel;
 use Closure;
 
+/**
+ * Middleware for restricting access to users with a Staff role
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ * @package App\Http\Middleware
+ */
 class StaffMiddleware
 {
     /**

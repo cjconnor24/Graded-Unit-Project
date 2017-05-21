@@ -5,6 +5,11 @@ namespace App\Http\Middleware;
 use Sentinel;
 use Closure;
 
+/**
+ * Middleware to restrict access to customer pages. User must have customer role to access.
+ * @package App\Http\Middleware
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ */
 class CustomerMiddleware
 {
     /**
