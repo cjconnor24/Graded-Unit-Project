@@ -9,22 +9,29 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+/**
+ * Mailable for when user registers
+ * @package App\Mail
+ */
 class UserRegistered extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
+     * Registered user
      * @var User
      */
     public $user;
+
     /**
+     * Registration activation
      * @var Activation
      */
     public $activation;
 
     /**
      * UserRegistered constructor.
-     * @param User $user
+     * @param User $user Registered user
      */
     public function __construct(User $user, $activationCode)
     {
@@ -34,7 +41,7 @@ class UserRegistered extends Mailable
     }
 
     /**
-     * Build the message.
+     * Build the message using the view.
      *
      * @return $this
      */

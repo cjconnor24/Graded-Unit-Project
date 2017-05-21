@@ -8,17 +8,29 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\User;
 
+/**
+ * Mailable for Password Resets
+ * @package App\Mail
+ */
 class PasswordReset extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * The user
+     * @var User
+     */
     var $user;
+    /**
+     * Reset code for password
+     * @var string
+     */
     var $resetCode;
 
     /**
-     * Create a new message instance.
-     *
-     * @return void
+     * PasswordReset constructor.
+     * @param User $user
+     * @param $resetCode
      */
     public function __construct(User $user, $resetCode)
     {
@@ -27,7 +39,7 @@ class PasswordReset extends Mailable
     }
 
     /**
-     * Build the message.
+     * Build the message using the template
      *
      * @return $this
      */

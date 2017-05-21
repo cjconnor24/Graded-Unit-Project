@@ -10,28 +10,36 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+/**
+ * Mailable for quote approval
+ * @package App\Mail
+ */
 class QuoteApprovalMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
+     * User belonging to quote
      * @var User object
      */
     public $user;
     /**
+     * Approval for quotation
      * @var Quote Approval
      */
     public $approval;
 
     /**
+     * Quotation itself
      * @var Order Details
      */
     public $quotation;
 
     /**
-     * Create a new message instance.
-     *
-     * @return void
+     * QuoteApprovalMail constructor.
+     * @param User $user User belonging to quote
+     * @param QuoteApproval $approval The approval
+     * @param Order $quotation The quote itself
      */
     public function __construct(User $user, QuoteApproval $approval, Order $quotation)
     {
@@ -41,7 +49,7 @@ class QuoteApprovalMail extends Mailable
     }
 
     /**
-     * Build the message.
+     * Build the message using the view.
      *
      * @return $this
      */
