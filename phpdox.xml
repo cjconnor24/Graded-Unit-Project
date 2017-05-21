@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phpdox xmlns="http://xml.phpdox.net/config">
-  <project name="Spectrum Digitlal Print" source="${basedir}/app" workdir="${basedir}/build/api/xml">
+  <project name="Spectrum Digitlal Print" source="${basedir}/app" workdir="../specdox/build/api/xml">
     <collector backend="parser" />
-    <generator output="${basedir}/build/api">
+    <generator output="../specdox/build/api">
       <build engine="html" output="html"/>
     </generator>
   </project>
