@@ -6,6 +6,11 @@ use App\Address;
 use Sentinel;
 use Closure;
 
+/**
+ * Middleware to ensure the the address belongs to the logged in user before allow them access
+ * @package App\Http\Middleware
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ */
 class AddressOwner
 {
     /**

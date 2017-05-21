@@ -8,6 +8,7 @@ use Closure;
 /**
  * Middleware to restrict access to the payment page if order is already paid.
  * Prevent overpaying.
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App\Http\Middleware
  */
 class PaymentMiddleware

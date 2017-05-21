@@ -8,6 +8,7 @@ use Sentinel;
 /**
  * Middleware to restrict access to authenticated users only.
  * @package App\Http\Middleware
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  */
 class AuthenticateMiddleware
 {

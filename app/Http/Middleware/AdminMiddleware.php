@@ -5,6 +5,10 @@ namespace App\Http\Middleware;
 use Sentinel;
 use Closure;
 
+/**
+ * Middleware to ensure that user has an admin role.
+ * @package App\Http\Middleware
+ */
 class AdminMiddleware
 {
     /**
