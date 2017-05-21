@@ -4,17 +4,25 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Address - Model to represent address
+ * @package App
+ */
 class Address extends Model
 {
     /**
-     * Associates address with a particular user
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Eloquent relationship with Address
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo User related to address
      */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Concatenates address fields into single string
+     * @return string Comma-separated string of address fields
+     */
     public function getFullAddressAttribute()
     {
         $fullAddress = '';

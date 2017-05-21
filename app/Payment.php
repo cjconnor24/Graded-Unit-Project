@@ -4,8 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Payment - Model to represent payment
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ * @package App
+ */
 class Payment extends Model
 {
+    /**
+     * Columns which are mass-assignable
+     * @var array Array of Column Names
+     */
     protected $fillable = ['customer_id',
         'order_id',
         'transaction_id',
@@ -16,8 +25,8 @@ class Payment extends Model
     // RELATIONSHIPS
 
     /**
-     * Payment belongs to an orders
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Eloquent relationship with Order
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Order related to payment
      */
     public function order()
     {
@@ -25,8 +34,8 @@ class Payment extends Model
     }
 
     /**
-     * Payment belongs to a customer
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Eloquent relationship with Customer
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Customer related to payment
      */
     public function customer()
     {

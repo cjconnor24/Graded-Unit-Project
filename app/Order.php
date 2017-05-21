@@ -4,6 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Order - Model to represent Order
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ * @package App
+ */
 class Order extends Model
 {
 
@@ -19,11 +24,9 @@ class Order extends Model
 
     ];
 
-    // ELOQUENT RELATIONSHIPS
-
     /**
-     * Order has many order products
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Eloquent relationship with OrderProducts
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection of OrderProducts related to Order
      */
     public function orderProducts()
     {
@@ -31,8 +34,8 @@ class Order extends Model
     }
 
     /**
-     * An order belongs to a customer
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Eloquent relationship with Customer
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Customer Order Belongs to
      */
     public function customer()
     {
@@ -40,8 +43,8 @@ class Order extends Model
     }
 
     /**
-     * An order has an address
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Eloquent relationship with Address
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Address Order belongs to
      */
     public function address()
     {
@@ -49,22 +52,26 @@ class Order extends Model
     }
 
     /**
-     * An order can have many order approvals
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Eloquent relationship with quoteApprovals
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection of the Order Approvals
      */
     public function quoteApprovals()
     {
         return $this->hasMany(QuoteApproval::class);
     }
 
+    /**
+     * Eloquent relationship with Rejection
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne Rejection related to Order
+     */
     public function rejection()
     {
         return $this->hasOne(QuoteRejection::class);
     }
 
     /**
-     * An order belongs to a member of staff
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Eloquent relationship with Staff User
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Staff User related to Order
      */
     public function staff()
     {
@@ -72,8 +79,8 @@ class Order extends Model
     }
 
     /**
-     * An order has many notes
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Eloquent relationship with with Notes
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection of Notes related to Order
      */
     public function notes()
     {
@@ -81,8 +88,8 @@ class Order extends Model
     }
 
     /**
-     * An order has a state
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Eloquent relationship with State
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo State of the Order
      */
     public function state()
     {
@@ -90,8 +97,8 @@ class Order extends Model
     }
 
     /**
-     * An order belongs to a branch
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Eloquent relationship with Branch
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Branch Order belongs to
      */
     public function branch()
     {
@@ -99,8 +106,8 @@ class Order extends Model
     }
 
     /**
-     * An order has many payments
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Eloquent relationship with Payments
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection of Payments related to Order
      */
     public function payments()
     {
@@ -108,14 +115,18 @@ class Order extends Model
     }
 
     /**
-     * Each order has an order status
-     * @return mixed
+     * Eloquent relationship with Order Status
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Status of the Order
      */
     public function orderStatus()
     {
         return $this->belongsTo(OrderStatus::class,'status_id');
     }
 
+    /**
+     * Checks to see if the current state of the Order == Quote
+     * @return bool true if quote
+     */
     public function isQuote()
     {
         if($this->state->name=='quote'){
@@ -125,13 +136,12 @@ class Order extends Model
 
     /**
      * Add note to order
-     * @param $content
-     * @param $user
-     * @return bool
+     * @param string $content Content of the note
+     * @param User $user The user who created the note
+     * @return bool Indicated whether adding note was successful or not
      */
     public function addNote($content, $user)
     {
-
         $note = new Note;
         $note->content = $content;
         $note->user_id = $user;
@@ -141,16 +151,12 @@ class Order extends Model
         } else {
             return false;
         }
-
-
-
     }
 
-    // ACCESSORS
 
     /**
-     * Accessor for formatting Quotation Number based on ID
-     * @return string
+     * Accessor for formatting Quote Number based on ID
+     * @return string Formatted Quote Number String
      */
     public function getQuoteNumberAttribute()
     {
@@ -159,7 +165,7 @@ class Order extends Model
 
     /**
      * Accessor for formatting Order Number based on ID
-     * @return string
+     * @return string Formatted Order Number String
      */
     public function getOrderNumberAttribute()
     {
@@ -168,7 +174,7 @@ class Order extends Model
 
     /**
      * Accessor for formatting Order Number based on ID
-     * @return string
+     * @return string Formatted Invoice Number String
      */
     public function getInvoiceNumberAttribute()
     {
@@ -177,7 +183,7 @@ class Order extends Model
 
     /**
      * Accessor to return the number of items on the order
-     * @return mixed
+     * @return int The number of items on the order
      */
     public function getItemCountAttribute()
     {
@@ -186,13 +192,17 @@ class Order extends Model
 
     /**
      * Calculate the total order value based on the line total accessor on the OrderProduct Model
-     * @return mixed
+     * @return decimal The complete value of the order
      */
     public function getOrderTotalAttribute()
     {
         return $this->OrderProducts->sum('line_total');
     }
 
+    /**
+     * Calculates the complete total of payments towards the order
+     * @return float Total sum of payments towards the order
+     */
     public function getPaymentTotalAttribute()
     {
         return $this->payments->sum('amount');
@@ -200,7 +210,7 @@ class Order extends Model
 
     /**
      * Accessor to calculate the progress percentage of the order
-     * @return float|int
+     * @return float Progress percentage of the order
      */
     public function getOrderProgressAttribute()
     {

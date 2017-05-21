@@ -4,13 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Branch - Model to represent Branch
+ * @package App
+ */
 class Branch extends Model
 {
+    /**
+     * Columns which are mass-assignable
+     * @var array
+     */
     protected $fillable = ['name','address1','address2','address3','address4','postcode','telephone','email'];
 
     /**
-     * Relationship for users
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Eloquent relationship with Users
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection of Users
      */
     public function users()
     {
@@ -18,14 +26,18 @@ class Branch extends Model
     }
 
     /**
-     * Branches have many orders related to them
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Eloquent relationship with Orders
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection of Orders
      */
     public function orders()
     {
         return $this->hasMany(Order::class);
     }
 
+    /**
+     * Concatenates each address field and returns single string
+     * @return string Comma-separated address
+     */
     public function getFullAddressAttribute()
     {
         $address = '';

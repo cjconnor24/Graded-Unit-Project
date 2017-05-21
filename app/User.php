@@ -5,7 +5,11 @@ namespace App;
 use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Notifications\Notifiable;
 
-
+/**
+ * Class User used to represent a user within the system
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ * @package App
+ */
 class User extends EloquentUser
 {
     use Notifiable;
@@ -13,7 +17,7 @@ class User extends EloquentUser
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array Array of column names
      */
     protected $fillable = [
         'first_name', 'last_name', 'email', 'password',
@@ -22,15 +26,15 @@ class User extends EloquentUser
     /**
      * The attributes that should be hidden for arrays.
      *
-     * @var array
+     * @var array Array of column names
      */
     protected $hidden = [
         'password'
     ];
 
     /**
-     * A user has many addresses
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Eloquent link for addresses
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection of Addresses
      */
     public function addresses()
     {
@@ -39,7 +43,7 @@ class User extends EloquentUser
 
     /**
      * Associate user with multiple notes
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection of Notes
      */
     public function notes()
     {
@@ -48,7 +52,7 @@ class User extends EloquentUser
 
     /**
      * Associate user with multiple orders
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection of Orders
      */
     public function orders()
     {
@@ -56,14 +60,18 @@ class User extends EloquentUser
     }
 
     /**
-     * Associate staff user with their orders
-     * @return mixed
+     * Eloquent link with orders belonging to staff
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection of ORders
      */
     public function stafforders()
     {
         return $this->hasMany(Order::class,'staff_id');
     }
 
+    /**
+     * Eloquent link for payments
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection of Payments
+     */
     public function payments()
     {
         return $this->hasMany(Payment::class,'customer_id');
@@ -71,7 +79,7 @@ class User extends EloquentUser
 
     /**
      * Accessor to return concatenated full name
-     * @return string
+     * @return string Full name based on first and last name
      */
     public function getFullNameAttribute()
     {

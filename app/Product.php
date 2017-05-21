@@ -4,12 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Product - Model to represent a product
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ * @package App
+ */
 class Product extends Model
 {
+    /**
+     * Columns which are mass-assignable
+     * @var array Array of column names
+     */
     protected $fillable = (['name','description','price']);
     /**
-     * Associate sizes with product
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Eloquent relationship with Size
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection of Sizes
      */
     public function sizes()
     {
@@ -17,8 +26,8 @@ class Product extends Model
     }
 
     /**
-     * Associate product with multiple papers
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * Eloquent relationship with Paper
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany Collection of Papers
      */
     public function papers()
     {
@@ -26,8 +35,8 @@ class Product extends Model
     }
 
     /**
-     * Associate product with one category
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Eloquent relationship with Category
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Category which product belongs to
      */
     public function category()
     {
@@ -35,8 +44,8 @@ class Product extends Model
     }
 
     /**
-     * Associate Product with many orders
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Eloquent relationship with Orders
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Collection of Orders featuring Product
      */
     public function orders()
     {
@@ -44,8 +53,8 @@ class Product extends Model
     }
 
     /**
-     * Associate a product with many OrderProduct lines
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Eloquent relationship with OrderProduct
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Collection or ORderProducts Product belongs to
      */
     public function OrderProducts()
     {
