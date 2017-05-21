@@ -12,9 +12,11 @@ use Sentinel;
 use Illuminate\Http\Request;
 
 /**
- * Class OrderController
- * Management of quotes / orders within application
+ * Order Controller
+ *
+ * Management of quotes / orders within the application
  * @package App\Http\Controllers
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  */
 class OrderController extends Controller
 {
@@ -37,30 +39,10 @@ class OrderController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-//    public function create()
-//    {
-//        //
-//    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-//    public function store(Request $request)
-//    {
-//        //
-//    }
 
     /**
      * Display the order and allow the admin to update the status of the order
-     * @param Order $order
+     * @param Order $order The order to view
      * @return $this
      */
     public function show(Order $order)
@@ -86,8 +68,6 @@ class OrderController extends Controller
         $statuses = OrderStatus::pluck('name','id');
         $staff = Sentinel::findRoleBySlug('staff')->users->pluck('full_name','id');
 
-//        dd($order);
-
         return view('order.view')->with([
             'order'=>$order,
             'statuses'=>$statuses,
@@ -96,26 +76,25 @@ class OrderController extends Controller
 }
 
     /**
-     * Add note to an order
-     * @param Order $order
-     * @param StoreNote $request
+     * Add a note to an order
+     * @param Order $order The order to add the note to
+     * @param StoreNote $request The validated post request data
      * @return \Illuminate\Http\RedirectResponse
      */
     public function addNote(Order $order, StoreNote $request)
     {
 
         $order->addNote($request->input('content'),Sentinel::getUser()->id);
-
         return redirect()->back()->with('success','Note Added');
 
     }
 
     /**
      * Update the status of the order via Ajax from the view
-     * @param Order $order
-     * @param OrderStatus $status
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param Order $order The order to update
+     * @param OrderStatus $status The order status
+     * @param Request $request The post request data
+     * @return \Illuminate\Http\JsonResponse JSon response for jQuery
      */
     public function updateStatus(Order $order, OrderStatus $status, Request $request)
     {
@@ -126,19 +105,5 @@ class OrderController extends Controller
         return response()->json(['success'=>'Updated successfully'],200);
 
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-
-
 
 }

@@ -8,9 +8,10 @@ use Sentinel;
 use Illuminate\Http\Request;
 
 /**
- * Class LoginController
- * Management of logins in application
+ * Login controller for management of authentication in application
+ *
  * @package App\Http\Controllers
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  */
 class LoginController extends Controller
 {
@@ -42,6 +43,9 @@ class LoginController extends Controller
 
         try {
 
+            /**
+             * TRY TO AUTHENTICATE IN SENTINEL
+             */
             if(Sentinel::authenticate($credentials)) {
 
                 $user = Sentinel::getUser();
@@ -59,14 +63,15 @@ class LoginController extends Controller
 
                 }
 
-//                return redirect()->action('UserProfileController@view')->with('success','Welcome back ')->with('notification','true');
-
             } else {
 
                 return redirect()->back()->withErrors(['msg'=>'Your username and/or password are incorrect.']);
 
             }
 
+            /**
+             * CATCH POSSIBLE ERRORS
+             */
         } catch (ThrottlingException $e){
 
             $timeout = $e->getDelay();
@@ -82,13 +87,12 @@ class LoginController extends Controller
     }
 
     /**
-     * Logout current logged in user and redirect to login page/
+     * Logout current logged in user and redirect to login page.
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function logout()
     {
         Sentinel::logout(null,true);
-//        session()->flash(['success'=>'You have been successfully logged out.']);
         return redirect()->action('LoginController@loginForm')->with('success','You have been logged out.');
     }
 

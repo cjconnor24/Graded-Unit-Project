@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Form request to validate quote input
+ * @package App\Http\Requests
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ */
 class CreateQuote extends FormRequest
 {
     /**
@@ -35,6 +40,10 @@ class CreateQuote extends FormRequest
         ];
     }
 
+    /**
+     * Custom errors to be displayed to user when validation fails
+     * @return array
+     */
     public function messages()
     {
         return [

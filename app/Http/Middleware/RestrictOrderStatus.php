@@ -5,7 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 
 /**
- * Middleware to restrict when changing the status of an order. The status may not be updated if the order is already set as completed.
+ * Middleware to restrict when changing the status of an order.
+ *
+ * The status may not be updated if the order is already set as completed.
  * @package App\Http\Middleware
  * @author Chris Connor <chris@chrisconnor.co.uk>
  */

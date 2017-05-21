@@ -15,6 +15,11 @@ use Carbon\Carbon;
 use Sentinel;
 use Illuminate\Http\Request;
 
+/**
+ * Controller for managing quotations
+ * @package App\Http\Controllers\Admin
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ */
 class QuotationController extends Controller
 {
     /**
@@ -33,7 +38,7 @@ class QuotationController extends Controller
     }
 
     /**
-     * Display the form to create the quote
+     * Display the form to create a quotation
      * @return $this
      */
     public function create()
@@ -55,7 +60,7 @@ class QuotationController extends Controller
      */
     public function store(CreateQuote $request)
     {
-//        return response()->json($request->all(),500);
+
     $customer = User::find($request->customer_id);
     $staff = Sentinel::getUser();
 
@@ -70,9 +75,6 @@ class QuotationController extends Controller
 
         $order->save();
 
-//        return $request->all();
-//        \Log::info(['requestData'=>$request->all()]);
-
         foreach($request->order as $line){
 
             $order->orderProducts()->create([
@@ -83,7 +85,7 @@ class QuotationController extends Controller
                 'description'=>$line['description']
             ]);
 
-            \Log::info($line['description']);
+//            \Log::info($line['description']);
         }
 
         // TRIGGER THE QUOTE CREATED EVENT - CREATE APPROVAL AND EMAIL
@@ -96,6 +98,11 @@ class QuotationController extends Controller
 
     }
 
+    /**
+     * Display the quotation
+     * @param Order $quotation
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(Order $quotation)
     {
         $customers= User::whereHas('roles',function($query){
@@ -107,24 +114,29 @@ class QuotationController extends Controller
             $query->where('id',10);
         },'customer','OrderProducts','OrderProducts.product','branch'])->get();
 
-//        return $quotation;
-
         return view('quote.view',compact('customers','categories','quotation'));
     }
 
+    /**
+     * Edit the order passed through
+     * @param Order $quotation Quotation to be edited
+     * @return $this
+     */
     public function edit(Order $quotation)
     {
         $customers= User::whereHas('roles',function($query){
             $query->where('slug','customer');
         })->has('addresses')->get()->pluck('full_name','id');
+
         $staff = Sentinel::findRoleBySlug('staff')->users->pluck('full_name','id');
         $categories = Category::has('products')->get()->pluck('name','id');
         $branches = Branch::pluck('name','id');
 
-
-
+        /**
+         * EAGER LOAD THE RELATIONSHIPS
+         */
         $quotation->load('customer.addresses','staff','orderProducts.product','orderProducts.paper','orderProducts.size','branch');
-//        return $quotation;
+
         return view('quote.edit')->with([
             'customers'=>$customers,
             'categories'=>$categories,
@@ -134,6 +146,12 @@ class QuotationController extends Controller
         ]);
     }
 
+    /**
+     * Update the order based on the changes
+     * @param Order $quotation
+     * @param CreateQuote $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(Order $quotation, CreateQuote $request)
     {
 
@@ -162,10 +180,7 @@ class QuotationController extends Controller
         $request->session()->flash('notification', 'true');
 
         return response()->json(['redirect'=>action('Admin\QuotationController@index')],200);
-//        return redirect()->back()->with([
-//            'success'=>'Quotation Updated Successfully',
-//            'notification'=>'true'
-//        ]);
+
     }
 
 }

@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 /**
- * Class PaperController
+ * Paper Controller
+ *
  * Management of Paper stocks within application
  * @package App\Http\Controllers
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  */
 class PaperController extends Controller
 {
@@ -20,8 +22,6 @@ class PaperController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function index()
     {
         $papers = Paper::paginate(15);
@@ -64,17 +64,6 @@ class PaperController extends Controller
     }
 
     /**
-     * Display the specified paper.
-     *
-     * @param  \App\Paper  $paper
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Paper $paper)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified paper
      * @param Paper $paper
      * @return $this
@@ -104,16 +93,5 @@ class PaperController extends Controller
         $paper->update($request->only(['name','manufacturer','weight']));
 
         return redirect()->action('Admin\PaperController@index');
-    }
-
-    /**
-     * Remove the specified paper stock from storage.
-     *
-     * @param  \App\Paper  $paper
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Paper $paper)
-    {
-        //
     }
 }

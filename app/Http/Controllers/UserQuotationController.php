@@ -13,6 +13,13 @@ use Sentinel;
 use Illuminate\Http\Request;
 use Mockery\Exception;
 
+/**
+ * Quotation controller to manage customer interaction.
+ *
+ * Handles all functionality related to customer quotations
+ * @package App\Http\Controllers
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ */
 class UserQuotationController extends Controller
 {
 
@@ -32,33 +39,32 @@ class UserQuotationController extends Controller
             $query->where('completed',false);
         })->whereDoesntHave('rejection')->paginate();
 
-//        return $quotations;
-
-
-
         return view('userviews.quote.index')->with('quotations',$quotations);
 
     }
 
     /**
      * Approve quotation based on email or click-through from pending page
-     * @param $quotation
-     * @param $token
-     * @return mixed
+     * @param Order $quotation The quotation to be approved
+     * @param string $token The quotation token
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function approveQuotation(Order $quotation, $token)
     {
 
+        // EAGER LOGIN THE APPROVALS
         $quotation->load(['quoteApprovals'=>function($query) use($token){
             $query->where('token',$token);
         }]);
 
+        // MAKE SURE THERE IS AN APPROVAL
         if(count($quotation->quoteApprovals)!==1){
             abort(404);
         }
 
         $quotation->quoteApprovals->last()->approve();
 
+        // UPDATE THE STATE
         $state = State::where('name','order')->first();
         $status = OrderStatus::where('name','LIKE','%payment%')->first();
         $quotation->state()->associate($state);
@@ -86,7 +92,7 @@ class UserQuotationController extends Controller
 
         $quotation->save();
 
-
+        // MAIL THE USER TO CONFIRM THE REJECTION
         Mail::to($quotation->customer->email)->cc($quotation->staff->email)->send(new UserQuoteRejected($quotation));
 
         $request->session()->flash('success', 'The quote was rejected');
@@ -95,6 +101,11 @@ class UserQuotationController extends Controller
         return response()->JSON(['redirect'=>'/quotations']);
     }
 
+    /**
+     * Display the quotation
+     * @param Order $quotation
+     * @return $this
+     */
     public function show(Order $quotation)
     {
         if($quotation->state->name=='quote') {
@@ -117,7 +128,6 @@ class UserQuotationController extends Controller
         } else {
             abort(404);
         }
-
 
     }
 }

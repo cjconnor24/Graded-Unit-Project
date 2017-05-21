@@ -7,16 +7,38 @@ use App\OrderStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * Payment controller to manage payments within application
+ * @package App\Http\Controllers
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ *
+ * @todo Build refund functionality
+ */
 class PaymentController extends Controller
 {
 
-
+    /**
+     * Display the payment window
+     *
+     * Get the billing and delivery addresses to be process. Also gets the Braintree Payment Nonce
+     * @param Order $order
+     * @return $this
+     */
     public function index(Order $order)
     {
         $order->load('customer','address');
         return view('userviews.payment.view')->with('order',$order);
     }
 
+    /**
+     * Process the payment and details
+     *
+     * Takes the address and customer information and passes this all through to Braintree
+     * as a sales transaction
+     * @param Order $order
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function checkout(Order $order, Request $request)
     {
         $order->load('customer','address');
@@ -27,11 +49,13 @@ class PaymentController extends Controller
         $nonceFromTheClient = $request->payment_method_nonce;
 
 
+        /**
+         * BUILD THE BRAINTREE TRANSACTION
+         */
         $result = \Braintree_Transaction::sale([
             'amount' => $order->order_total,
             'orderId'=> "$order->id",
             'merchantAccountId' => 'gbp_account',
-//            'customerId'=>$order->customer->id,
             'paymentMethodNonce' => $nonceFromTheClient,
             'customer' => [
                 'firstName' => $customer->first_name,
@@ -59,6 +83,7 @@ class PaymentController extends Controller
         ]);
 
 
+        // CHECK TO SEE IF THE RESULT WAS SUCCESSFUL
         if($result->success){
 
             $order->payments()->create([
@@ -77,9 +102,7 @@ class PaymentController extends Controller
 
         } else {
 
-//            dd($result);
             return back()->with('error',$result->message);
-//            return response()->json($result);
 
         }
 

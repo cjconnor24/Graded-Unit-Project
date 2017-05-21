@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\User;
 
 /**
- * Class ResetPasswordController
+ * Reset Password controller
+ *
  * Management of user password resets
  * @package App\Http\Controllers
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  */
 class ResetPasswordController extends Controller
 {
@@ -46,13 +48,10 @@ class ResetPasswordController extends Controller
     public function postResetPassword(Request $request, $email, $code)
     {
 
-
         $this->validate($request, [
             'password' => 'required|confirmed|min:4|max:10',
             'password_confirmation' => 'required'
         ]);
-
-
 
         $user = User::whereEmail($email)->first();
 

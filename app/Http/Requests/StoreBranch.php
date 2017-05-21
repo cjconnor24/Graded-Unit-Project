@@ -4,6 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Form request to validate input when storing branch data
+ * @package App\Http\Requests
+ */
 class StoreBranch extends FormRequest
 {
     /**

@@ -4,6 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Form request to validate Note input
+ * @package App\Http\Requests
+ */
 class StoreNote extends FormRequest
 {
     /**

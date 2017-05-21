@@ -8,12 +8,17 @@ use Sentinel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * Staff controller allows the management of all staff and their roles
+ * @package App\Http\Controllers\Admin
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ */
 class StaffController extends Controller
 {
     /**
      * Display a listing of all staff.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response Staff listing view
      */
     public function index()
     {
@@ -23,32 +28,11 @@ class StaffController extends Controller
         return view('staff.index')->with('staff',$staff);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Display the staff member view
+     * @param User $staff The user to be viewed
+     * @return $this Show view
      */
     public function show(User $staff)
     {
@@ -56,11 +40,7 @@ class StaffController extends Controller
         $roles = Sentinel::getRoleRepository()->where('slug','<>','customer')->orderBy('name','asc')->get();
         $staff->load(['roles','stafforders','activations']);
 
-//        return $staff;
-        
-
         return view('staff.show')->with(['staff'=>$staff,'roles'=>$roles]);
-
 
     }
 
@@ -71,75 +51,56 @@ class StaffController extends Controller
      */
     public function disabledUser(Request $request)
     {
-
-        $user = User::findOrFail($request->user_id);
-
-        Activation::remove($user);
-        return response()->json(['success'=>'User has been disabled'],200);
+        if($request->ajax()) {
+            $user = User::findOrFail($request->user_id);
+            Activation::remove($user);
+            return response()->json(['success' => 'User has been disabled'], 200);
+        }
 
     }
 
+
+    /**
+     * Re-enable the user so they can login again
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function enableUser(Request $request)
     {
 
-        $user = User::findOrFail($request->user_id);
-
-        $activation = Activation::create($user);
-        Activation::complete($user,$activation->code);
-
-        return response()->json(['success'=>'User has been re-activated'],200);
-
-    }
-
-    public function toggleRole(Request $request)
-    {
-        $user = User::find($request->user_id);
-        $role = Sentinel::findRoleById($request->role_id);
-
-        if(!$user->inRole($role->slug)){
-
-
-            $role->users()->attach($user);
-            return response()->json(['success'=>'user was added'],200);
-
-        } else {
-            $role->users()->detach($user);
-            return response()->json(['success'=>'user was removed'],200);
+        if($request->ajax()) {
+            $user = User::findOrFail($request->user_id);
+            $activation = Activation::create($user);
+            Activation::complete($user, $activation->code);
+            return response()->json(['success' => 'User has been re-activated'], 200);
         }
 
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Take the role and, if already added to user, remove. If it doesn't already exists - add it.
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function edit($id)
+    public function toggleRole(Request $request)
     {
-        //
+        if($request->ajax()) {
+            $user = User::find($request->user_id);
+            $role = Sentinel::findRoleById($request->role_id);
+
+            if (!$user->inRole($role->slug)) {
+
+                $role->users()->attach($user);
+                return response()->json(['success' => 'user was added'], 200);
+
+            } else {
+
+                $role->users()->detach($user);
+                return response()->json(['success' => 'user was removed'], 200);
+
+            }
+        }
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -8,11 +8,18 @@ use App\Http\Requests\StoreBranch;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
+/**
+ * Controller for managing branches
+ * @package App\Http\Controllers\Admin
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ * @date 11th May 2017
+ */
 class BranchController extends Controller
 {
     /**
      * Display a list of branches
      *
+     * Retrieves a list of branches then displays them in the branch index view.
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -24,6 +31,7 @@ class BranchController extends Controller
     /**
      * Show the form for creating a new branch
      *
+     * Outputs the create new branch view
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -31,11 +39,13 @@ class BranchController extends Controller
         return view('branches.create');
     }
 
+
     /**
-     * Store a newly created resource in storage.
+     * Stores a new branch in the database
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Takes the details from the create branch view form and builds and stores a new branch
+     * @param StoreBranch $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreBranch $request)
     {
@@ -56,17 +66,6 @@ class BranchController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Branch  $branch
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Branch $branch)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the branch
      *
      * @param  \App\Branch  $branch
@@ -78,11 +77,10 @@ class BranchController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * Update the Branch and store.
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Branch  $branch
-     * @return \Illuminate\Http\Response
+     * @param  \App\Branch  $branch Branch to update
+     * @return \Illuminate\Http\Response Redirect with success message
      */
     public function update(Request $request, Branch $branch)
     {
@@ -100,14 +98,4 @@ class BranchController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Branch  $branch
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Branch $branch)
-    {
-        //
-    }
 }

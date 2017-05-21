@@ -11,12 +11,12 @@ use Illuminate\Validation\Rule;
  * Class SizesController
  * Management of paper sizes within application
  * @package App\Http\Controllers
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  */
 class SizesController extends Controller
 {
     /**
-     * Display a listing of the sizes.
-     *
+     * Display a listing of the sizes
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -36,7 +36,7 @@ class SizesController extends Controller
     }
 
     /**
-     * Store a newly created size in storage.
+     * Store a newly created size.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -79,7 +79,6 @@ class SizesController extends Controller
      */
     public function edit(Size $size)
     {
-//        dd($size);
         return view('size.edit',compact('size'));
     }
 
@@ -105,7 +104,7 @@ class SizesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified size from storage.
      *
      * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
@@ -114,4 +113,5 @@ class SizesController extends Controller
     {
         // NOT CODED AS YET
     }
+
 }

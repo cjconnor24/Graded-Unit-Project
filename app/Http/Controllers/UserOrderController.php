@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
  * Class UserOrderController
  * Controller to manage user order interactions
  * @package App\Http\Controllers
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  */
 class UserOrderController extends Controller
 {
@@ -25,20 +26,23 @@ class UserOrderController extends Controller
             $query->where('id',Sentinel::getUser()->id);
         })->with('orderStatus')->get();
 
-//        return($orders);
-//
         return view('userviews.order.index')->with('orders',$orders);
 
     }
 
+    /**
+     * Display the order and details to the user
+     * @param Order $order The order to be displayed
+     * @return $this
+     */
     public function show(Order $order)
     {
         $order->load(['customer','OrderProducts.product','payments','orderStatus','quoteApprovals'=>function($query){
             $query->where('completed',true)->first();
         }]);
 
-//        dd($order);
         return view('userviews.order.view')->with('quotation',$order);
+
     }
 
 }

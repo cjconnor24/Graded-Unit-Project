@@ -10,11 +10,15 @@ use Illuminate\Validation\Rule;
 /**
  * Class ProductsController
  * Management of products within application
- * @package App\Http\Controllers
+ * @package App\Http\Controllers\Admin
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  */
 class ProductsController extends Controller
 {
 
+    /**
+     * ProductsController constructor.
+     */
     public function __construct()
     {
         $this->middleware('admin')->except('index');
@@ -85,17 +89,6 @@ class ProductsController extends Controller
     }
 
     /**
-     * Display the specified product.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the product.
      *
      * @param  \App\Product  $product
@@ -151,14 +144,4 @@ class ProductsController extends Controller
         return redirect()->action('Admin\ProductsController@index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        // NOT CODED YET
-    }
 }

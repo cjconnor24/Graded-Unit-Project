@@ -13,13 +13,14 @@ use App\Mail\UserRegistered;
  * Class RegistrationController
  * Management of user registrations and activations
  * @package App\Http\Controllers
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  */
 class RegistrationController extends Controller
 {
 
 
     /**
-     * show the form for creating a new resource.
+     * Show the signup form to register for application access.
      *
      * @return \illuminate\http\response
      */
@@ -29,7 +30,7 @@ class RegistrationController extends Controller
     }
 
     /**
-     * create a new registered user
+     * Create a new registered user
      *
      * @param  \illuminate\http\request  $request
      * @return \illuminate\http\response

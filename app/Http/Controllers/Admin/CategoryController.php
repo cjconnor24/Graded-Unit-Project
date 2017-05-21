@@ -7,11 +7,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
+/**
+ * Category Controller
+ *
+ * Controller for managing product categories.
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ * @package App\Http\Controllers\Admin
+ */
 class CategoryController extends Controller
 {
     /**
      * CategoryController constructor.
-     * Setup middleware routes
      */
     public function __construct()
     {
@@ -19,7 +25,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the categories.
      *
      * @return \Illuminate\Http\Response
      */
@@ -30,7 +36,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new category.
      *
      * @return \Illuminate\Http\Response
      */
@@ -40,7 +46,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created category in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -61,18 +67,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified category.
      *
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
@@ -83,7 +78,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified category in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Category  $category
@@ -101,14 +96,4 @@ class CategoryController extends Controller
         return redirect()->action('Admin\CategoryController@index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
-    {
-        //
-    }
 }
