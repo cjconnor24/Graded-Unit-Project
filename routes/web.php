@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,6 +88,9 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
 
     Route::get('orders/','OrderController@index');
 
+    /**
+     * AJAX REPONSE FOR GETTING ADDRESSES
+     */
     Route::get('ajax-address/{user}',function(\App\User $user, \Illuminate\Http\Request $request)
     {
 
@@ -101,6 +103,9 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
 
     });
 
+    /**
+     * AJAX REPONSE FOR GETTING CATEGORIES
+     */
     Route::get('ajax-product/{category}',function(\App\Category $category, \Illuminate\Http\Request $request)
     {
         if($request->ajax()) {
@@ -111,6 +116,9 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
         }
     });
 
+    /**
+     * AJAX RESPONSE FOR GETTING PRODUCTS
+     */
     Route::get('ajax-product-options/{product}',function(\App\Product $product, \Illuminate\Http\Request $request)
     {
         if($request->ajax()) {
