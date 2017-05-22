@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Address - Model to represent address
+ * Address Model to represent address within system
+ *
  * @package App
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  */
 class Address extends Model
 {

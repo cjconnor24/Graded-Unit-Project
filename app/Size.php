@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Size - Model to represent the size of a product
+ * Size Model to represent the size of a product
  * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App
  */

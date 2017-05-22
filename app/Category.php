@@ -5,8 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Category - Model to represent product category
+ * Category Model to represent product category within system
  * @package App
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  */
 class Category extends Model
 {

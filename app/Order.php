@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Order - Model to represent Order
+ * Order Model to represent Order in system
  * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App
  */

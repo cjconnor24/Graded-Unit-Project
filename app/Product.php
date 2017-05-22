@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Product - Model to represent a product
+ * Product Model to represent a product
  * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App
  */

@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class QuoteRejection - Model to represent an Quote Rejection
+ * QuoteRejection Model to represent an Quote Rejection
+ *
  * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App
  */

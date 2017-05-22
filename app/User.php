@@ -6,7 +6,7 @@ use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * Class User used to represent a user within the system
+ * User Model used to represent a user within the system
  * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App
  */

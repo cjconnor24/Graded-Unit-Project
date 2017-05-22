@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class OrderProduct - Model to represend order line item
+ * OrderProduct Model used to represend order line item
  * @package App
  * @author Chris Connor <chris@chrisconnor.co.uk>
  */

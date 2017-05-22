@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Payment - Model to represent payment
+ * Payment Model to represent payment within application
+ *
  * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App
  */

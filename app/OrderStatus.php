@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class OrderStatus - Model to represent Order Status
+ * OrderStatus Model used to represent Order Status
+ *
  * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App
  */

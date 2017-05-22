@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Note - Model to represent an order Note
+ * Note Model to represent an order Note
  * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App
  */

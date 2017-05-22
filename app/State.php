@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class State - Model to represent an Order's State
+ * State Model to represent an Order's State
  * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App
  */

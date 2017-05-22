@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class QuoteApproval - Model to represent an approval for a quotation
+ * QuoteApproval
+ * Model to represent an approval for a quotation
  * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App
  */

@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Branch - Model to represent Branch
+ * Branch Model to represent Branch within system
+ *
  * @package App
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  */
 class Branch extends Model
 {

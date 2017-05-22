@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Paper - Model to represent Paper
+ * Paper Model to represent Paper within the system
+ *
  * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App
  */
