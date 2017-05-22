@@ -23,10 +23,10 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
                 <li><a href="{{action('PagesController@dashboard')}}">Home</a></li>
-                <li><a href="{{action('UserQuotationController@index')}}">Quotations</a></li>
-                <li><a href="{{action('UserOrderController@index')}}">Orders</a></li>
-                <li><a href="javascript:alert('I\'m getting there...');">Invoices</a></li>
-                <li><a href="{{action('HistoryController@index')}}">Order History</a></li>
+                <li {{setActive('quotations')}}><a href="{{action('UserQuotationController@index')}}">Quotations</a></li>
+                <li {{setActive('orders')}}><a href="{{action('UserOrderController@index')}}">Orders</a></li>
+                <li {{setActive('invoices')}}><a href="javascript:alert('I\'m getting there...');">Invoices</a></li>
+                <li {{setActive('history')}}><a href="{{action('HistoryController@index')}}">Order History</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
