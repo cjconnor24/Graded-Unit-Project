@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class OrderStatus - Model to represent Order Status
+ * @author Chris Connor <chris@chrisconnor.co.uk>
  * @package App
  */
 class OrderStatus extends Model
