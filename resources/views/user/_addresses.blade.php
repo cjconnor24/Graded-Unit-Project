@@ -16,7 +16,7 @@
 
             @slot('footer')
                     <a href="{{action('UserProfileController@editAddress',['address'=>$address->id])}}" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                    <a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    <a href="javascript:alert('Still to code');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                 @endslot
 
             @endcomponent
