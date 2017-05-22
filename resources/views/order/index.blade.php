@@ -1,5 +1,6 @@
 @extends('layouts.admin_master')
 @section('content')
+
     <h1><span class="fi-shop-online-shop-1 fi-shop"></span> Current Orders</h1>
 
     @if(count($orders)>0)
