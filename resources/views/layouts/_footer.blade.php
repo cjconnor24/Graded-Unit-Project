@@ -2,8 +2,6 @@
     <div class="container">
 <div class="row">
 
-
-
         <div class="col-md-4">
             <h4>Spectrum Digital Print</h4>
             <address>
@@ -16,13 +14,11 @@
         </div>
 
     <div class="col-md-4">
-        <h3>Hello</h3>
-        <p>Column 2</p>
+        &nbsp;
     </div>
 
     <div class="col-md-4">
-        <h3>Hello</h3>
-        <p>Column 3</p>
+        <img alt="Brand" src="/img/spectrum-logo-white.svg" style="width:200px" />
     </div>
 
 

@@ -23,7 +23,8 @@
 <body>
 
 <div class="bg-container">
-@include('layouts._user_menu')
+
+    @include('layouts._user_menu')
 
 {{--    @include('components.carousel')--}}
 
