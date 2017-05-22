@@ -3,6 +3,7 @@
 <div class="row">
 
         <div class="col-md-4">
+
             <h4>Spectrum Digital Print</h4>
             <address>
             Dubai International Financial Centre,<br>
@@ -18,7 +19,9 @@
     </div>
 
     <div class="col-md-4">
-        <img alt="Brand" src="/img/spectrum-logo-white.svg" style="width:200px" />
+
+        <img alt="Brand" src="/img/spectrum-logo-white.svg" style="width:65%" />
+
     </div>
 
 

@@ -108,7 +108,7 @@
     </div>
 
 
-
+    <h2><span class="fi-shop fi-shop-shopping-basket"></span> Order Details</h2>
     @include('userviews.components._ordertable',['order'=>$quotation])
 
 
