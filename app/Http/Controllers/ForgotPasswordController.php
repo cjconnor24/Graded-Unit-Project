@@ -8,6 +8,13 @@ use Cartalyst\Sentinel\Laravel\Facades\Reminder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
+/**
+ * Forgot Password Controller
+ *
+ * Allow users to reset their forgotten password via email.
+ * @package App\Http\Controllers
+ * @author Chris Connor <chris@chrisconnor.co.uk>
+ */
 class ForgotPasswordController extends Controller
 {
     /**
@@ -32,16 +39,15 @@ class ForgotPasswordController extends Controller
 
         $user = User::whereEmail($request->email)->first();
 
+        // NO USER FOUND BUT DON'T UPDATE USER FOR SECURITY REASONS - DON'T WANT PEOPLE GUESSING
         if(count($user)==0){
             return redirect()->back()->with('success','Your password reset has been sent.');
         }
 
             $reminder = Reminder::exists($user) ?: Reminder::create($user);
 
-
+        // EMAIL THE USER THE RESET
         Mail::to($user->email)->send(new PasswordReset($user,$reminder->code));
-
-        //dd([$user,$reminder]);
 
         return redirect()->back()->with('success','Your password reset has been sent.');
 
