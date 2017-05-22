@@ -24,7 +24,7 @@ class UserOrderController extends Controller
             $query->where('name','order');
             })->whereHas('customer',function($query){
             $query->where('id',Sentinel::getUser()->id);
-        })->with('orderStatus')->get();
+        })->orderBy('created_at','desc')->with('orderStatus')->get();
 
         return view('userviews.order.index')->with('orders',$orders);
 

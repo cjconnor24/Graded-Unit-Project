@@ -37,7 +37,7 @@ class UserQuotationController extends Controller
             $query->where('name','quote');
         })->whereHas('quoteApprovals',function($query) {
             $query->where('completed',false);
-        })->whereDoesntHave('rejection')->paginate();
+        })->whereDoesntHave('rejection')->orderBy('created_at','desc')->paginate();
 
         return view('userviews.quote.index')->with('quotations',$quotations);
 
