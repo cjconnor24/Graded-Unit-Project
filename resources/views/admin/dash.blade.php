@@ -5,7 +5,7 @@
 
     <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-sm-4">
             @component('components.dash-panel',[
 'colour'=>'warning',
 'icon'=>'fi-shop fi-shop-shopping-cart',
@@ -15,7 +15,7 @@
             @endcomponent
         </div>
 
-        <div class="col-md-3">
+        <div class="col-sm-4">
             @component('components.dash-panel',[
 'colour'=>'info',
 'icon'=>'fi-shop-online-shop-1 fi-shop',
@@ -25,7 +25,7 @@
             @endcomponent
         </div>
 
-        <div class="col-md-3">
+        <div class="col-sm-4">
             @component('components.dash-panel',[
 'colour'=>'danger',
 'icon'=>'fi-misc-users fi-misc',
