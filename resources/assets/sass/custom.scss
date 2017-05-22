@@ -21,7 +21,9 @@ footer {
   font-size:5em!important;
 }
 
-
+nav li.active a {
+  background:none!important;
+}
 
 .notification {
     position:absolute;

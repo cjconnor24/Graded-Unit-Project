@@ -23,11 +23,11 @@
         <div class="collapse navbar-collapse" id="navbar">
             @if(Sentinel::check())
             <ul class="nav navbar-nav">
-                <li><a href="{{action('Admin\AdminController@index')}}">Home</a></li>
-                <li><a href="{{action('Admin\QuotationController@index')}}">Quotations</a></li>
-                <li><a href="{{action('Admin\OrderController@index')}}">Orders</a></li>
-                <li><a href="javascript:alert('It\'s coming');">Invoices</a></li>
-                <li><a href="{{action('Admin\ReportsController@index')}}">Reports</a></li>
+                <li {{setActive('/admin')}}><a href="{{action('Admin\AdminController@index')}}">Home</a></li>
+                <li {{setActive('admin/quotations')}}><a href="{{action('Admin\QuotationController@index')}}">Quotations</a></li>
+                <li {{setActive('admin/orders')}}><a href="{{action('Admin\OrderController@index')}}">Orders</a></li>
+                <li ><a href="javascript:alert('It\'s coming');">Invoices</a></li>
+                <li {{setActive('admin/reports')}}><a href="{{action('Admin\ReportsController@index')}}">Reports</a></li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
