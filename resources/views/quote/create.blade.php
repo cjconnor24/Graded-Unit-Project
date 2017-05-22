@@ -61,15 +61,30 @@
                 {!! Form::select('branch_id', $branches,null, ['id'=>'branch_id','placeholder' => 'Please select a branch','class'=>'form-control input-sm']) !!}
             </div>
 
+                <div class="row">
+
+                <div class="col-lg-6">
+
             <div class="form-group">
                 <label for="inputID">Order Date</label>
             <input type="date" name="date" id="inputID" class="form-control" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" title="" required="required" disabled>
             </div>
 
+                </div>
+
+                <div class="col-lg-6">
+
             <div class="form-group">
                 {!! Form::label('due_date',"Due Date") !!}
+                <div class="input-group">
+                    <div class="input-group-addon">$</div>
                 {!! Form::text('due_date',null,['class'=>'form-control']) !!}
+                </div>
             </div>
+
+                </div>
+
+                </div>
 
 
             <h3>Branch Address</h3>
@@ -91,7 +106,9 @@
 
 @include('quote._invoicetable')
 
+<div class="form-group">
 <button type="submit" class="btn btn-success"><span class="glyphicon-save-file glyphicon"></span> Create Quotation</button>
+</div>
 
 </form>
 @include('quote._productmodal')
