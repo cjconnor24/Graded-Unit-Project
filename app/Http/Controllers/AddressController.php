@@ -94,7 +94,11 @@ class AddressController extends Controller
         $this->validate($request,[
             'name'=>[
                 'required',
-                Rule::unique('addresses')->ignore($address->id,'id')
+                // MAKE SURE ADDRESS NAME IS UNIQUE TO USER BUT IGNORE IF SAME RESOURCE
+                Rule::unique('addresses')->where(function($query) use($address){
+                    $query->where('user_id','=',Sentinel::getUser()->id);
+                    $query->where('id','<>',$address->id);
+                })
             ],
             'address1'=>'required',
             'postcode'=>'required',
