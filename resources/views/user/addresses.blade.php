@@ -3,10 +3,10 @@
 
     @include('includes.errors')
 
-    <h1>{{$user->first_name}} {{$user->last_name}}</h1>
-    <p>{{$user->email}}</p>
+    <h1><span class="fi-shop-placeholder fi-shop"></span> Manage Addresses</h1>
 
-    <p><a href="{{action('UserProfileController@createAddress')}}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> Add New Address</a></p>
+
+    <p><a href="{{action('AddressController@create')}}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> Add New Address</a></p>
 
     @if(count($addresses)>0)
     @include('user._addresses')

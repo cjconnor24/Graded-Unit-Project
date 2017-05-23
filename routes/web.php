@@ -50,6 +50,9 @@ Route::group(['middleware'=>['authenticate','customer']], function(){
     Route::get('/dashboard','PagesController@dashboard');
 
     Route::get('/profile','UserProfileController@view');
+
+    Route::resource('/addresses','AddressController');
+
     Route::get('/profile/addresses','UserProfileController@viewAddresses');
     Route::get('/profile/addresses/{address}/edit','UserProfileController@editAddress')->middleware('address.owner');
     Route::get('/profile/addresses/create','UserProfileController@createAddress');

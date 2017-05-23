@@ -37,7 +37,7 @@
             'icon'=>'fi-shop-placeholder fi-shop',
             'count'=>$user->addresses->count(),
             'name'=>'Addresses',
-            'link'=>action('UserProfileController@viewAddresses')])
+            'link'=>action('AddressController@index')])
             @endcomponent
         </div>
     </div>

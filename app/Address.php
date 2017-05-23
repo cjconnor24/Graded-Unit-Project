@@ -12,6 +12,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Address extends Model
 {
+
+    /**
+     * Columns which can be mass-assigned in the DB
+     * @var array Array of column names
+     */
+    protected $fillable = ['name','address1','address2','address3','adddress4','postcode'];
+
     /**
      * Eloquent relationship with Address
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo User related to address
