@@ -59,7 +59,15 @@ class LoginController extends Controller
 
                 } else {
 
-                    return redirect()->intended(action('UserProfileController@view'))->with('success', 'Welcome back ')->with('notification', 'true');
+                    if(Sentinel::inRole('customer')){
+                        return redirect()->action('PagesController@dashboard')->with('success', 'Welcome back, '.$user->first_name)->with('notification', 'true');
+                    } else {
+
+                        return redirect()->intended(action('Admin\AdminController@index'))->with('success', 'Welcome back '.$user->first_name)->with('notification', 'true');
+
+                    }
+
+
 
                 }
 
