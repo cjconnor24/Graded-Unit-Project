@@ -15,8 +15,9 @@
 </div>
 
 
-
+<div class="form-group">
 {!! Form::submit('Reset Login',['class'=>'btn btn-success']) !!}
+</div>
 
 
 {{Form::close()}}
