@@ -22,9 +22,6 @@
         "phpunit/phpunit": "~5.7"
     },
     "autoload": {
-        "files": [
-            "app/http/helpers.php"
-        ],
         "classmap": [
             "database"
         ],
