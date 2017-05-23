@@ -49,8 +49,8 @@
             <ul class="nav navbar-nav navbar-right">
 
                 @if(!Sentinel::check())
-                    <li><a href="{{ action("RegistrationController@create")}}">Register</a></li>
-                    <li><a href="{{ action("LoginController@loginForm")}}">Login</a></li>
+                    <li {{setActive('register')}}><a href="{{ action("RegistrationController@create")}}">Register</a></li>
+                    <li {{setActive('login')}}><a href="{{ action("LoginController@loginForm")}}">Login</a></li>
                 @else
                     {{--<li class="dropdown">--}}
                         {{--<a href="{{action('UserProfileController@view')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>--}}
