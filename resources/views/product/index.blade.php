@@ -8,6 +8,7 @@
 
     @if(count($products)>0)
 
+        <div class="table-responsive">
         <table class="table table-hover">
             <thead>
             <tr>
@@ -38,6 +39,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
 
     @else
         <p>There are currently no products</p>

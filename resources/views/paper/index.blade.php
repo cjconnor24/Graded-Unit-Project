@@ -4,7 +4,8 @@
 
 <p><a href="{{action('Admin\PaperController@create')}}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add Paper</a></p>
     <p>Below are a list of papers</p>
-    <table class="table table-responsive">
+    <div class="table-responsive">
+    <table class="table">
         <thead>
         <tr>
             <th>Name</th>
@@ -26,7 +27,7 @@
     @endforeach
     </tbody>
     </table>
-
+    </div>
     {{ $papers->links() }}
 
 @endsection

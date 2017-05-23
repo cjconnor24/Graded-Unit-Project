@@ -4,7 +4,8 @@
 
     <p>Below are a list of current staff</p>
 
-    <table class="table table-responsive">
+    <div class="table-responsive">
+    <table class="table table-hover">
         <thead>
         <tr>
             <th>Name</th>
@@ -30,5 +31,6 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 
 @endsection

@@ -6,7 +6,9 @@
 
 @if(count($categories)>0)
 <div class="col-md-6">
-    <table class="table table-responsive table-hover">
+
+    <div class="table-responsive">
+    <table class="table table-hover">
         <thead>
         <tr>
             <th>Category Name</th>
@@ -22,6 +24,8 @@
             @endforeach
         </tbody>
     </table>
+    </div>
+
 </div>
 @else
 <p>No categories added yet</p>

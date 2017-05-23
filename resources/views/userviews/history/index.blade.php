@@ -6,6 +6,7 @@
 
     <p>Below is your order history</p>
 
+    <div class="table-responsive">
     <table class="table table-responsive">
         <thead>
         <tr>
@@ -30,5 +31,6 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 
 @endsection

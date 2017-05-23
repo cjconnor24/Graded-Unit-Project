@@ -4,17 +4,18 @@
 
     @if(count($quotations)>0)
 
-    <p>Please find a list of quotations below</p>
+    <p>Please find a list of quotationss below</p>
 
     @include('includes.errors')
 
-    <table class="table table-responsive">
+    <div class="table-responsive">
+    <table class="table table-hover">
 
         <thead>
         <tr>
             <th>Quote Reference</th>
-            <th>Created</th>
-            <th>Expiry Date</th>
+            <th class="hidden-xs hidden-sm">Created</th>
+            <th class="hidden-xs ">Expiry Date</th>
             <th>Status</th>
             <th>Quote Total</th>
             <th>View</th>
@@ -25,8 +26,8 @@
         @foreach($quotations as $quotation)
             <tr>
                 <td>{{$quotation->quote_number}}</td>
-                <td>{{$quotation->created_at->diffForHumans()}}</td>
-                <td>{{$quotation->created_at->addWeeks(4)->diffForHumans()}}</td>
+                <td class="hidden-xs hidden-sm">{{$quotation->created_at->diffForHumans()}}</td>
+                <td class="hidden-xs">{{$quotation->created_at->addWeeks(4)->diffForHumans()}}</td>
                 <td>{{$quotation->state->name}}</td>
                 <td>£{{money_format('%.2n',$quotation->order_total)}}</td>
                 <td><a class="btn btn-success" href="{{action('UserQuotationController@show',['quotation'=>$quotation->id])}}">View</a> </td>
@@ -34,6 +35,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 
     {{$quotations->links()}}
 
