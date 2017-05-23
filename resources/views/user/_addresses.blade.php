@@ -1,8 +1,14 @@
 
 {{--<div class="panel-group">--}}
-    @foreach($addresses as $address)
 
-        <div class="col-md-4">
+@foreach($addresses->chunk(3) as $chunk)
+
+    <div class="row">
+
+    @foreach($chunk as $address)
+
+        <div class="col-sm-4">
+
         @component('components.panel')
             @slot('title')
                 <a href="{{action('UserProfileController@editAddress',['address'=>$address->id])}}">{{$address->name}}</a>
@@ -23,6 +29,8 @@
 
         </div>
 
-    @endforeach
+        @endforeach
 
-</div>
+    </div>
+
+    @endforeach
