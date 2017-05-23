@@ -15,35 +15,39 @@ Route::get('/', function () {
     return redirect()->action('LoginController@loginForm');
 });
 
-Route::get('/home', 'HomeController@index');
+Route::group(['middleware'=>'guest'], function() {
 
-Route::get('/dashboard','PagesController@dashboard');
     /**
      * REGISTRATION ROUTES
      */
-    Route::get('/register','RegistrationController@create');
-    Route::post('/register','RegistrationController@store');
-    Route::get('/activate/{email}/{activationCode}','ActivationController@activate');
+    Route::get('/register', 'RegistrationController@create');
+    Route::post('/register', 'RegistrationController@store');
+    Route::get('/activate/{email}/{activationCode}', 'ActivationController@activate');
 
     /**
      * LOGIN ROUTES
      */
-    Route::get('/login','LoginController@loginForm');
-    Route::post('/login','LoginController@login');
-    Route::get('/logout','LoginController@logout');
+    Route::get('/login', 'LoginController@loginForm');
+    Route::post('/login', 'LoginController@login');
 
-/**
- * FORGOTTEN PASSWORD AND RESET ROUTES
- */
-    Route::post('/forgot','ForgotPasswordController@postForgotPassword');
-    Route::get('/forgot','ForgotPasswordController@forgotPassword');
-    Route::get('/reset/{user}/{resetCode}','ResetPasswordController@resetPassword');
-    Route::post('/reset/{user}/{resetCode}','ResetPasswordController@postResetPassword');
+    /**
+     * FORGOTTEN PASSWORD AND RESET ROUTES
+     */
+    Route::post('/forgot', 'ForgotPasswordController@postForgotPassword');
+    Route::get('/forgot', 'ForgotPasswordController@forgotPassword');
+    Route::get('/reset/{user}/{resetCode}', 'ResetPasswordController@resetPassword');
+    Route::post('/reset/{user}/{resetCode}', 'ResetPasswordController@postResetPassword');
+
+});
+
+Route::get('/logout', 'LoginController@logout');
 
 /*
  * ADMIN ROUTES
  */
 Route::group(['middleware'=>['authenticate','customer']], function(){
+
+    Route::get('/dashboard','PagesController@dashboard');
 
     Route::get('/profile','UserProfileController@view');
     Route::get('/profile/addresses','UserProfileController@viewAddresses');

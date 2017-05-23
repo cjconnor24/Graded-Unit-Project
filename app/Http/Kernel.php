@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'payment'=> \App\Http\Middleware\PaymentMiddleware::class,
         'customer'=> \App\Http\Middleware\CustomerMiddleware::class,
         'restrict.status.update'=>\App\Http\Middleware\RestrictOrderStatus::class,
+        'guest'=>\App\Http\Middleware\GuestMiddleware::class
     ];
 }
