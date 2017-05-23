@@ -97,7 +97,7 @@
 
 
 
-        <div class="col-lg-3 stretch">
+        <div class="col-lg-4 stretch">
 
             @include('userviews.components._customer',['customer'=>$order->customer,'address'=>$order->address])
 
@@ -107,7 +107,7 @@
             @include('userviews.components._branch',['branch'=>$order->branch,'staff'=>$order->staff])
         </div>
 
-        <div class="col-lg-3 stretch col-flex">
+        <div class="col-lg-4 stretch col-flex">
 
 
             <div class="panel panel-default">
@@ -162,12 +162,6 @@
                 @endif
 
             @endcomponent
-
-        </div>
-
-        <div class="col-md-3">
-
-
 
         </div>
 

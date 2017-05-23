@@ -7,7 +7,9 @@
 
         @include('paper.form')
 
+    <div class="form-group">
     {!! Form::submit('Add Paper Stock',['class'=>'btn btn-success']) !!}
+    </div>
 
     {!! Form::close() !!}
 @endsection

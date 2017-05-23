@@ -10,6 +10,8 @@
 @endsection
 @section('content')
 
+    <a href="{{action('Admin\ReportsController@index')}}" class="btn btn-default"><span class="fi-misc-return fi-misc"></span> Return to Reports</a>
+
     <h1><span class="fi-man-line-graph fi-man"></span> Export Customers</h1>
     <p>To export a customer list, please use the controls below.</p>
     <div class="col-md-6 col-md-offset-3">

@@ -8,7 +8,9 @@
         {!! Form::label('name',"Category Name") !!}
         {!! Form::text('name',null,['class'=>'form-control','required']) !!}
     </div>
+    <div class="form-group">
     {!! Form::submit('Add Category',['class'=>'btn btn-success']) !!}
+    </div>
     {!! Form::close() !!}
 
     </form>

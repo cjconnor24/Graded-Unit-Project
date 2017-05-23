@@ -8,12 +8,8 @@
 
 
    @include('branches._form')
-            {!! Form::submit('Add New Branch',['class'=>'btn btn-success']) !!}
-
-
-
-
-
+    <div class="form-group">
+            {!! Form::submit('Add New Branch',['class'=>'btn btn-success']) !!}</div>
 
 
     {!! Form::close() !!}

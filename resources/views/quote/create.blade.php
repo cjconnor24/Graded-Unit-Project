@@ -77,7 +77,7 @@
             <div class="form-group">
                 {!! Form::label('due_date',"Due Date") !!}
                 <div class="input-group">
-                    <div class="input-group-addon">$</div>
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
                 {!! Form::text('due_date',null,['class'=>'form-control']) !!}
                 </div>
             </div>

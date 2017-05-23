@@ -32,15 +32,15 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ action("Admin\ProductsController@index") }}">Products</a></li>
-                        <li><a href="{{ action("Admin\PaperController@index") }}">Papers</a></li>
-                        <li><a href="{{ action("Admin\CategoryController@index") }}">Categories</a></li>
-                        <li><a href="{{ action("Admin\SizesController@index")}}">Sizes</a></li>
+                        <li><a href="{{ action("Admin\ProductsController@index") }}"><span class="fi-man-business-card fi-man"></span> Products</a></li>
+                        <li><a href="{{ action("Admin\PaperController@index") }}"><span class="fi-misc-file fi-misc"></span> Papers</a></li>
+                        <li><a href="{{ action("Admin\CategoryController@index") }}"><span class="fi-misc-inbox fi-misc"></span> Categories</a></li>
+                        <li><a href="{{ action("Admin\SizesController@index")}}"><span class="fi-misc-layers fi-misc"></span> Sizes</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="{{ action("Admin\CustomerController@index")}}">Customers</a></li>
+                        <li><a href="{{ action("Admin\CustomerController@index")}}"><span class="fi-misc-users fi-misc"></span> Customers</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="{{action('Admin\StaffController@index')}}">Staff</a></li>
-                        <li><a href="{{ action("Admin\BranchController@index")}}">Branches</a></li>
+                        <li><a href="{{action('Admin\StaffController@index')}}"><span class="fi-misc-users fi-misc"></span> Staff</a></li>
+                        <li><a href="{{ action("Admin\BranchController@index")}}"><span class="fi-shop-shop fi-shop"></span> Branches</a></li>
                     </ul>
                 </li>
             </ul>

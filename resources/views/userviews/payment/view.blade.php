@@ -121,8 +121,11 @@
 
         {{--<input type="submit" class="btn btn-large btn-success" value="Pay Balance">--}}
     </div>
+
+        <div class="form-group">
         <button type="submit" class="btn btn-lg btn-success"><span class="glyphicon-credit-card glyphicon"></span> Pay £{{$order->order_total}} now.</button>
         <a href="{{action('UserOrderController@show',['order'=>$order->id])}}" class="btn btn-lg btn-default">Return to Order</a>
+        </div>
 
     {!! Form::close() !!}
 

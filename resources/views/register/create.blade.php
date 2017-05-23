@@ -1,5 +1,10 @@
 @extends('layouts.admin_master')
 @section('content')
+
+    <h1><span class="fi-misc-user fi-misc"></span> User Registration</h1>
+
+    <p>To register to use the application, please enter your details below.</p>
+
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-default">

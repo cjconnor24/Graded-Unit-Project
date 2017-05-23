@@ -1,7 +1,10 @@
-@extends('layouts.user_master')
+@extends('layouts.admin_master')
 @section('content')
 
-
+<h1><span class="fi-misc-padlock-1 fi-misc"></span>Login</h1>
+<p>To continue to use the application, please login below using your credentials.</p>
+<p>If you are not registered to use the application, you can click <a
+            href="{{action('RegistrationController@create')}}">here</a> to register.</p>
 
     <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-default">

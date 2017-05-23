@@ -75,7 +75,10 @@
 
                     <div class="form-group">
                         {!! Form::label('due_date',"Order Due Date") !!}
+                        <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></div>
                         {!! Form::text('due_date',null,['class'=>'form-control']) !!}
+                        </div>
                     </div>
                 
 
@@ -98,8 +101,9 @@
 @include('quote._invoicetable')
 
 
-
+<div class="form-group">
     {!! Form::submit('Update Quotation',['class'=>'btn btn-success']) !!}
+</div>
 
 {!! Form::close() !!}
 @include('quote._productmodal')
