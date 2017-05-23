@@ -14,7 +14,7 @@
                 @endslot
     {!! Form::model($address,['action'=>['AddressController@update','address'=>$address],'method'=>'PATCH']) !!}
         @include('user._form')
-    {!! Form::submit('Add Address',['class'=>'btn btn-success']) !!}
+    {!! Form::submit('Edit Address',['class'=>'btn btn-success']) !!}
     {!! Form::close() !!}
             @endcomponent
 
