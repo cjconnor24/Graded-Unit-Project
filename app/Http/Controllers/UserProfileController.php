@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use Illuminate\Validation\Rule;
 use Sentinel;
 use Illuminate\Http\Request;
 
@@ -84,7 +85,10 @@ class UserProfileController extends Controller
          * VALIDATE INPUT
          */
         $this->validate($request,[
-            'name'=>'required',
+            'name'=>[
+                'required',
+                Rule::unique('addresses')->where('user_id',Sentinel::getUser()->id)
+            ],
             'address1'=>'required',
             'postcode'=>'required',
         ]);

@@ -1,13 +1,30 @@
 @extends('layouts.user_master')
 @section('content')
 
-    <h1>Add New Address</h1>
+    <a href="{{action('UserProfileController@viewAddresses')}}" class="btn btn-default"><span class="fi-misc-return fi-misc"></span> Return to Addresses</a>
+
+    <h1><span class="fi-shop-placeholder fi-shop"></span>  Add New Address</h1>
     <p>Please enter the details below to add the new address</p>
     {!! Form::open(['action' => 'UserProfileController@storeAddress']) !!}
-        @include('user._form')
+
+    <div class="col-md-8 col-md-offset-2">
+
+
+@include('includes.errors')
+        @component('components.panel')
+            @slot('title')
+               <span class="fi-shop-placeholder fi-shop"></span> Add New Address
+            @endslot
+
+                @include('user._form')
+
+
     <div class="form-group">
     {!! Form::submit('Add Address',['class'=>'btn btn-success']) !!}
     </div>
     {!! Form::close() !!}
 
+            @endcomponent
+
+    </div>
 @endsection
