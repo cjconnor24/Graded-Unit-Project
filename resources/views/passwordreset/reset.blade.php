@@ -1,13 +1,19 @@
 @extends('layouts.admin_master')
 @section('content')
 
-    <h1>Password Reset</h1>
+    <h1><span class="fi-misc-padlock fi-misc"></span> Password Reset</h1>
     <p>To reset your password, please enter the new password below.</p>
 
     <div class="row">
-    <div class="col-md-6">
+
 
         @include('includes.errors')
+
+        <div class="col-md-8 col-md-offset-2">
+            @component('components.panel')
+                @slot('title')
+                    <span class="fi-misc-reload fi-misc"></span> Reset Password
+                @endslot
 {{--    {!! Form::open(['url' => '']) !!}--}}
         <form method="POST" action="">
             {{csrf_field()}}
@@ -27,7 +33,8 @@
     
     
     {!! Form::close() !!}
-    </div>
+                @endcomponent
+        </div>
     </div>
 
 @endsection

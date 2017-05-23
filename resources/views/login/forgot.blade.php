@@ -20,7 +20,7 @@
 
 <div class="form-group">
     {!! Form::label('email',"Email Address") !!}
-    {!! Form::text('email',null,['class'=>'form-control']) !!}
+    {!! Form::email('email',null,['class'=>'form-control','required']) !!}
 </div>
 
 
