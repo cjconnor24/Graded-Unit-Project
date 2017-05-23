@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phpdox xmlns="http://xml.phpdox.net/config">
   <project name="Spectrum Digital Print MIS" source="${basedir}/app" workdir="../specdox/build/api/xml">
-    <collector backend="parser" />
+    <collector publiconly="false" backend="parser" />
     
-		<exclude mask="**app**" />
+		<exclude mask="**Console**" />
 
     <generator output="../specdox/build/api">
 
       <enrich base="../specdox/build">
         <!-- @base - (Base-)Directory of datafiles used for enrich process -->
 
-        <!--<source type="...">-->
-        <!-- @type - the handler for the enrichment -->
-        <!--         known types by default are: build, checkstyle, git, phpcs, phploc, phpunit, pmd -->
-
-        <!-- every enrichment source can have additional configuration nodes, most probably need a logfile -->
-        <!-- <file name="path/to/log.xml" /> -->
-        <!--</source> -->
-
-        <!-- add phploc output -->
-        <!--
-        <source type="phploc" />
-        -->
 
         <!-- git vcs information -->
 
@@ -29,34 +17,6 @@
             <git binary="/usr/bin/git" />
             <history enabled="true" limit="15" cache="${phpDox.project.workdir}/gitlog.xml" />
         </source>
-
-
-        <!-- PHP Code Sniffer findings -->
-        <!--
-        <source type="phpcs">
-            <file name="logs/phpcs.xml" />
-        </source>
-        -->
-
-        <!-- PHPMessDetector -->
-        <!--
-        <source type="pmd">
-            <file name="pmd.xml" />
-        </source>
-        -->
-
-        <!-- PHPUnit Coverage XML -->
-        <!-- <source type="phpunit">  -->
-        <!-- <coverage path="" /> -->
-        <!--           @path - the directory where the xml code coverage report can be found -->
-        <!--<filter directory="${phpDox.project.source}" />-->
-        <!-- @directory - path of the phpunit config whitelist filter directory -->
-        <!--</source>-->
-        <!--
-        <source type="phpunit">
-            <filter directory="${phpDox.project.source}" />
-        </source>
-        -->
 
       </enrich>
 

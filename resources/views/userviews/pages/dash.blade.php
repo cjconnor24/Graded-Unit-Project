@@ -3,7 +3,7 @@
 
     @include('includes.errors')
 
-    <h1>Dashboard</h1>
+    <h1><span class="fi-man-line-graph-1 fi-man"></span> Dashboard</h1>
 
     <div class="row row-eq-height">
 
