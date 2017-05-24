@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -32,6 +33,7 @@ class CreateQuote extends FormRequest
             'customer_id'=>'required',
             'address_id'=>'required',
             'branch_id'=>'required',
+            'due_date'=>'required|after_or_equal:'.Carbon::now(),
             'order'=>'required|array',
             'order.*.product_id'=>'required|integer',
             'order.*.paper_id'=>'required|integer',
@@ -49,6 +51,7 @@ class CreateQuote extends FormRequest
         return [
             'customer_id.required'=>'Please select the customer.',
             'branch_id.required'=>'Please choose a branch for the quote.',
+            'due_date.after_or_equal'=>'Due date may not be in the past.',
             'address_id.required'=>'Please select the customer\'s address.',
             'order.required'=>'Please add at least one item to the quotation.',
             'order.*.qty.required'=>'Please enter a quantity for all products.'

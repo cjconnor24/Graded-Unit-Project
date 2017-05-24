@@ -8,9 +8,8 @@
         $(function() {
             $( "#due_date" ).datepicker({ minDate: 0, dateFormat:'dd-mm-yy' });
 
-//            $(window).on('beforeunload', function(){
-//                return 'Are you sure you want to leave? Unsaved quote will be lost';
-//            });
+//            thun
+
 
         });
     </script>
