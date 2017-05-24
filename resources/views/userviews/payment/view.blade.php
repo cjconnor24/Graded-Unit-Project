@@ -73,12 +73,12 @@
 
                     <div class="form-group">
                         {!! Form::label('billing_first_name',"First Name") !!}
-                        {!! Form::text('billing_first_name',$order->customer->first_name,['class'=>'form-control']) !!}
+                        {!! Form::text('billing_first_name',$order->customer->first_name,['class'=>'form-control','required']) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('billing_last_name',"Last Name") !!}
-                        {!! Form::text('billing_last_name',$order->customer->last_name,['class'=>'form-control']) !!}
+                        {!! Form::text('billing_last_name',$order->customer->last_name,['class'=>'form-control','required']) !!}
                     </div>
 
                     {{--LOOP THROUGH ADDRESS LINES--}}
@@ -86,14 +86,14 @@
 
                         <div class="form-group">
                             {!! Form::label('billing_address'.$i,"Address ".$i) !!}
-                            {!! Form::text('billing_address'.$i,data_get($order,"address.address".$i),['class'=>'form-control','placeholder'=>'Address Line '.$i]) !!}
+                            {!! Form::text('billing_address'.$i,data_get($order,"address.address".$i),['class'=>'form-control','placeholder'=>'Address Line '.$i,($i==1 ? 'required' :'')]) !!}
                         </div>
 
                     @endfor
 
                     <div class="form-group">
                         {!! Form::label('billing_postcode',"Postcode") !!}
-                        {!! Form::text('billing_postcode',$order->address->postcode,['class'=>'form-control','placeholder'=>'Postcode']) !!}
+                        {!! Form::text('billing_postcode',$order->address->postcode,['class'=>'form-control','placeholder'=>'Postcode','required']) !!}
                     </div>
 
 

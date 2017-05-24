@@ -41,6 +41,13 @@ class PaymentController extends Controller
      */
     public function checkout(Order $order, Request $request)
     {
+        $this->validate($request, [
+            'billing_first_name'=>'required',
+            'billing_last_name'=>'required',
+            'billing_address1'=>'required',
+            'billing_postcode'=>'required'
+        ]);
+
         $order->load('customer','address');
         $customer = $order->customer;
 
