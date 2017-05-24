@@ -103,7 +103,7 @@
 
         </div>
 
-        <div class="col-lg-3 stretch">
+        <div class="col-lg-4 stretch">
             @include('userviews.components._branch',['branch'=>$order->branch,'staff'=>$order->staff])
         </div>
 
