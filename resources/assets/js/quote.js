@@ -110,6 +110,8 @@ $( document ).ready(function() {
 
         $('<div class="alert alert-success notification"><span class="glyphicon glyphicon-ok"></span> '+product_builder[1].value+' successfully added to the quotation!</div>').insertAfter('#product_builder').delay(3000).fadeOut();
 
+        $('#invoice-box').show();
+
     });
 
 
