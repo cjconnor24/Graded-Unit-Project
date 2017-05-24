@@ -5,6 +5,12 @@
     <h1><span class="fi-misc-layers fi-misc"></span> Add New Size</h1>
     <p>Please enter the details of the new size below.</p>
 
+    <div class="col-md-8 col-md-offset-2">
+    @component('components.panel')
+        @slot('title')
+        Create Paper Size
+        @endslot
+
     <form action="{{ action('Admin\SizesController@store') }}" method="post" role="form">
 
         {{csrf_field()}}
@@ -31,5 +37,8 @@
         </div>
 
     </form>
-@include('includes.errors')
+
+        @endcomponent
+    </div>
+{{--@include('includes.errors')--}}
 @endsection

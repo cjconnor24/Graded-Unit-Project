@@ -5,7 +5,7 @@
         {!! Form::model($size,['action' => ['Admin\SizesController@update','size'=>$size->id]]) !!}
         {{csrf_field()}}
         {{method_field('PATCH')}}
-        <h1>TEST</h1>
+
         <h1>{{$size->name}}</h1>
 
         <div class="form-group">

@@ -22,6 +22,8 @@
 </head>
 <body>
 
+@include('includes.noscript')
+
 <div class="bg-container">
 
     @include('layouts._user_menu')

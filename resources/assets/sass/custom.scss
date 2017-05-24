@@ -4,6 +4,17 @@ body {
 .required-text {
   color:$grapefruit-dark;
 }
+.noscriptmsg {
+  width:100%;
+  height:100%;
+  display:block;
+  padding:2em 0;
+  background:#FFF;
+  text-align:center;
+  color:$grapefruit-dark;
+
+  font-size:x-large;
+}
 .bg-container {
   background:#FFF;
 }
