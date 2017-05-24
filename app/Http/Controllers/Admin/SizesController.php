@@ -46,8 +46,8 @@ class SizesController extends Controller
         // VALIDATE THE INPUT
         $this->validate($request,[
             'name' => 'bail|required|unique:sizes',
-            'height' => 'required|Numeric',
-            'width' => 'required|Numeric'
+            'height' => 'required|Numeric|min:10',
+            'width' => 'required|Numeric|min:10'
         ]);
 
         Size::create([
@@ -96,8 +96,8 @@ class SizesController extends Controller
                 'required',
                 Rule::unique('sizes')->ignore($size->id),
             ],
-            'height' => 'required',
-            'width' => 'required'
+            'height' => 'required|Numeric|min:10',
+            'width' => 'required|Numeric|min:10'
         ]);
         $size->update($request->all());
         return redirect()->action('Admin\SizesController@index');
