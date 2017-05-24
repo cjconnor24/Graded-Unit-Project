@@ -4,14 +4,11 @@
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| ALL ROUTES TO APPLICATION ARE REGISTERED HERE
 |
 */
 
 Route::get('/', function () {
-//    return view('welcome');
     return redirect()->action('LoginController@loginForm');
 });
 
@@ -43,7 +40,7 @@ Route::group(['middleware'=>'guest'], function() {
 Route::get('/logout', 'LoginController@logout');
 
 /*
- * ADMIN ROUTES
+ * CUSTOMER ROUTES
  */
 Route::group(['middleware'=>['authenticate','customer']], function(){
 
@@ -80,7 +77,7 @@ Route::group(['middleware'=>['authenticate','customer']], function(){
 });
 
 /**
- * Adminisrator Routes
+ * STAFF ROUTES
  */
 
 Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authenticate','staff']], function () {
@@ -140,10 +137,13 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
         }
     });
 
-    Route::resource('orders','OrderController');
+
+    // ORDER NOTE LOGIC
     Route::post('orders/{order}/notes/add','OrderController@addNote');
     Route::post('orders/{order}/status/{status}','OrderController@updateStatus')->middleware('restrict.status.update');
 
+    // RESOURCE CONTROLLERS
+    Route::resource('orders','OrderController');
     Route::resource('categories','CategoryController');
     Route::resource('products','ProductsController');
     Route::resource('sizes','SizesController');
@@ -151,20 +151,29 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
     route::resource('customers','CustomerController');
     Route::resource('branches','BranchController');
     Route::resource('staff','StaffController');
-    Route::post('staff/disable','StaffController@disabledUser');
-    Route::post('staff/enable','StaffController@enableUser');
-    Route::post('staff/role','StaffController@toggleRole');
 
 
-    Route::get('reports/','ReportsController@index');
-    Route::get('reports/customer','ReportsController@customer');
-    Route::get('reports/pdf','ReportsController@downloadPDF');
-    Route::get('reports/show','ReportsController@show');
 
-    Route::get('reports/orders','ReportsController@orders');
-    Route::post('reports/orders','ReportsController@ordersPost');
+    // RESTRICT REPORTING TO ADMIN ROLE ONLY
+    Route::group(['middleware'=>['admin']], function ()
+    {
 
-    Route::get('reports/customers','ReportsController@customers');
-    Route::post('reports/customers','ReportsController@customersPost');
+        // STAFF LOGIC
+        Route::post('staff/disable','StaffController@disabledUser');
+        Route::post('staff/enable','StaffController@enableUser');
+        Route::post('staff/role','StaffController@toggleRole');
+
+        // REPORTING LOGIC
+        Route::get('reports/', 'ReportsController@index');
+        Route::get('reports/customer', 'ReportsController@customer');
+        Route::get('reports/pdf', 'ReportsController@downloadPDF');
+        Route::get('reports/show', 'ReportsController@show');
+        Route::get('reports/orders', 'ReportsController@orders');
+        Route::post('reports/orders', 'ReportsController@ordersPost');
+
+        Route::get('reports/customers', 'ReportsController@customers');
+        Route::post('reports/customers', 'ReportsController@customersPost');
+
+    });
 
 });

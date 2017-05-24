@@ -29,7 +29,6 @@ class GuestMiddleware
 
         } else {
 
-
             return redirect()->action('PagesController@dashboard');
 
         }
