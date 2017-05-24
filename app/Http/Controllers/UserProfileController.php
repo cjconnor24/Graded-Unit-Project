@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
  *
  * @package App\Http\Controllers
  * @author Chris Connor <chris@chrisconnor.co.uk>
+ * @todo Finish working on update user profile code
  */
 class UserProfileController extends Controller
 {
@@ -27,7 +28,37 @@ class UserProfileController extends Controller
     }
 
     /**
+     * Display the edit form to allow users to update their details
+     *
+     * @return $this
+     */
+    public function edit()
+    {
+        return view('user.editprofile')->with('user',Sentinel::getUser());
+    }
+
+    /**
+     * Update user information in database.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request)
+    {
+
+        return redirect()->back()->with('error','Still working on the update feature');
+        $this->validate([
+            'first_name','required',
+            'last_name','required',
+            'password','sometimes|required|confirmed'
+        ]);
+
+
+
+    }
+    /**
      * Display a profile control panel to the user
+     *
      * @return $this
      */
     public function view()

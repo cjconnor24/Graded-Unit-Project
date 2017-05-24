@@ -8,7 +8,17 @@
 
     <div class="row">
 
-        <div class="col-md-4">
+        <div class="col-md-3">
+            @component('components.dash-panel',[
+            'colour'=>'danger',
+            'icon'=>'fi-man fi-man-job',
+            'count'=>'&nbsp;',
+            'name'=>'User Profile',
+            'link'=>action('UserProfileController@edit')])
+            @endcomponent
+        </div>
+
+        <div class="col-md-3">
             @component('components.dash-panel',[
             'colour'=>'warning',
             'icon'=>'fi-shop fi-shop-shopping-cart',
@@ -18,7 +28,7 @@
             @endcomponent
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             @component('components.dash-panel',[
             'colour'=>'info',
             'icon'=>'fi-shop-online-shop-1 fi-shop',
@@ -28,10 +38,7 @@
             @endcomponent
         </div>
 
-
-
-
-        <div class="col-md-4">
+        <div class="col-md-3">
             @component('components.dash-panel',[
             'colour'=>'primary',
             'icon'=>'fi-shop-placeholder fi-shop',

@@ -50,6 +50,8 @@ Route::group(['middleware'=>['authenticate','customer']], function(){
     Route::get('/dashboard','PagesController@dashboard');
 
     Route::get('/profile','UserProfileController@view');
+    Route::get('/profile/edit','UserProfileController@edit');
+    Route::patch('profile/edit','UserProfileController@update');
 
     Route::resource('/addresses','AddressController');
 
