@@ -55,6 +55,7 @@ class UserQuotationController extends Controller
         // EAGER LOGIN THE APPROVALS
         $quotation->load(['quoteApprovals'=>function($query) use($token){
             $query->where('token',$token);
+            $query->where('completed',false);
         }]);
 
         // MAKE SURE THERE IS AN APPROVAL
