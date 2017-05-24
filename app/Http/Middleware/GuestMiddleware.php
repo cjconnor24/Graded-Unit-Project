@@ -23,13 +23,14 @@ class GuestMiddleware
     public function handle($request, Closure $next)
     {
         // IF THERE IS A LOGGED IN USER, REDIRECT TO HOME
-        if(Sentinel::check()){
+        if(Sentinel::guest()){
 
-            return redirect()->action('PagesController@dashboard');
+            return $next($request);
 
         } else {
 
-            return $next($request);
+
+            return redirect()->action('PagesController@dashboard');
 
         }
     }
