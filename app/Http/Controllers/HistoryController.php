@@ -22,14 +22,22 @@ class HistoryController extends Controller
     public function index()
     {
 
-        $orders = Sentinel::getUser()->orders;
+        $orders = Sentinel::getUser()->orders->where('id','>',15);
         $orders->load('state','orderStatus');
 
-//        return $orders;
+        $temp = $orders->filter(function($order){
+            if($order->state->name!=='quote'){
+                return $order;
+            }
+        });
+
+        $sorted = $temp->sortByDesc('updated_at');
+
+
 
 //        dd($orders);
 
-        return view('userviews.history.index')->with('orders',$orders);
+        return view('userviews.history.index')->with('orders',$sorted->values()->all());
 
     }
 
