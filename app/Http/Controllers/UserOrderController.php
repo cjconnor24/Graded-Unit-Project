@@ -38,8 +38,10 @@ class UserOrderController extends Controller
     public function show(Order $order)
     {
         $order->load(['customer','OrderProducts.product','payments','orderStatus','quoteApprovals'=>function($query){
-            $query->where('completed',true)->first();
+            $query->where('completed',true)->firstOrFail();
         }]);
+
+
 
         return view('userviews.order.view')->with('quotation',$order);
 
