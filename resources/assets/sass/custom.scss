@@ -102,3 +102,34 @@ FLEX THE PANELS SO THEY'RE THE SAME HEIGHT
     -webkit-transition: width 2.5s ease;
     transition: width 2.5s ease;
 }
+
+.robot-column h1 {
+  color:darken($mint-dark,10%);
+  font-size:15em;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center;
+  @include rotate(-15deg);
+
+}
+
+@keyframes example {
+  0%   {left: 25px;}
+50% {left:-25px}
+  100%   {left: 25px;}
+}
+
+.robot-column img {
+  padding:0;
+  margin:0;
+  position:relative;
+  top:-30px;
+  width:100%;
+  animation-name: example;
+  animation-iteration-count:infinite;
+  animation-duration: 2s;
+}
+.error-page .text-column {
+  font-size:xx-large!important;
+  text-align: center;
+}
