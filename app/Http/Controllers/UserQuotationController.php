@@ -127,7 +127,7 @@ class UserQuotationController extends Controller
             return view('userviews.quote.view')->with('quotation', $quotation);
 
         } else {
-            abort(404);
+            abort(404,'Hmm, this doesn\'t exist...no tampering ;)');
         }
 
     }
