@@ -56,7 +56,7 @@ class AddressController extends Controller
                 Rule::unique('addresses')->where('user_id',Sentinel::getUser()->id)
             ],
             'address1'=>'required',
-            'postcode'=>'required',
+            'postcode'=>'required|regex:/[A-Z]{1,2}\d{1,3}\s?[0-9]{1,2}[A-Z]{1,3}/',
         ]);
 
         /**
