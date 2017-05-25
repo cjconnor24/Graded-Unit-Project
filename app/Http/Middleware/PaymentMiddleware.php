@@ -23,11 +23,17 @@ class PaymentMiddleware
     public function handle($request, Closure $next)
     {
         $order = $request->route('order');
-        $order->load('payments');
+        $order->load('payments','state');
 
-        if($order->payment_total == $order->order_total){
+
+        // IF ALREADY PAID, OR NOT AN ACTUAL ORDER
+        if(($order->payment_total >= $order->order_total)){
 
             return redirect()->action('UserOrderController@show',['order'=>$order->id])->with('success','Your order has already been paid.');
+
+        } elseif($order->state->name!=='order') {
+
+            return redirect()->action('UserQuotationController@show',['order'=>$order->id])->with('error','You haven\'t approved this order yet');
 
         } else {
 
