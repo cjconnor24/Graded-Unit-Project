@@ -32,6 +32,8 @@
         </tbody>
     </table>
 
+    {{$orders->links()}}
+
     @else
     <p><em>There are currently no orders</em></p>
     @endif

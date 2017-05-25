@@ -14,7 +14,7 @@
             <th>Placed</th>
             <th>Type</th>
             {{--<th>Status</th>--}}
-            {{--<th>total</th>--}}
+            <th>total</th>
         </tr>
         </thead>
         <tbody>
@@ -24,7 +24,6 @@
             <td>{{$order->id}}</td>
             <td>{{$order->created_at->diffForHumans()}}</td>
             <td>{{$order->state->name}}</td>
-            {{--<td>{{$order->orderStatus->name}}</td>--}}
             <td>£{{$order->order_total}}</td>
 
         </tr>

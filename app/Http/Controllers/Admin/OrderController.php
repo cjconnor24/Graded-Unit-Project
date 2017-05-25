@@ -33,7 +33,7 @@ class OrderController extends Controller
             $query->select('id','first_name','last_name');
         },'orderstatus'=>function($query){
             $query->select('id','name');
-        }])->paginate();
+        }])->paginate(15);
 
         return view('order.index')->with('orders',$orders);
 
