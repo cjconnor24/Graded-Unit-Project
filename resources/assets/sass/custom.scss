@@ -113,10 +113,11 @@ FLEX THE PANELS SO THEY'RE THE SAME HEIGHT
 
 }
 
-@keyframes example {
-  0%   {left: 25px;}
-50% {left:-25px}
-  100%   {left: 25px;}
+@keyframes robot {
+  0%   {left: 25px;@include rotate(-2deg)}
+  25% {@include rotate(5deg)}
+50% {left:-25px;@include rotate(0deg)}
+  100%   {left: 25px;@include rotate(-2deg)}
 }
 
 .robot-column img {
@@ -125,7 +126,7 @@ FLEX THE PANELS SO THEY'RE THE SAME HEIGHT
   position:relative;
   top:-30px;
   width:100%;
-  animation-name: example;
+  animation-name: robot;
   animation-iteration-count:infinite;
   animation-duration: 2s;
 }
