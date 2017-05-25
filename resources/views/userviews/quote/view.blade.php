@@ -73,6 +73,8 @@
 
     <h1><span class="fi-shop fi-shop-shopping-cart"></span> Quotation {{$quotation->quote_number}}</h1>
 
+@include('includes.errors')
+
 <div class="row row-eq-height">
 
 

@@ -1,6 +1,7 @@
 {{--
 OUTPUT NOTIFICATIONS IF AVAILABLE
 --}}
+@if(isset($errors))
 
 @if(count($errors)>0)
     <div class="alert alert-danger">
@@ -28,6 +29,7 @@ OUTPUT NOTIFICATIONS IF AVAILABLE
         {{session('error')}}
     </div>
 @endif
+@endif
 
 @section('scripts')
 @if(session('notification'))
@@ -37,5 +39,6 @@ OUTPUT NOTIFICATIONS IF AVAILABLE
         });
     </script>
 @endif
+
 @endsection
 

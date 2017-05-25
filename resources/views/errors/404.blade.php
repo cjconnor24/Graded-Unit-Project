@@ -14,6 +14,11 @@
             <h1>Beep Bap Boop...</h1>
             <p>Uh Oh, Something isn't quite right...</p>
 
+            @if($exception->getMessage()!=="")
+            <pre>{{$exception->getMessage()}}</pre>
+            @endif
+            <p><a href="#" class="btn btn-info"><span class="fi-misc-home fi-misc"></span> Go Home</a></p>
+
         </div>
     </div>
 
