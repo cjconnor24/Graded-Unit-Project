@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\OrderStatus;
+use Sentinel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -16,6 +17,17 @@ use Illuminate\Support\Facades\Log;
  */
 class PaymentController extends Controller
 {
+
+    /**
+     * Get payment list for logged in user.
+     *
+     * @return $payments
+     */
+    public function list()
+    {
+        $payments = Sentinel::getUser()->payments;
+        return $payments;
+    }
 
     /**
      * Display the payment window
