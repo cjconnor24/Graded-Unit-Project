@@ -41,7 +41,7 @@ class RegistrationController extends Controller
             'first_name'=>'required',
             'last_name'=>'required',
             'email'=>'bail|required|email|unique:users',
-            'password'=>'required|confirmed|min:6'
+            'password'=>'required|confirmed|min:6|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/'
         ]);
 
         $user = Sentinel::register([
@@ -57,9 +57,24 @@ class RegistrationController extends Controller
         $role = Sentinel::findRoleBySlug('customer');
         $role->users()->attach($user);
 
-//        // SEND CONFIRMATION TO USER
-        Mail::to($user->email)->send(new UserRegistered($user,$activation->code));
+//        // TRY AND SEND CONFIRMATION TO USER
+        try {
 
+            Mail::to($user->email)->send(new UserRegistered($user, $activation->code));
+
+        }
+        // MAIL SENDING FAILED - USUALLY BECAUSE OF COLLEGE BLOCKING - INSTEAD LOG
+        catch (\Swift_TransportException $e){
+
+            // LOG DETAILS
+            \Log::error('MAIL SENDING FAILED.',['user'=>$user,'activation'=>$activation->code." See logs for activation details."]);
+
+            // ABORT WITH 504
+            abort(504,$e->getMessage()."\n See logs for activation details.");
+
+        }
+
+        // REDIRECT TO LOGIN
         return redirect()->action('LoginController@loginForm')->with('success','You have succesfully registered. Please verify your email');
 
     }
