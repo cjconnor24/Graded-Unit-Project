@@ -35,11 +35,11 @@ class Address extends Model
     public function getFullAddressAttribute()
     {
         $fullAddress = '';
-        $fullAddress .= $this->address1.', ';
-        $fullAddress .= $this->address2.', ';
-        $fullAddress .= $this->address3.', ';
-        $fullAddress .= $this->address4.', ';
-        $fullAddress .= $this->postcode;
+        ($this->address1 !== "" ? $fullAddress .= $this->address1.', ' : '');
+        ($this->address2 !== "" ? $fullAddress .= $this->address2.', ' : '');
+        ($this->address3 !== "" ? $fullAddress .= $this->address3.', ' : '');
+        ($this->address4 !== "" ? $fullAddress .= $this->address4.', ' : '');
+        ($this->postcode !== "" ? $fullAddress .= $this->postcode : '');
 
         return $fullAddress;
     }
