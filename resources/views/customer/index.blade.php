@@ -9,8 +9,8 @@
 
     {{$customers->links()}}
 
-
-    <table class="table table-responsive">
+<div class="table-responsive">
+    <table class="table">
         <thead>
         <tr>
             <th>Name</th>
@@ -33,6 +33,7 @@
             @endforeach
         </tbody>
     </table>
+</div>
 
     {{$customers->links()}}
 
