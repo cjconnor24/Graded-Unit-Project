@@ -9,8 +9,8 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Email</th>
-            <th>Telephone</th>
+            <th class="hidden-sm hidden-xs">Email</th>
+            <th class="hidden-sm hidden-xs">Telephone</th>
             <th>Roles</th>
             <th>View</th>
         </tr>
@@ -19,8 +19,8 @@
         @foreach($staff as $member)
         <tr>
             <td>{{$member->full_name}}</td>
-            <td>{{$member->email}}</td>
-            <td>{{$member->telephone}}</td>
+            <td class="hidden-sm hidden-xs">{{$member->email}}</td>
+            <td class="hidden-sm hidden-xs">{{$member->telephone}}</td>
             <td>
                 @foreach($member->roles as $role)
                     <span class="label">{{$role->name}}</span>
