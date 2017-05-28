@@ -14,11 +14,7 @@
                 <span class="fi-misc-placeholder fi-misc"></span> {{$address->name}}
                 @endslot
 
-                <p>{{$address->address1}}<br />
-                    {!!$address->address2 ?: '' !!}
-                    {!!$address->address3 ?: '' !!}
-                    {!!$address->address4 ?: '' !!}
-                    {!!$address->postcode ?: '' !!}</p>
+                <p>{!! str_replace(',',',<br>',$address->full_address) !!}</p>
 
             @slot('footer')
                     <a href="{{action('AddressController@edit',['address'=>$address->id])}}" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</a>
