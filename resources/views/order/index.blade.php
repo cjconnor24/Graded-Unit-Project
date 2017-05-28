@@ -5,7 +5,8 @@
 
     @if(count($orders)>0)
 
-    <table class="table table-responsive">
+        <div class="table-responsive">
+    <table class="table">
         <thead>
         <tr>
             <th>Order Number</th>
@@ -31,7 +32,7 @@
             @endforeach
         </tbody>
     </table>
-
+        </div>
     {{$orders->links()}}
 
     @else
