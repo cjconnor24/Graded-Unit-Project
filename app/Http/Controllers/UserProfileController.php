@@ -47,11 +47,16 @@ class UserProfileController extends Controller
     {
 
         return redirect()->back()->with('error','Still working on the update feature');
-        $this->validate([
-            'first_name','required',
-            'last_name','required',
+//        return $request->all();
+        $this->validate($request,[
             'password','sometimes|required|confirmed'
         ]);
+
+
+
+        $user = Sentinel::getUser();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
 
 
 

@@ -1,4 +1,27 @@
 @extends('layouts.user_master')
+@section('scripts')
+    <script type="text/javascript">
+        /**
+         * TOGGLE PASSWORDS
+         */
+        $(function() {
+
+            $("input[type=checkbox").change(function() {
+
+                console.log('Updated');
+
+                if(!this.checked) {
+                    $("#password").prop('disabled', true);
+                    $("#password_confirmation").prop('disabled', true);
+                } else {
+                    $("#password").prop('disabled', false);
+                    $("#password_confirmation").prop('disabled', false);
+                }
+            });
+
+        });
+    </script>
+@endsection
 @section('content')
 
     <a href="{{action('UserProfileController@view')}}" class="btn btn-default"><span class="fi-misc-return fi-misc"></span> Return to Account Dashboard</a>
@@ -52,14 +75,23 @@
 
             <legend><span class="fi-misc-padlock fi-misc"></span> Password Update</legend>
 
+
+
+            <div class="form-group">
+                <label class="toggle">
+                    <input type="checkbox">
+                    <span class="handle"></span>
+                </label>
+            </div>
+
             <div class="form-group">
                 {!! Form::label('password',"Password") !!}
-                {!! Form::text('password','',['class'=>'form-control']) !!}
+                {!! Form::password('password',['class'=>'form-control','disabled']) !!}
             </div>
 
             <div class="form-group">
                 {!! Form::label('password_confirmation',"Cofirm Password") !!}
-                {!! Form::text('password_confirmation','',['class'=>'form-control']) !!}
+                {!! Form::password('password_confirmation',['class'=>'form-control','disabled']) !!}
             </div>
 
         </fieldset>
