@@ -57,6 +57,8 @@ class AddressController extends Controller
             ],
             'address1'=>'required',
             'postcode'=>'required|regex:/[A-Z]{1,2}\d{1,3}\s?[0-9]{1,2}[A-Z]{1,3}/',
+        ],[
+            'postcode.regex'=>'Please enter a valid UK postcode.'
         ]);
 
         /**
