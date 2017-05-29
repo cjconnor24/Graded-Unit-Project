@@ -105,6 +105,11 @@ class QuotationController extends Controller
      */
     public function show(Order $quotation)
     {
+
+        if($quotation->state->name!=='quote'){
+            abort(404,'The quote you\'re trying to access doesn\'t exists.');
+        }
+
         $customers= User::whereHas('roles',function($query){
             $query->where('slug','customer');
         })->get()->pluck('full_name','id');

@@ -47,6 +47,12 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+
+        // ABORT IF THE RESOURCE ISN'T AN ORDER
+        if($order->state->name!=='order'){
+            abort(404,'The order you\'re trying to access doesn\'t exist');
+        }
+
         $order->load([
             'branch',
             'staff',
