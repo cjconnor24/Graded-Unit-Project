@@ -3,11 +3,11 @@
 
 @foreach($addresses->chunk(3) as $chunk)
 
-    <div class="row">
+    <div class="row row-eq-height">
 
     @foreach($chunk as $address)
 
-        <div class="col-sm-4">
+        <div class="col-sm-4 stretch">
 
         @component('components.panel')
             @slot('title')
