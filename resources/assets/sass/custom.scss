@@ -92,7 +92,7 @@ FLEX THE PANELS SO THEY'RE THE SAME HEIGHT
   .col-flex {
     flex-direction: column;
   }
-  .panel {
+  .row-eq-height .panel {
       flex:1 1 100%;
   }
 
