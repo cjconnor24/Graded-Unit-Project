@@ -44,6 +44,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+
+            return redirect()
+                ->back()
+                ->withInput($request->except('_token'))
+                ->with('error','There was an issue with your CSRF token - your session timed out. Or, you\'re up to no good ;)');
+
+        }
+
         return parent::render($request, $exception);
     }
 
