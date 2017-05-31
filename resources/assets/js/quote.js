@@ -123,7 +123,7 @@ $( document ).ready(function() {
         var category_id = e.target.value;
 
         // SEND REQUEST
-        $.get('/admin/ajax-product/' + category_id, function (data) {
+        $.get('/admin/categories/' + category_id +'/products', function (data) {
 
             // CLEAR DROPDOWN
             $('#product_id').empty();

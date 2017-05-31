@@ -99,19 +99,8 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
      * AJAX ROUTES FOR QUOTE BUILDER
      */
     Route::get('customers/{user}/addresses','CustomerController@getAddresses');
-
-    /**
-     * AJAX REPONSE FOR GETTING CATEGORIES
-     */
-    Route::get('ajax-product/{category}',function(\App\Category $category, \Illuminate\Http\Request $request)
-    {
-        if($request->ajax()) {
-            $products = $category->products;
-            return Response::json($products);
-        } else {
-            abort(500);
-        }
-    });
+    Route::get('categories/{category}/products','CategoryController@getProducts');
+    
 
     /**
      * AJAX RESPONSE FOR GETTING PRODUCTS

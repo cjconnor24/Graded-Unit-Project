@@ -96,4 +96,21 @@ class CategoryController extends Controller
         return redirect()->action('Admin\CategoryController@index');
     }
 
+    /**
+     * Retrieve a list for products for the given category.
+     *
+     * @param Category $category The category to query
+     * @param Request $request
+     * @return mixed
+     */
+    public function getProducts(Category $category, Request $request)
+    {
+        if($request->ajax()) {
+            $products = $category->products;
+            return \Response::json($products);
+        } else {
+            abort(500);
+        }
+    }
+
 }
