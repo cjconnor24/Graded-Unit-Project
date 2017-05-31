@@ -6,6 +6,8 @@
 
     <p>Below is your order history</p>
 
+    @if(count($orders)>0)
+
     <div class="table-responsive">
     <table class="table table-responsive">
         <thead>
@@ -31,5 +33,8 @@
         </tbody>
     </table>
     </div>
+    @else
+    <p><em>You don't currently have any past orders.</em></p>
+    @endif
 
 @endsection
