@@ -49,7 +49,7 @@ class ResetPasswordController extends Controller
     {
 
         $this->validate($request, [
-            'password'=>'required|confirmed|min:6|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/'
+            'password'=>'required|confirmed|min:6|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/',
             'password_confirmation' => 'required'
         ]);
 
