@@ -9,7 +9,7 @@ You are almost there, we just need to verify your email address.
 
 @php ($url = action('ActivationController@activate',['email'=>$user->email,'activationCode'=>$activation]))
 
-<p><a href="{{ $url }}">Verify Email Address</a>
+{{--<p><a href="{{ $url }}">Verify Email Address</a>--}}
 
 @component('mail::button', ['url' => $url])
 Verify Email Address
