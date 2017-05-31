@@ -43,4 +43,21 @@ class CustomerController extends Controller
     }
 
 
+    /**
+     * Retrive customer addresses based on the passed user.
+     * @param User $user The user to query
+     * @param Request $request
+     * @return mixed
+     */
+    public function getAddresses(Request $request, User $user)
+    {
+        if($request->ajax()) {
+            $addresses = $user->addresses;
+            return \Response::json($addresses);
+        } else {
+            abort(500);
+        }
+    }
+
+
 }

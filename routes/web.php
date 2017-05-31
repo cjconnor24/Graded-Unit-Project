@@ -96,19 +96,9 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
     Route::get('orders/','OrderController@index');
 
     /**
-     * AJAX REPONSE FOR GETTING ADDRESSES
+     * AJAX ROUTES FOR QUOTE BUILDER
      */
-    Route::get('ajax-address/{user}',function(\App\User $user, \Illuminate\Http\Request $request)
-    {
-
-        if($request->ajax()) {
-            $addresses = $user->addresses;
-            return Response::json($addresses);
-        } else {
-            abort(500);
-        }
-
-    });
+    Route::get('customers/{user}/addresses','CustomerController@getAddresses');
 
     /**
      * AJAX REPONSE FOR GETTING CATEGORIES

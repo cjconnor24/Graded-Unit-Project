@@ -196,7 +196,7 @@ $( document ).ready(function() {
         var customer_id = e.target.value;
 
         // SEND THE REQUEST TO GET TEH DADRESSES
-        $.get('/admin/ajax-address/' + customer_id, function (data) {
+        $.get('/admin/customers/' + customer_id + '/addresses', function (data) {
 
             // CLEAR DROPDOWNS
             $('#address_id').empty();
