@@ -44,7 +44,7 @@ class RegistrationController extends Controller
             'password'=>'required|confirmed|min:6|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/'
         ],
             [
-            'password.regex'=>'Your password should contain a lower case letter, an upper case letter along with at least 1 number.'
+            'password.regex'=>'Your password should contain a lower case letter, an upper case letter along with \at least 1 number.'
         ]);
 
         $user = Sentinel::register([
