@@ -243,10 +243,12 @@ function writeCustomerAddress(addressData,idEl){
 
     $(idEl).empty();
 
+    console.log(addressData);
+
     $(idEl).append(addressData.address1+'<br />');
-    $(idEl).append((addressData.address2!=='' ? addressData.address2 +'<br />':''));
-    $(idEl).append((addressData.address3!=='' ? addressData.address3 +'<br />':''));
-    $(idEl).append((addressData.address4!=='' ? addressData.address4 +'<br />':''));
+    $(idEl).append((addressData.address2!==null ? addressData.address2 +'<br />':''));
+    $(idEl).append((addressData.address3!==null ? addressData.address3 +'<br />':''));
+    $(idEl).append((addressData.address4!==null ? addressData.address4 +'<br />':''));
     $(idEl).append(addressData.postcode+'');
 
     return true;
