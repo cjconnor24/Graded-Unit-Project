@@ -96,26 +96,11 @@ Route::group(['namespace'=>'Admin','prefix' => 'admin','middleware'=>['authentic
     Route::get('orders/','OrderController@index');
 
     /**
-     * AJAX ROUTES FOR QUOTE BUILDER
+     ** AJAX ROUTES FOR QUOTE BUILDER **
      */
     Route::get('customers/{user}/addresses','CustomerController@getAddresses');
     Route::get('categories/{category}/products','CategoryController@getProducts');
-    
-
-    /**
-     * AJAX RESPONSE FOR GETTING PRODUCTS
-     */
-    Route::get('ajax-product-options/{product}',function(\App\Product $product, \Illuminate\Http\Request $request)
-    {
-        if($request->ajax()) {
-        $papers = $product->papers->pluck('name','id');
-        $sizes = $product->sizes->pluck('name','id');
-        $price = $product->price;
-        return Response::json(['papers'=>$papers,'sizes'=>$sizes,'price'=>$price]);
-        } else {
-            abort(500);
-        }
-    });
+    Route::get('products/{product}/options','ProductsController@getOptions');
 
 
     // ORDER NOTE LOGIC

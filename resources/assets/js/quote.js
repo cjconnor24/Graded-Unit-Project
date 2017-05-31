@@ -150,7 +150,7 @@ $( document ).ready(function() {
         var product_id = e.target.value;
 
         // SEND REQUET
-        $.get('/admin/ajax-product-options/' + product_id, function (data) {
+        $.get('/admin/products/' + product_id + '/options', function (data) {
 
             // CLEAR DROPDOWN
             $('#paper_id').empty();

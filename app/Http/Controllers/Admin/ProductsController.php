@@ -144,4 +144,23 @@ class ProductsController extends Controller
         return redirect()->action('Admin\ProductsController@index');
     }
 
+    /**
+     * Retrieve a list of paper and size options based on the passed product
+     *
+     * @param Product $product The product for which to return options
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse Json Datas
+     */
+    public function getOptions(Product $product, Request $request)
+    {
+        if($request->ajax()) {
+            $papers = $product->papers->pluck('name','id');
+            $sizes = $product->sizes->pluck('name','id');
+            $price = $product->price;
+            return \Response::json(['papers'=>$papers,'sizes'=>$sizes,'price'=>$price]);
+        } else {
+            abort(500);
+        }
+    }
+
 }
