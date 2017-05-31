@@ -45,7 +45,7 @@
                     <tr>
                         <td colspan="2">
                             <div class="progress">
-                                <div class="progress-bar progress-bar-{{$quotation->orderStatus->colour}}" role="progressbar" aria-valuenow="{{$quotation->order_progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$quotation->order_progress}}%">
+                                <div class="progress-bar progress-bar-striped progress-bar-{{$quotation->orderStatus->colour}} active" role="progressbar" aria-valuenow="{{$quotation->order_progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$quotation->order_progress}}%">
                                     <span class="sr-only">{{$quotation->orderStatus->name}}</span>
                                 </div>
                             </div></td>
