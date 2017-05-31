@@ -45,6 +45,12 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
 
+        // REFLECTION EXCEPTION - ROUTE DOESNT EXIST
+        if($exception instanceof \ReflectionException){
+            abort(404);
+        }
+
+        // CSRF EXCEPTION
         if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
 
             return redirect()
