@@ -15,6 +15,7 @@ use Sentinel;
 
 /**
  * Class ReportsController Manages creation and export of reports
+ *
  * @author Chris Connor chris@chrisconnor.co.uk
  * @package App\Http\Controllers\Admin
  */
