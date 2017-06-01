@@ -2,6 +2,17 @@
 @section('meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
+@section('scripts')
+    <script type="text/javascript">
+        $("#cancel-button").on("click", function (event) {
+            if ($(this).hasClass("disabled")) {
+                event.stopPropagation();
+            } else {
+//                $('#confirm-cancel').modal("show");
+            }
+        });
+    </script>
+@endsection
 @section('content')
 
     <div class="modal fade" id="confirm-cancel" tabindex="-1" role="dialog" aria-labelledby="rejectModelLabel">
@@ -82,6 +93,20 @@
 
             @endcomponent
 
+            @php
+            // MAKE SURE ORDER IS ALLOWED TO BE CANCELLED
+                $accepted = [
+                'Awaiting Payment',
+                'With Artworker',
+                'Awaiting Proof Approval'
+            ];
+            if(in_array($quotation->orderStatus->name,$accepted)){
+                $cancel = "";
+            } else {
+                $cancel = "disabled";
+            }
+            @endphp
+
                 @component('components.panel',['colour'=>'danger'])
                     @slot('title')
                         <span class="fi-misc-trash fi-misc"></span> Cancellations
@@ -89,20 +114,9 @@
 
                     <p>To cancel and order, please click the cancellation button below.</p>
 
-                    {{--@php--}}
-                    {{--switch($quotation->orderStatus->id){--}}
-                        {{--case 1:--}}
-                        {{--$cancel = "";--}}
-                        {{--case 2:--}}
-                        {{--$cancel = "";--}}
-                        {{--case 3:--}}
-                        {{--$cancel = "";--}}
-                        {{--default:--}}
-                        {{--$cancel = "disabled";--}}
-                    {{--}--}}
-                    {{--@endphp--}}
 
-                    <button type="button" class="btn btn-lg btn-danger btn-block" data-toggle="modal" data-target="#confirm-cancel"><span class="glyphicon-warning-sign glyphicon"></span> Cancel Order</button>
+
+                    <button type="button" class="btn btn-lg btn-danger btn-block {{$cancel}}" id="cancel-button" data-toggle="modal" data-target="#confirm-cancel"><span class="glyphicon-warning-sign glyphicon"></span> Cancel Order</button>
 
 
                 @endcomponent

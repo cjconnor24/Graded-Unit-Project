@@ -48,14 +48,33 @@ class UserOrderController extends Controller
 
     }
 
+    /**
+     * Cancel order passed through. Only if meets cancellation criteria
+     *
+     * @param Order $order The order to cancel
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse Redirect to main list
+     */
     public function cancellation(Order $order, Request $request)
     {
-        $state = State::where('name','cancelled')->first();
+        $accepted = [
+            'Awaiting Payment',
+            'With Artworker',
+            'Awaiting Proof Approval'
+        ];
+
+        // IF AT ACCEPTABLE STAGE, CANCEL ORDER
+        if(in_array($order->state->name,$accepted)){
+
+        $state = State::where('name', 'cancelled')->first();
         $order->state()->associate($state);
 
         $order->save();
 
-        return redirect()->action('PagesController@dashboard')->with('success','The order was cancelled');
+        return redirect()->action('PagesController@dashboard')->with('success', 'The order was cancelled');
+    } else {
+        return redirect()->back()->with('error', 'Your order has already progressed and cannot be cancelled.');
+    }
 
     }
 
