@@ -86,12 +86,12 @@
 
             <div class="form-group">
                 {!! Form::label('password',"Password") !!}
-                {!! Form::password('password',['class'=>'form-control','disabled']) !!}
+                {!! Form::password('password',['class'=>'form-control','disabled','required']) !!}
             </div>
 
             <div class="form-group">
                 {!! Form::label('password_confirmation',"Cofirm Password") !!}
-                {!! Form::password('password_confirmation',['class'=>'form-control','disabled']) !!}
+                {!! Form::password('password_confirmation',['class'=>'form-control','disabled','required']) !!}
             </div>
 
         </fieldset>
