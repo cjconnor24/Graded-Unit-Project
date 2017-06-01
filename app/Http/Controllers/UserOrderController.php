@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\State;
 use Sentinel;
 use Illuminate\Http\Request;
 
@@ -44,6 +45,17 @@ class UserOrderController extends Controller
 
 
         return view('userviews.order.view')->with('quotation',$order);
+
+    }
+
+    public function cancellation(Order $order, Request $request)
+    {
+        $state = State::where('name','cancelled')->first();
+        $order->state()->associate($state);
+
+        $order->save();
+
+        return redirect()->action('PagesController@dashboard')->with('success','The order was cancelled');
 
     }
 

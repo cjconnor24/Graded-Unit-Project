@@ -4,6 +4,34 @@
 @endsection
 @section('content')
 
+    <div class="modal fade" id="confirm-cancel" tabindex="-1" role="dialog" aria-labelledby="rejectModelLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Cancel Order</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <p><span class="glyphicon glyphicon-warning-sign" style="font-size:5em;color:#F00;"></span></p>
+
+                    <p class="lead">Are you sure you want to cancel this order?</p>
+
+
+
+                    <p><strong>Note:</strong> This cannot be un-done.</p>
+
+
+                </div>
+                <div class="modal-footer">
+                    {!! Form::open(['action'=>['UserOrderController@cancellation','order'=>$quotation->id]]) !!}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger"><span class="glyphicon-warning-sign glyphicon"></span> Cancel Order</button>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+
     @include('includes.errors')
 
 <a href="{{action('UserOrderController@index')}}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Return to Orders</a>
@@ -54,6 +82,40 @@
 
             @endcomponent
 
+                @component('components.panel',['colour'=>'danger'])
+                    @slot('title')
+                        <span class="fi-misc-trash fi-misc"></span> Cancellations
+                    @endslot
+
+                    <p>To cancel and order, please click the cancellation button below.</p>
+
+                    {{--@php--}}
+                    {{--switch($quotation->orderStatus->id){--}}
+                        {{--case 1:--}}
+                        {{--$cancel = "";--}}
+                        {{--case 2:--}}
+                        {{--$cancel = "";--}}
+                        {{--case 3:--}}
+                        {{--$cancel = "";--}}
+                        {{--default:--}}
+                        {{--$cancel = "disabled";--}}
+                    {{--}--}}
+                    {{--@endphp--}}
+
+                    <button type="button" class="btn btn-lg btn-danger btn-block" data-toggle="modal" data-target="#confirm-cancel"><span class="glyphicon-warning-sign glyphicon"></span> Cancel Order</button>
+
+
+                @endcomponent
+
+
+
+
+
+        </div>
+
+        <div class="col-sm-4 col-flex stretch">
+
+            @include('userviews.components._customer',['customer'=>$quotation->customer,'address'=>$quotation->address])
 
             @component('components.panel',['colour'=>$quotation->orderStatus->colour])
                 @slot('title')
@@ -90,16 +152,9 @@
 
             @endcomponent
 
-
         </div>
 
-        <div class="col-sm-4 stretch">
-
-            @include('userviews.components._customer',['customer'=>$quotation->customer,'address'=>$quotation->address])
-
-        </div>
-
-        <div class="col-sm-4 stretch">
+        <div class="col-sm-4 col-flex stretch">
 
             @include('userviews.components._branch',['staff'=>$quotation->staff,'branch'=>$quotation->branch])
 
@@ -110,6 +165,8 @@
 
     <h2><span class="fi-shop fi-shop-shopping-basket"></span> Order Details</h2>
     @include('userviews.components._ordertable',['order'=>$quotation])
+
+
 
 
 @endsection

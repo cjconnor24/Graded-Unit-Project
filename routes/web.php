@@ -70,6 +70,7 @@ Route::group(['middleware'=>['authenticate','customer']], function(){
     // ORDERS
     Route::get('/orders','UserOrderController@index');
     Route::get('/orders/{order}','UserOrderController@show')->middleware('quote.owner');
+    Route::post('/orders/{order}/cancel','UserOrderController@cancellation')->middleware('quote.owner');
 
     Route::get('/payments','PaymentController@list');
     Route::get('/payments/{order}','PaymentController@index')->middleware(['quote.owner','payment']);
