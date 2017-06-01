@@ -6,6 +6,7 @@
     <script type="text/javascript">
         $("#cancel-button").on("click", function (event) {
             if ($(this).hasClass("disabled")) {
+
                 event.stopPropagation();
             } else {
 //                $('#confirm-cancel').modal("show");
@@ -46,7 +47,6 @@
     @include('includes.errors')
 
 <a href="{{action('UserOrderController@index')}}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Return to Orders</a>
-
 
 
     <div class="row">
