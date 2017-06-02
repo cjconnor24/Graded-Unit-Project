@@ -23,11 +23,11 @@ class PaymentController extends Controller
      *
      * @return $payments
      */
-    public function list()
-    {
-        $payments = Sentinel::getUser()->payments;
-        return $payments;
-    }
+//    public function list()
+//    {
+//        $payments = Sentinel::getUser()->payments;
+//        return $payments;
+//    }
 
     /**
      * Display the payment window
