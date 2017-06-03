@@ -6,7 +6,9 @@
 
     @include('branches._form')
 
+    <div class="form-group">
     {!! Form::submit('Update Branch',['class'=>'btn btn-']) !!}
+    </div>
 
 
     {!! Form::close() !!}
