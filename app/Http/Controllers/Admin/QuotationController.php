@@ -84,12 +84,19 @@ class QuotationController extends Controller
                 'qty'=>$line['qty'],
                 'description'=>$line['description']
             ]);
-
-//            \Log::info($line['description']);
+            
         }
 
         // TRIGGER THE QUOTE CREATED EVENT - CREATE APPROVAL AND EMAIL
-        event(new QuoteCreated($customer,$order));
+        try {
+            event(new QuoteCreated($customer, $order));
+        }
+        catch (\Swift_TransportException $e){
+
+        // LOG DETAILS
+        \Log::error('MAIL SENDING FAILED. See logs for activation details.');
+
+    }
 
         $request->session()->flash('success', 'The quote was created successfully');
         $request->session()->flash('notification', 'true');

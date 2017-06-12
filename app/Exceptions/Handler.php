@@ -50,6 +50,10 @@ class Handler extends ExceptionHandler
             abort(404);
         }
 
+        if($exception instanceof \Swift_TransportException){
+            abort(504,$exception->getMessage()."\n See logs for activation details.");
+        }
+
         // CSRF EXCEPTION
         if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
 
