@@ -94,7 +94,14 @@ class UserQuotationController extends Controller
         $quotation->save();
 
         // MAIL THE USER TO CONFIRM THE REJECTION
-        Mail::to($quotation->customer->email)->cc($quotation->staff->email)->send(new UserQuoteRejected($quotation));
+        try {
+            Mail::to($quotation->customer->email)->cc($quotation->staff->email)->send(new UserQuoteRejected($quotation));
+        } catch (\Swift_TransportException $e){
+
+            // LOG DETAILS
+            \Log::error('MAIL SENDING FAILED. Swift Error');
+
+        }
 
         $request->session()->flash('success', 'The quote was rejected');
         $request->session()->flash('notification', 'true');
